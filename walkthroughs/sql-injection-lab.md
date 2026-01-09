@@ -1,14 +1,18 @@
 # SQL Injection Lab using DVWA
 
-## 🧪 Objective
+## Objective
 Practice and understand SQL Injection vulnerabilities using the Damn Vulnerable Web Application (DVWA).
 
-## 🛠️ Setup
+## Setup
 
-- Cloned DVWA from GitHub
-- Ran it in Docker:
+- Ran DVWA directly using Docker Hub image:
+  
   ```bash
-  git clone https://github.com/digininja/DVWA
-  cd DVWA
-  docker compose up
+  docker run --rm -it -p 8081:80 vulnerables/web-dvwa
+  ```
 
+- Accessed DVWA at:
+
+  ```
+  http://localhost:8081
+  ```
