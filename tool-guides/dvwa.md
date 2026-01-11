@@ -17,3 +17,13 @@
   ```
 
   This allows you to manage the container via Docker Desktop and restart it easily.
+
+- Accessed DVWA at:
+
+  ```
+  http://localhost:8081
+  ```
+
+- Logged in with default credentials:
+  - **Username**: `admin`
+  - **Password**: `password`
