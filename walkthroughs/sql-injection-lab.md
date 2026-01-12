@@ -16,3 +16,8 @@ Practice and understand SQL Injection vulnerabilities using the Damn Vulnerable 
   ```
   http://localhost:8081
   ```
+ - Logged in with default credentials:
+    - **Username**: `admin`
+    - **Password**: `password`
+
+
