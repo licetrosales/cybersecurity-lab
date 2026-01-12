@@ -27,3 +27,8 @@
 - Logged in with default credentials:
   - **Username**: `admin`
   - **Password**: `password`
+    
+- Initialized the database by clicking **Create / Reset Database**
+- Set **Security Level** to **Low** (under `DVWA Security` menu)
+
+---
