@@ -149,4 +149,7 @@ To extract user data including passwords, ran:
 Successfully accessed usernames and passwords in plain text.
 
 ---
+## Lessons Learned
+
+- DVWA simulates real-world SQLi vulnerabilities safely
 
