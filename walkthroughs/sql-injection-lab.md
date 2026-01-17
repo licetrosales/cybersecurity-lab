@@ -126,8 +126,9 @@ First name:
 Surname: users
 failed_login
 ```
----
+Confirmed that `password` and other useful fields exist in the `users` table.
 
+---
 ## Extracting Passwords
 
 To extract user data including passwords, ran:
@@ -149,6 +150,3 @@ Successfully accessed usernames and passwords in plain text.
 
 ---
 
-Confirmed that `password` and other useful fields exist in the `users` table.
-
----
