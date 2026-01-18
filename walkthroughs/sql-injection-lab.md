@@ -152,4 +152,5 @@ Successfully accessed usernames and passwords in plain text.
 ## Lessons Learned
 
 - DVWA simulates real-world SQLi vulnerabilities safely
+- `OR '1'='1'` is a classic example of an always-true condition
 
