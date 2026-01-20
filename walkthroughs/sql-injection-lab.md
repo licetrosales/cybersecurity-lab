@@ -154,3 +154,6 @@ Successfully accessed usernames and passwords in plain text.
 - DVWA simulates real-world SQLi vulnerabilities safely
 - `OR '1'='1'` is a classic example of an always-true condition
 - SQL injection can be used to enumerate **tables**, **columns**, and **data**
+- Always sanitize inputs and use **parameterized queries** in production apps
+
+---
