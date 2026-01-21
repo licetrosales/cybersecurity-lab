@@ -157,3 +157,6 @@ Successfully accessed usernames and passwords in plain text.
 - Always sanitize inputs and use **parameterized queries** in production apps
 
 ---
+# Conclusion
+
+This exercise demonstrated how simple logic flaws in SQL queries can expose sensitive data like user credentials and database architecture.
