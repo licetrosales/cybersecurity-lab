@@ -157,6 +157,14 @@ Successfully accessed usernames and passwords in plain text.
 - Always sanitize inputs and use **parameterized queries** in production apps
 
 ---
+# Recommendations 
+
+- Use **web application firewalls (WAF)**
+- Employ **input validation and escaping**
+- Apply **least privilege** to database accounts
+- Regularly **test your apps with tools like DVWA or Burp Suite**
+
+---
 # Conclusion
 
 This exercise demonstrated how simple logic flaws in SQL queries can expose sensitive data like user credentials and database architecture.
