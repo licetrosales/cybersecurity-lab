@@ -19,3 +19,14 @@ This domain is maintained by the Nmap project and explicitly allows scanning for
   - **Service/Version Detection**: Identifies services and their versions (`-sV`)
 
 ---
+## 3. Implementation Steps & Commands
+
+### Step 1: Basic (Unconfigured) Scan
+
+```bash
+nmap scanme.nmap.org
+```
+
+Performs a default scan with no additional options.
+
+---
