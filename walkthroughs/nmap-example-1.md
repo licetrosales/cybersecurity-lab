@@ -30,3 +30,13 @@ nmap scanme.nmap.org
 Performs a default scan with no additional options.
 
 ---
+### Step 2: TCP Connect + Service Version Detection
+
+```bash
+nmap -sT -sV scanme.nmap.org
+```
+
+- `-sT`: TCP Connect scan (full 3-way handshake)
+- `-sV`: Service/version detection
+
+---
