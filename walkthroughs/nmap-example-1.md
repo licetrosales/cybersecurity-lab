@@ -76,3 +76,6 @@ more Nmap-XMLReport
 | View XML output                | `more Nmap-XMLReport`                                  |
 
 ---
+## Notes
+
+- All scans performed on this domain are within the authorized scope as outlined on [nmap.org](https://nmap.org/).
