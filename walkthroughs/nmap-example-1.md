@@ -65,3 +65,14 @@ more Nmap-XMLReport
 ```
 
 ---
+## Summary of Commands
+
+| Task                           | Command                                                |
+|--------------------------------|--------------------------------------------------------|
+| Basic scan                     | `nmap scanme.nmap.org`                                 |
+| TCP connect + service scan     | `nmap -sT -sV scanme.nmap.org`                         |
+| Verbose mode                   | `nmap -sT -sV -v scanme.nmap.org`                      |
+| Output scan to XML             | `nmap -v -oX Nmap-XMLReport scanme.nmap.org`          |
+| View XML output                | `more Nmap-XMLReport`                                  |
+
+---
