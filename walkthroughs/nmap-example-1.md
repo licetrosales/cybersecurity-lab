@@ -48,4 +48,20 @@ nmap -sT -sV -v scanme.nmap.org
 
 - `-v`: Enable verbose mode for detailed output
 
+---### Step 4: Export Results to XML
+
+```bash
+nmap -v -oX Nmap-XMLReport scanme.nmap.org
+```
+
+- `-v`: Verbose scan output
+- `-oX`: Output to XML format
+- `Nmap-XMLReport`: File name for the saved output
+
+To view the saved output:
+
+```bash
+more Nmap-XMLReport
+```
+
 ---
