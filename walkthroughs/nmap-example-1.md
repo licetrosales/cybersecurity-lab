@@ -40,3 +40,12 @@ nmap -sT -sV scanme.nmap.org
 - `-sV`: Service/version detection
 
 ---
+### Step 3: Verbose Output
+
+```bash
+nmap -sT -sV -v scanme.nmap.org
+```
+
+- `-v`: Enable verbose mode for detailed output
+
+---
