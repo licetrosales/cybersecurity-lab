@@ -79,3 +79,6 @@ more Nmap-XMLReport
 ## Notes
 
 - All scans performed on this domain are within the authorized scope as outlined on [nmap.org](https://nmap.org/).
+- Never scan systems you don’t have explicit permission to target.
+
+---
