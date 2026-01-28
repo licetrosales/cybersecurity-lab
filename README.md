@@ -6,9 +6,8 @@ This repository tracks my hands-on practice in:
 - ✅ Python scripting for ethical hacking
 - ✅ Linux command-line and bash scripting
 - ✅ Tool usage (Nmap, Wireshark)
-- ✅ Notes and walkthroughs from cybersecurity platforms 
-
-> 📅 Actively learning and committing — check back for updates!
+- ✅ Notes and walkthroughs from cybersecurity platforms
+- ✅ VAPT Capstone Project focused on vulnerability assessment and penetration testing
 
 ---
 
@@ -21,6 +20,7 @@ This repository tracks my hands-on practice in:
 | `tool-guides/` | Guides for cybersecurity tools |
 | `walkthroughs/` | My lab walkthroughs 
 | `notes/` | Cheatsheets and summaries |
+| `my-cybersecurity-capstone-vapt/` |VAPT capstone project with four milestones and hands-on work. |
 
 ---
 
