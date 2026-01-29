@@ -1,12 +1,12 @@
 # Milestone 1: Network Scanning and Vulnerability Assessment
 
-## Overview
+## 1. Overview
 
 This milestone simulates a client-side vulnerability assessment commissioned by TechShield, a managed IT services provider, to identify and mitigate internal threats. The primary goal is to detect live hosts, enumerate services, and scan for vulnerabilities across a test lab environment.
 
 ---
 
-## Lab Infrastructure
+## 2. Lab Infrastructure
 
 ### Virtual Machines (VMs)
 
@@ -40,7 +40,7 @@ This milestone simulates a client-side vulnerability assessment commissioned by 
 
 ---
 
-## 🛠️ Tools Used
+## Tools Used
 
 - `Netdiscover` – ARP-based discovery
 - `Nmap` – Ping sweeps, port scanning, version detection
