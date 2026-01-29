@@ -18,7 +18,7 @@ This milestone simulates a client-side vulnerability assessment commissioned by 
 
 ### Network Diagram
 
-![Network Diagram](./assets/network-layout.png))
+![Network Diagram](../assets/network-layout.png))
 *Figure 1: Network layout showing Pentester, Victim, and App Server*
 
 ### Login Credentials
