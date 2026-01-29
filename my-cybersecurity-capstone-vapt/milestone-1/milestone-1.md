@@ -47,3 +47,20 @@ This milestone simulates a client-side vulnerability assessment commissioned by 
 - `OpenVAS` – Vulnerability scanning and reporting
 
 ---
+## 3 Network Discovery
+
+### 3.1 Host Discovery via ARP (Netdiscover)
+
+Executed on subnet `192.168.57.0/24`:
+
+```bash
+sudo netdiscover -r 192.168.57.0/24
+```
+Results:
+
+5 live hosts detected
+
+Scanning host (192.168.57.10) excluded by design
+
+
+Figure 2: ARP probe result using Netdiscover
