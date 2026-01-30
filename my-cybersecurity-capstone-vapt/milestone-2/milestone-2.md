@@ -10,6 +10,14 @@ This milestone demonstrates practical exploitation of common web application vul
 
 The DVWA security level was configured to Low to simulate real-world scenarios. Tools utilized during this milestone include Kali Linux, the Metasploit Framework, msfvenom, and a web browser for manual testing and validation.
 
+## 2 Environment Setup and Tools
+
+- **Target:** DVWA (v1.0.7)
+- **Attacker:** Kali Linux
+- **Tools Used:**
+  - Web browser
+  - Metasploit Framework
+  - msfvenom
 
 
 
