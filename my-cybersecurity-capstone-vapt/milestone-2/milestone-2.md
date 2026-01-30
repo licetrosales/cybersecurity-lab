@@ -38,13 +38,13 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
   - Authentication is bypassed.
   - All user records are exposed.
 
+
+![Figure 1](../assets/sqli-bypass-auth-i.png)
 **Figure 1:** Injection field in DVWA login form
 
-![Figure 1](images/figure1.png)
-
+![Figure 2](../assets/sqli-bypass-auth-o.png)
 **Figure 2:** Output showing exposed user data
 
-![Figure 2](images/figure2.png)
 
 ---
 
