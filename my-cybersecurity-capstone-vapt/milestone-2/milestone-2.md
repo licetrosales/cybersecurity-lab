@@ -60,9 +60,9 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 - **Results:**
   - The name of the current database is returned.
 
+![Figure 3](../assets/sqli-enum-database-name.png)
 **Figure 3:** Output showing database name
 
-![Figure 3](images/figure3.png)
 
 ---
 
