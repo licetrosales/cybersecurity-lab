@@ -78,8 +78,8 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 - **Results:**
   - Column names such as `user`, `password` are revealed.
 
+![Figure 3](../assets/sqli-enum-table-names.png)
 **Figure 4:** Column names displayed
 
-![Figure 4](images/figure4.png)
 
 ---
