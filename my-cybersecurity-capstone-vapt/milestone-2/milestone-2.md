@@ -65,4 +65,21 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 
 
 ---
+### Test 3: Enumeration of Column Names from Users Table
 
+- **Payload Used:**
+  ```sql
+  1' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name='users' #
+  ```
+
+- **Steps Taken:**
+  1. Inject the payload into the User ID input.
+
+- **Results:**
+  - Column names such as `user`, `password` are revealed.
+
+**Figure 4:** Column names displayed
+
+![Figure 4](images/figure4.png)
+
+---
