@@ -47,5 +47,22 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 
 
 ---
+### Test 2: Enumeration of Database Name
 
+- **Payload Used:**
+  ```sql
+  1' UNION SELECT database(), NULL #
+  ```
+
+- **Steps Taken:**
+  1. Submit the above payload in the SQL Injection input.
+
+- **Results:**
+  - The name of the current database is returned.
+
+**Figure 3:** Output showing database name
+
+![Figure 3](images/figure3.png)
+
+---
 
