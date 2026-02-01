@@ -173,12 +173,12 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 - **Results:**
   - Meterpreter session is opened.
 
+![Figure 11](../assets/msfvenom%20payload%20generation.png)
 **Figure 10:** msfvenom payload generation
 
-![Figure 9](images/figure9.png)
-
+![Figure 10](../assets/meterpreter-session-estabalished.png)
 **Figure 11:** Meterpreter session established
 
-![Figure 10](images/figure10.png)
+
 
 ---
