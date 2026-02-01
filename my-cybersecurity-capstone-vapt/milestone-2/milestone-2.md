@@ -128,7 +128,7 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 
 
 ---
-### Test 5: RCE via PHP Webshell Upload
+### Test 6: RCE via PHP Webshell Upload
 
 - **Payload Used:**
   ```php
@@ -143,10 +143,10 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 - **Results:**
   - OS commands are executed via URL.
 
-![Figure 8](images/figure7.png)
+![Figure 8](../assets/upload-interface.png)
 **Figure 8:** File Upload interface
 
-![Figure 9](images/figure8.png)
+![Figure 9](../assets/rce-command-whoami.png)
 **Figure 9:** Output of `whoami` command
 
 
