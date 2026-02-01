@@ -80,9 +80,9 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 - **Results:**
   - Table names such as `users`, `guestbook` are revealed.
 
-![Figure 3](../assets/sqli-enum-table-names.png)
+![Figure 4](../assets/sqli-enum-table-names.png)
 
-**Figure 3:** Column names displayed
+**Figure 4:** Column names displayed
 
 
 ---
@@ -99,8 +99,32 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 - **Results:**
   - Column names such as `user`, `password` are revealed.
 
-![Figure 4](../assets/sqli-enum-column-names.png)
-**Figure 4:** Column names displayed
+![Figure 5](../assets/sqli-enum-column-names.png)
+**Figure 5:** Column names displayed
 
+
+---
+## Test 5: Session Cookie Exposure via Stored XSS in Guestbook
+
+- **Payload Used:**
+  ```html
+  <script>alert(document.cookie)</script>
+  ```
+
+- **Steps Taken:**
+  1. Submit the payload in the guestbook message field.
+  2. View entry as guest.
+
+- **Results:**
+  - JavaScript is executed.
+  - Session cookie is exposed in an alert.
+
+**Figure 6:** Guestbook entry with XSS payload
+
+![Figure 5](images/figure5.png)
+
+**Figure 6:** Alert popup showing cookie
+
+![Figure 6](images/figure6.png)
 
 ---
