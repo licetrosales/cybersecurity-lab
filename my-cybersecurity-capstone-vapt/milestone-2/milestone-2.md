@@ -119,12 +119,12 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
   - JavaScript is executed.
   - Session cookie is exposed in an alert.
 
+![Figure 6](../assets/xxs-get-cookies.png)
+
 **Figure 6:** Guestbook entry with XSS payload
 
-![Figure 5](images/figure5.png)
+![Figure 7](../assets/xxs-show-coockie.png)
+**Figure 7:** Alert popup showing cookie
 
-**Figure 6:** Alert popup showing cookie
-
-![Figure 6](images/figure6.png)
 
 ---
