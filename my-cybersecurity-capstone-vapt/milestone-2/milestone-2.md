@@ -23,7 +23,7 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 
 ## 3.1 SQL Injection 
 
-### Test 1: Authentication Bypass
+### Test 1: Authentication Bypass via SQLi
 
 - **Payload Used:**
   ```sql
@@ -47,7 +47,7 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 
 
 ---
-### Test 2: Enumeration of Database Name
+### Test 2: Enumeration of Database Name via SQLi
 
 - **Payload Used:**
   ```sql
@@ -67,7 +67,7 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 ---
 
 
-### Test 3: Enumeration of Table Names of the Database
+### Test 3: Enumeration of Table Names of the Database via SQLi
 
 - **Payload Used:**
   ```sql
@@ -86,7 +86,7 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 
 
 ---
-### Test 4: Enumeration of Column Names from Users Table
+### Test 4: Enumeration of Column Names from Users Table via SQLi
 
 - **Payload Used:**
   ```sql
