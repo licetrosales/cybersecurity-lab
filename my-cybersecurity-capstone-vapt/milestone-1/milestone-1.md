@@ -109,11 +109,56 @@ sudo nmap -sn --max-retries 5 --host-timeout 30s 192.168.57.0/24
 
 **Table 1**: Summary of Live Hosts
 
-## 4 Service Enumeration
-Nmap was used to enumerate services and open ports for host 192.168.57.20. 
+## 4 Port, Service and Version Enumeration
+
+All enumeration steps were performed from the Pentester (Kali Linux) VM using Nmap. 
+Nmap was used to enumerate services, open ports, and OS versions for host 192.168.57.20. 
+The objective was to gather actionable intelligence on identified host 192.168.57.20.
+
+### 4.1 Targeted Scan of Host (192.168.57.20)
+
+- **Tool Used:**  
+Nmap was executed with the following flags to perform:
+- `-sS`: TCP SYN scan (stealthy and fast)
+- `-sV`: Service and version detection
+- `-O`: OS detection
+
+- **Command Executed:**
+```bash
+sudo nmap -sS -sV -O 192.168.57.20
+```
+
+- **Results:**
+
+**Open Ports Detected:**
+
+| Port | Service      | Description                                     |
+|------|--------------|-------------------------------------------------|
+| 135  | msrpc        | Microsoft RPC (used by SMB and others)         |
+| 139  | netbios-ssn  | NetBIOS Session Service (SMB over NetBIOS)     |
+| 445  | microsoft-ds | SMB over TCP (modern SMB communication)        |
+
+*Table: Open Ports on Host 192.168.57.20 (Victim-Laptop)*
+
+- **Operating System Detected:**
+  - **Likely OS:** Windows 7 SP1, Windows Server 2008 SP1, or Vista SP1
+    - **Hostname:** `WIN7-64`
+
+![Nmap Port, Service, and OS Detection](images/nmap-port-os-detection.png)
+
+**Figure 4:** Nmap Scan - Service, Port, and OS Detection for 192.168.57.20: The output reveals three open ports (135, 139, 445) running SMB-related services and identifies the host OS as likely Windows 7 SP1, Server 2008 SP1, or Vista SP1. Hostname (`WIN7-64`) and MAC vendor (VMware Inc.) information is also shown.*
+
+### 4.2 Conclusion
+The host, identified as *Victim-Laptop*, runs a legacy Windows OS with SMB services exposed on ports 135, 139, and 445, making it susceptible to known attack vectors such as MS17-010 (EternalBlue). OS fingerprinting indicates it may be an unpatched Windows 7 SP1 or similar.
+
+In addition to SMB exploitation, other potential attack vectors include remote code execution, weak authentication, and possible exposure of RDP or WMI services. Given its outdated OS and exposed services, this host represents a high-priority target for further exploitation testing.
 
 ---
-### 4.2 Identification of Vulnerabilities using namp (Host: 192.168.57.20) 
+
+
+
+---
+### 4.3 Identification of Vulnerabilities using namp (Host: 192.168.57.20) 
 
 - Open Ports: 135, 139, 445
 - Services: MSRPC, NetBIOS, SMB
