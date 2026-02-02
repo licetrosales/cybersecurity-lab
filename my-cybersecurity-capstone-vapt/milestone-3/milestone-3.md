@@ -118,3 +118,23 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Figure 5:** `smbclient` successful for `student` and `Administrator`.
 
 ---
+## 4. Bonus: Offline Password Cracking with John the Ripper
+
+### 4.1 Hash Extraction
+
+**Objective:** Extract NTLM password hashes from the compromised system for offline analysis.
+
+**Steps Taken:**
+1. In Meterpreter:
+   ```bash
+   hashdump
+   ```
+2. Save output to `hashes.txt`
+
+**Results:**
+- NTLM hashes for local users were successfully extracted.
+
+**Figure 6:** Extracted NTLM hashes.
+
+---
+
