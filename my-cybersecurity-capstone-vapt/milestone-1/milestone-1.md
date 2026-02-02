@@ -108,3 +108,33 @@ sudo nmap -sn --max-retries 5 --host-timeout 30s 192.168.57.0/24
 | 192.168.57.254 | Firewall/Gateway | Nmap, Netdiscover |
 
 **Table 1**: Summary of Live Hosts
+
+## 4 Service Enumeration
+Nmap was used to enumerate services and open ports for host 192.168.57.20. 
+
+---
+### 4.2 Identification of Vulnerabilities using namp (Host: 192.168.57.20) 
+
+- Open Ports: 135, 139, 445
+- Services: MSRPC, NetBIOS, SMB
+
+#### SMB Enumeration
+```bash
+nmap -Pn --script smb-enum-shares -p445 192.168.57.20
+```
+- **Results**:
+- 
+  - IPC$ accessible anonymously, other shares denied (C$, ADMIN$).
+
+```bash
+nmap -Pn --script smb-security-mode -p445 192.168.57.20
+```
+- **Results**:
+- 
+  - SMB message signing disabled, guest authentication supported.
+
+#### Vulnerabilities Identified
+
+- MS17-010 vulnerability (Remote Code Execution)
+- Anonymous access to IPC$
+- SMB message signing disabled (MITM risk)
