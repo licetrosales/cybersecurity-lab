@@ -161,4 +161,16 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Figure 7:** John cracking output.
 
 ---
+## 5. Conclusions
+
+This assessment confirmed that:
+
+- EternalBlue (MS17-010) enabled full system compromise.
+- Password reuse (`P@ssw0rd`) across `student` and `Administrator` accounts presents a critical risk.
+- Online brute-forcing tools like Hydra can return false positives, stressing the importance of validation.
+- Offline cracking with John the Ripper reliably identified valid credentials.
+  
+Organizations must enforce strong password policies, monitor credential reuse, apply timely patches, and restrict admin access to mitigate such attacks.
+
+---
 
