@@ -43,9 +43,9 @@ The assessment was conducted within a virtualized lab environment consisting of 
 
 ## Tools Used
 
-- `Netdiscover` – ARP-based discovery
-- `Nmap` – Ping sweeps, port scanning, version detection
-- `OpenVAS` – Vulnerability scanning and reporting
+- `Netdiscover` : ARP-based discovery
+- `Nmap` : Ping sweeps, port scanning, version detection
+- `OpenVAS` : Vulnerability scanning and reporting
 
 ---
 ## 3 Network Discovery
@@ -57,11 +57,37 @@ Executed on subnet `192.168.57.0/24`:
 ```bash
 sudo netdiscover -r 192.168.57.0/24
 ```
-**Results:**
+- **Results:**
 
-- 5 live hosts detected
+  - 5 live hosts detected
 
-- Scanning host (192.168.57.10) excluded by design
+  - Scanning host (192.168.57.10) excluded by design
 
 ![Figure 2](../assets/netdiscover-scan-output.png)
 **Figure 2:** ARP probe result using Netdiscover
+
+### 3.2 Cross-Verification Host Discovery using Nmap: Ping Sweep
+To validate the results, an Nmap ping sweep was also performed:
+
+```bash
+nmap -sn 192.168.57.0/24
+```
+- `-sn` : Disables port scanning, enabling only ping-based discovery.
+- **Results:**
+  - 5 target hosts were confirmed.
+  - The Pentester host (192.168.57.10) appeared.
+  - Host 192.168.57.20, detected earlier via Netdiscover, was not listed in the Nmap results.
+
+To ensure more comprehensive detection, an enhanced ping sweep was conducted using retry and timeout options.
+
+**Enhanced Ping Sweep:**
+```bash
+sudo nmap -sn --max-retries 5 --host-timeout 30s 192.168.57.0/24
+```
+- `--max-retries 5`: Retries probes up to 5 times (default is 10).
+- `--host-timeout 30s`: Allows slower or delayed hosts more time to respond.
+- **Results:**
+  - 6 total of 5 target hosts were confirmed, including: 192.168.57.20.
+  - This result confirms that the host is reachable and responsive when given more time.
+
+**Figure 2**: Nmap Enhanced Ping Sweep Scan Result
