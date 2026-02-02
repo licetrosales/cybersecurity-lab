@@ -99,3 +99,22 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Figure 4:** Hydra output showing successful login.
 
 ---
+### 3.5 Credential Verification
+
+**Objective:** Confirm the validity of cracked credentials using standard SMB and RPC authentication methods.
+
+**Steps Taken:**
+1. Test credentials using:
+   ```bash
+   smbclient -L //192.168.57.20/ -U student
+   rpcclient -U student 192.168.57.20
+   ```
+2. Access was granted to the student and Administrator account.
+
+**Results:**
+- Verified that the `student` and Administrator account was active and accessible.
+
+
+**Figure 5:** `smbclient` successful for `student` and `Administrator`.
+
+---
