@@ -246,3 +246,16 @@ Key findings from the scan included:
 - **15 Informational alerts**
 
 ---
+### 5.5 Summary of Vulnerabilities and Remediation
+
+| Vulnerability                  | Severity | Impact                                          | Recommended Action               |
+|-------------------------------|----------|--------------------------------------------------|----------------------------------|
+| SMB NTLM Flaws (MS10-012)     | High     | Remote code execution, auth bypass               | Apply vendor patches             |
+| OS End-of-Life (Windows 7)    | High     | No support, high exposure                        | Upgrade OS                       |
+| SMB Remote Exploits (MS17-010)| High     | Remote code execution, info disclosure           | Apply MS17-010 patch             |
+| DCE/RPC Enumeration           | Medium   | RPC service exposure                             | Block or restrict port 135       |
+| TCP Timestamps                | Low      | Uptime leak aiding recon                         | Disable TCP timestamps           |
+
+*Table 5.1: Summary of Vulnerabilities Identified via OpenVAS*
+
+---
