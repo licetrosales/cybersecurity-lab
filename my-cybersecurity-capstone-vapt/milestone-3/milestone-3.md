@@ -48,3 +48,19 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Figure 1:** Meterpreter session established post-exploitation.
 
 ---
+## 3.2 User Enumeration
+
+**Objective:** Identify valid user accounts on the compromised host for further password attacks.
+
+**Steps Taken:**
+1. In Meterpreter:
+   ```bash
+   shell
+   net user
+   ```
+2. Identified local users: Administrator, student, Guest.
+
+**Results:**
+- Enumerated users confirmed valid accounts that could be targeted for password attacks.
+
+**Figure 2:** User enumeration output from `net user`.
