@@ -259,3 +259,10 @@ Key findings from the scan included:
 *Table 5.1: Summary of Vulnerabilities Identified via OpenVAS*
 
 ---
+## 6. Conclusions
+
+Milestone 1 systematically identified active hosts, enumerated exposed services, and assessed vulnerabilities within a controlled lab setup. Netdiscover and Nmap confirmed five live hosts. Service scans revealed critical exposure, notably on the Windows 7 system with SMB services.
+
+Manual probing and Nmap scripts detected vulnerabilities like MS17-010 and SMB misconfigurations (e.g., disabled message signing, anonymous access). A credentialed OpenVAS scan validated these findings and identified additional high-risk issues, including outdated software and remote code execution flaws.
+
+Combining manual enumeration with authenticated scanning proved effective in exposing exploitable services and system weaknesses, emphasizing the need for patching, protocol hardening, and secure configurations.
