@@ -56,11 +56,11 @@ Executed on subnet `192.168.57.0/24`:
 ```bash
 sudo netdiscover -r 192.168.57.0/24
 ```
-Results:
+**Results:**
 
-5 live hosts detected
+- 5 live hosts detected
 
-Scanning host (192.168.57.10) excluded by design
+- Scanning host (192.168.57.10) excluded by design
 
 
-Figure 2: ARP probe result using Netdiscover
+**Figure 2:** ARP probe result using Netdiscover
