@@ -66,3 +66,17 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Figure 2:** User enumeration output from `net user`.
 
 ---
+### 3.3 Custom Wordlist Creation
+
+**Objective:** Build targeted user and password lists based on known usernames and common password patterns.
+
+**Steps Taken:**
+1. Create `users.txt` and `wordlist.txt` using `nano`.
+2. Verify with `cat` command.
+
+**Results:**
+- Successfully created and confirmed presence of valid username and password lists.
+
+**Figure 3:** Contents of `users.txt` and `wordlist.txt`.
+
+---
