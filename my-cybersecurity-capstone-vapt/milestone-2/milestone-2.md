@@ -193,3 +193,13 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 | Meterpreter Shell      | Reverse shell  | Rejected       | No connection established           |
 
 ---
+## Key Lessons and Mitigation
+
+- **Input Sanitization** prevents SQL Injection.
+- **Output Encoding** avoids XSS execution.
+- **File Upload Restrictions** prevent RCE.
+- Use **WAFs** like Apache mod_security.
+- Follow **secure coding practices** and **OWASP Top 10**.
+
+---
+
