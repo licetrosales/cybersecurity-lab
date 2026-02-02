@@ -200,7 +200,7 @@ The scan was configured using the following parameters:
 ![Figure 5.1](../assets/openvas-target-config.png)  
 *Figure 5.1: OpenVAS Target Configuration (manual IP input and scan scope)*
 
----
+
 #### 5.1.2 Credential Setup
 
 To perform an authenticated scan, SMB credentials were configured:
@@ -214,5 +214,17 @@ To perform an authenticated scan, SMB credentials were configured:
 ![Figure 5.2](../assets/openvas-credential-config.png)  
 *Figure 5.2: Credential configuration for SMB authentication*
 
----
 
+#### 5.1.3 Task Setup
+
+A scan task was created with the following parameters:
+
+- **Task Name**: Victim-Laptop Scan  
+- **Scan Config**: Full and fast  
+- **Scanner**: OpenVAS Default  
+- **QoD Threshold**: 70%
+
+![Figure 5.3](../assets/openvas-task-config.png)  
+*Figure 5.3: Task setup with scan target, QoD threshold, and scanner type*
+
+---
