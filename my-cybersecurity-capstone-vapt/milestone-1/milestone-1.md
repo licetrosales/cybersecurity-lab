@@ -228,3 +228,21 @@ A scan task was created with the following parameters:
 *Figure 5.3: Task setup with scan target, QoD threshold, and scanner type*
 
 ---
+### 5.2 Scan Results Summary
+
+The scan executed successfully and generated a report highlighting vulnerabilities based on severity.
+
+![Figure 5.4](../assets/openvas-scan-summary.png)  
+*Figure 5.4: Scan summary showing high-risk vulnerabilities*
+
+![Figure 5.5](../assets/openvas-vuln-list.png)  
+*Figure 5.5: Vulnerability detail tab with CVSS, host IPs, and services*
+
+Key findings from the scan included:
+
+- **3 High-severity vulnerabilities**  
+- **1 Medium-severity vulnerability**  
+- **1 Low-severity vulnerability**  
+- **15 Informational alerts**
+
+---
