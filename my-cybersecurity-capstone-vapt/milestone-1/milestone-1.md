@@ -119,9 +119,9 @@ The objective was to gather actionable intelligence on identified host 192.168.5
 
 - **Tool Used:**  
 Nmap was executed with the following flags to perform:
-- `-sS`: TCP SYN scan (stealthy and fast)
-- `-sV`: Service and version detection
-- `-O`: OS detection
+  - `-sS`: TCP SYN scan (stealthy and fast)
+  - `-sV`: Service and version detection
+  - `-O`: OS detection
 
 - **Command Executed:**
 ```bash
@@ -159,14 +159,14 @@ sudo nmap -sS -sV -O 192.168.57.20
 nmap -Pn --script smb-enum-shares -p445 192.168.57.20
 ```
 - **Results**:
-- 
+ 
   - IPC$ accessible anonymously, other shares denied (C$, ADMIN$).
 
 ```bash
 nmap -Pn --script smb-security-mode -p445 192.168.57.20
 ```
 - **Results**:
-- 
+ 
   - SMB message signing disabled, guest authentication supported.
 
 #### Vulnerabilities Identified
