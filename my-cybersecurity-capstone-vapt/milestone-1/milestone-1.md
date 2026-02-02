@@ -62,5 +62,5 @@ sudo netdiscover -r 192.168.57.0/24
 
 - Scanning host (192.168.57.10) excluded by design
 
-
+![Figure 2](../assets/netdiscover-scan-output.png)
 **Figure 2:** ARP probe result using Netdiscover
