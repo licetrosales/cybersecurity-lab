@@ -147,17 +147,9 @@ sudo nmap -sS -sV -O 192.168.57.20
 ![Figure 4](../assets/nmap-ports-services-os-enum.png)
 **Figure 4:** Nmap Scan - Service, Port, and OS Detection for 192.168.57.20: The output reveals three open ports (135, 139, 445) running SMB-related services and identifies the host OS as likely Windows 7 SP1, Server 2008 SP1, or Vista SP1. Hostname (`WIN7-64`) and MAC vendor (VMware Inc.) information is also shown.*
 
-### 4.2 Conclusion
-The host, identified as *Victim-Laptop*, runs a legacy Windows OS with SMB services exposed on ports 135, 139, and 445, making it susceptible to known attack vectors such as MS17-010 (EternalBlue). OS fingerprinting indicates it may be an unpatched Windows 7 SP1 or similar.
-
-In addition to SMB exploitation, other potential attack vectors include remote code execution, weak authentication, and possible exposure of RDP or WMI services. Given its outdated OS and exposed services, this host represents a high-priority target for further exploitation testing.
 
 ---
-
-
-
----
-### 4.3 Identification of Vulnerabilities using namp (Host: 192.168.57.20) 
+### 4.2 Identification of Vulnerabilities using namp (Host: 192.168.57.20) 
 
 - Open Ports: 135, 139, 445
 - Services: MSRPC, NetBIOS, SMB
@@ -179,6 +171,19 @@ nmap -Pn --script smb-security-mode -p445 192.168.57.20
 
 #### Vulnerabilities Identified
 
-- MS17-010 vulnerability (Remote Code Execution)
+- MS17-010 vulnerability (Remote Code Ex
+ecution)
 - Anonymous access to IPC$
 - SMB message signing disabled (MITM risk)
+
+### 4.3 Conclusion
+
+The host, identified as *Victim-Laptop*, runs a legacy Windows OS with SMB services exposed on ports 135, 139, and 445, making it susceptible to known attack vectors such as MS17-010 (EternalBlue). OS fingerprinting indicates it may be an unpatched Windows 7 SP1 or similar.
+
+In addition to SMB exploitation, other potential attack vectors include remote code execution, weak authentication, and possible exposure of RDP or WMI services. Given its outdated OS and exposed services, this host represents a high-priority target for further exploitation testing.
+
+---
+
+
+
+
