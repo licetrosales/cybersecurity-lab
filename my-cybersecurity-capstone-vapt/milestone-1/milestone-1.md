@@ -6,7 +6,9 @@ This milestone focused on identifying live hosts in the network and performing s
 
 ---
 
-## 2. Lab Infrastructure
+## 2. Environment Setup and Tools
+The assessment was conducted within a virtualized lab environment consisting of multiple virtual machines representing various network roles (firewall/router, Windows client, Linux client). 
+
 
 ### Virtual Machines (VMs)
 
@@ -19,10 +21,9 @@ This milestone focused on identifying live hosts in the network and performing s
 ### Network Diagram
 
 ![Network Diagram](../assets/network-layout.png)
-*Figure 1: Network layout showing Pentester, Victim, and App Server*
+**Figure 1:** Network layout showing Pentester, Victim, and App Server*
 
 ### Login Credentials
-
 #### Virtual Machines
 
 | VM             | Username | Password    |
