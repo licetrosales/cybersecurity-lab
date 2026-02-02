@@ -200,7 +200,19 @@ The scan was configured using the following parameters:
 ![Figure 5.1](../assets/openvas-target-config.png)  
 *Figure 5.1: OpenVAS Target Configuration (manual IP input and scan scope)*
 
+---
+#### 5.1.2 Credential Setup
 
+To perform an authenticated scan, SMB credentials were configured:
 
+- **Credential Name**: SMB-Credential-Victim  
+- **Type**: Username + Password  
+- **Username**: `student`  
+- **Password**: `********`  
+- **Configuration Path**: `Configuration > Credentials`
 
+![Figure 5.2](../assets/openvas-credential-config.png)  
+*Figure 5.2: Credential configuration for SMB authentication*
+
+---
 
