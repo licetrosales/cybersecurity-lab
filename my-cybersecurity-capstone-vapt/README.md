@@ -1,4 +1,4 @@
-# Milestone 1: Network Scanning and Vulnerability Assessment
+# Capstone Project: Vulnerability Assessment on TechShield's Network Infrastructure
 
 ## Objective
 
@@ -58,5 +58,29 @@ Example targets:
 - Learned how to **enumerate and analyze network services**
 - Used **vulnerability scanners** to map exposures to CVEs
 - Identified how attackers might move from discovery to exploitation
+
+---
+## 6. References
+
+1. Microsoft. (2017). *Microsoft Security Bulletin MS17-010 – Critical*.  
+   https://docs.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010
+
+2. Rapid7. *Metasploit Framework Documentation*.  
+   https://docs.rapid7.com/metasploit/
+
+3. Offensive Security. *Kali Linux Tools Documentation*.  
+   https://tools.kali.org/
+
+4. THC Hydra. *Hydra – A fast and flexible login cracker*.  
+   https://github.com/vanhauser-thc/thc-hydra
+
+5. Openwall. *John the Ripper Password Cracker*.  
+   https://www.openwall.com/john/
+
+6. MITRE. *CVE-2017-0144 – Windows SMB Remote Code Execution Vulnerability (EternalBlue)*.  
+   https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0144
+
+7. Samba Project. *smbclient and rpcclient Tools*.  
+   https://www.samba.org/samba/docs/
 
 ---
