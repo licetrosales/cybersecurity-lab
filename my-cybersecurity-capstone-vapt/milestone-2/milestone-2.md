@@ -173,12 +173,23 @@ The DVWA security level was configured to Low to simulate real-world scenarios. 
 - **Results:**
   - Meterpreter session is opened.
 
-![Figure 11](../assets/msfvenom%20payload%20generation.png)
+![Figure 10](../assets/msfvenom%20payload%20generation.png)
 **Figure 10:** msfvenom payload generation
 
-![Figure 10](../assets/meterpreter-session-estabalished.png)
+![Figure 11](../assets/meterpreter-session-estabalished.png)
 **Figure 11:** Meterpreter session established
 
 
+---
+## 4 Security Level Comparison
+
+**Table 1: Summary of Exploit Outcomes under Low vs. High Security**
+
+| Test Scenario           | Security: Low | Security: High | Summary                            |
+|------------------------|----------------|----------------|-------------------------------------|
+| SQL Injection          | Successful     | Blocked        | Input sanitized                     |
+| Stored XSS             | Alert shown    | Escaped        | Script tags neutralized             |
+| Webshell Upload        | Executed       | Rejected       | File type blocked                   |
+| Meterpreter Shell      | Reverse shell  | Rejected       | No connection established           |
 
 ---
