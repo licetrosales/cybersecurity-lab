@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-This milestone simulates a client-side vulnerability assessment commissioned by TechShield, a managed IT services provider, to identify and mitigate internal threats. The primary goal is to detect live hosts, enumerate services, and scan for vulnerabilities across a test lab environment.
+This milestone focused on identifying live hosts in the network and performing service enumeration to detect potential vulnerabilities. The analysis was carried out on a controlled lab network simulating a small enterprise environment..
 
 ---
 
