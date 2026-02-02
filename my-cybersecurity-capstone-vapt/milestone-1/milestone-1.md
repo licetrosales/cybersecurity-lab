@@ -73,7 +73,9 @@ To validate the results, an Nmap ping sweep was also performed:
 nmap -sn 192.168.57.0/24
 ```
 - `-sn` : Disables port scanning, enabling only ping-based discovery.
+
 - **Results:**
+
   - 5 target hosts were confirmed.
   - The Pentester host (192.168.57.10) appeared.
   - Host 192.168.57.20, detected earlier via Netdiscover, was not listed in the Nmap results.
@@ -86,8 +88,11 @@ sudo nmap -sn --max-retries 5 --host-timeout 30s 192.168.57.0/24
 ```
 - `--max-retries 5`: Retries probes up to 5 times (default is 10).
 - `--host-timeout 30s`: Allows slower or delayed hosts more time to respond.
+
 - **Results:**
+
   - 6 total of 5 target hosts were confirmed, including: 192.168.57.20.
   - This result confirms that the host is reachable and responsive when given more time.
 
-**Figure 2**: Nmap Enhanced Ping Sweep Scan Result
+![Figure 3 ](../assets/namp-enhanced-ping-sweep-scan.png)
+**Figure 3**: Nmap Enhanced Ping Sweep Scan Result
