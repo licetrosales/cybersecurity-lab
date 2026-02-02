@@ -144,8 +144,7 @@ sudo nmap -sS -sV -O 192.168.57.20
   - **Likely OS:** Windows 7 SP1, Windows Server 2008 SP1, or Vista SP1
     - **Hostname:** `WIN7-64`
 
-![Nmap Port, Service, and OS Detection](images/nmap-port-os-detection.png)
-
+![Figure 4](../assets/nmap-ports-services-os-enum.png)
 **Figure 4:** Nmap Scan - Service, Port, and OS Detection for 192.168.57.20: The output reveals three open ports (135, 139, 445) running SMB-related services and identifies the host OS as likely Windows 7 SP1, Server 2008 SP1, or Vista SP1. Hostname (`WIN7-64`) and MAC vendor (VMware Inc.) information is also shown.*
 
 ### 4.2 Conclusion
