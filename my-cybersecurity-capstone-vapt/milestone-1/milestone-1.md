@@ -96,3 +96,15 @@ sudo nmap -sn --max-retries 5 --host-timeout 30s 192.168.57.0/24
 
 ![Figure 3 ](../assets/namp-enhanced-ping-sweep-scan.png)
 **Figure 3**: Nmap Enhanced Ping Sweep Scan Result
+
+### 3.3 Summary of Detected Hosts
+
+| Host IP         | Role             | Detected via   |
+|----------------|------------------|----------------|
+| 192.168.57.20  | Windows 7 Client | Nmap, Netdiscover |
+| 192.168.57.30  | Linux Client     | Nmap, Netdiscover |
+| 192.168.57.40  | Metasploitable 2 | Nmap, Netdiscover |
+| 192.168.57.50  | Unknown Device   | Nmap, Netdiscover |
+| 192.168.57.254 | Firewall/Gateway | Nmap, Netdiscover |
+
+**Table 1**: Summary of Live Hosts
