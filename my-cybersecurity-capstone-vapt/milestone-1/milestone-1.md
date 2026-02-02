@@ -183,6 +183,23 @@ The host, identified as *Victim-Laptop*, runs a legacy Windows OS with SMB servi
 In addition to SMB exploitation, other potential attack vectors include remote code execution, weak authentication, and possible exposure of RDP or WMI services. Given its outdated OS and exposed services, this host represents a high-priority target for further exploitation testing.
 
 ---
+## 5. Vulnerability Scanning Using OpenVAS
+
+Following enumeration, a credentialed vulnerability assessment was conducted using **Greenbone Security Assistant (OpenVAS)** on the **Victim-Laptop (192.168.57.20)**. The scan identified several high-risk vulnerabilities primarily associated with outdated Windows SMB services.
+
+### 5.1 OpenVAS Configuration
+
+#### 5.1.1 Target Setup
+
+The scan was configured using the following parameters:
+
+- **Target Name**: Victim-Laptop  
+- **IP Address**: `192.168.57.20`  
+- **Configuration Path**: `Configuration > Targets`
+
+![Figure 5.1](../assets/openvas-target-config.png)  
+*Figure 5.1: OpenVAS Target Configuration (manual IP input and scan scope)*
+
 
 
 
