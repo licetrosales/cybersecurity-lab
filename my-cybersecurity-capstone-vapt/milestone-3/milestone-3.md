@@ -124,9 +124,10 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 - Remote shares were listed, and RPC prompts were obtained, confirming credential validity.
 - The objective of verifying cracked credentials through standard Windows authentication services was successfully achieved.
 
-
+![Figure 6](image.png)
 **Figure 6:** smbclient output confirming access for student and Administrator.
 
+![Figure 7](image.png)
 **Figure 7:** rpcclient output confirming RPC access for both accounts..
 
 ---
