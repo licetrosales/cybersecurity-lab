@@ -68,7 +68,8 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Results:**
 - Enumerated users confirmed valid accounts that could be targeted for password attacks.
 
-**Figure 2:** User enumeration output from `net user`.
+![Figure 3](../assets/meterpreter-shell-net-user.png)
+**Figure 3:** User enumeration output from `net user`.
 
 ---
 ### 3.3 Custom Wordlist Creation
