@@ -103,7 +103,8 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Results:**
 - Found valid credentials: `student : P@ssw0rd`
 
-**Figure 4:** Hydra output showing successful login.
+![Figure 5](../assets/hydra-smb-brute-force.png)
+**Figure 5:** Hydra output showing successful login.
 
 ---
 ### 3.5 Credential Verification
