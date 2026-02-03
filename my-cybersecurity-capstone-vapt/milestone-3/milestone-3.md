@@ -83,7 +83,8 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Results:**
 - Successfully created and confirmed presence of valid username and password lists.
 
-**Figure 3:** Contents of `users.txt` and `wordlist.txt`.
+![Figure 4](../assets/user-and-wordlist.png)
+**Figure 4:** Contents of `users.txt` and `wordlist.txt`.
 
 ---
 ### 3.4 Online Cracking with Hydra
