@@ -147,7 +147,8 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Results:**
 - NTLM hashes for local users were successfully extracted.
 
-**Figure 6:** Extracted NTLM hashes.
+![Figure 8](../assets/meterpreter-hasdump.png)
+**Figure 8:** Extracted NTLM hashes.
 
 ---
 ### 4.2 Password Cracking with John
@@ -171,7 +172,8 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Results:**
 - Both `student` and `Administrator` use `P@ssw0rd`.
 
-**Figure 7:** John cracking output.
+![Figure 9](../assets/john-output.png)
+**Figure 9:** John cracking output.
 
 ---
 ## 5. Conclusions
