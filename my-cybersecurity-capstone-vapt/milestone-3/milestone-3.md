@@ -45,7 +45,12 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 - The target was confirmed as vulnerable to MS17-010.
 - The exploit succeeded, and a Meterpreter session was opened with SYSTEM-level access.
 
-**Figure 1:** Meterpreter session established post-exploitation.
+![Figure 1](../assets/metasploit-configuration-eternalblue.png)
+**Figure 1:** Meterpreter setting EternalBlue module.
+
+![Figure 2](../assets/metasploit-post-exploittation.png)
+**Figure 2:** Meterpreter session established post-exploitation.
+
 
 ---
 ### 3.2 User Enumeration
