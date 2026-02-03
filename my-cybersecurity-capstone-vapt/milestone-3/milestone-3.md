@@ -109,21 +109,25 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 ---
 ### 3.5 Credential Verification
 
-**Objective:** Confirm the validity of cracked credentials using standard SMB and RPC authentication methods.
+**Objective:** Validate cracked credentials by authenticating against SMB and RPC services on the target system.
 
 **Steps Taken:**
 1. Test credentials using:
    ```bash
-   smbclient -L //192.168.57.20/ -U student
-   rpcclient -U student 192.168.57.20
+    smbclient -L //192.168.57.20/ -U student
+    smbclient -L //192.168.57.20/ -U Administrator
+    rpcclient -U student 192.168.57.20
+    rpcclient -U Administrator 192.168.57.20
    ```
-2. Access was granted to the student and Administrator account.
-
 **Results:**
-- Verified that the `student` and Administrator account was active and accessible.
+- Both student and Administrator accounts successfully authenticated via SMB and RPC.
+- Remote shares were listed, and RPC prompts were obtained, confirming credential validity.
+- The objective of verifying cracked credentials through standard Windows authentication services was successfully achieved.
 
 
-**Figure 5:** `smbclient` successful for `student` and `Administrator`.
+**Figure 6:** smbclient output confirming access for student and Administrator.
+
+**Figure 7:** rpcclient output confirming RPC access for both accounts..
 
 ---
 ## 4. Bonus: Offline Password Cracking with John the Ripper
