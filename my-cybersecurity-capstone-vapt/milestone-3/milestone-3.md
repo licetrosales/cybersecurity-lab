@@ -24,7 +24,7 @@ This milestone focuses on exploiting a Windows 7 machine using the EternalBlue v
 **Steps Taken:**
 1. Scan the target to confirm port 445 is open:
    ```bash
-   nmap -p 445 --script smb-vuln-ms17-010 192.168.57.20
+   sudo nmap -Pn -p 445 --max-retries 5 --host-timeout 30s --script smb-vuln-ms17-010 192.168.57.20
    ```
    - `-p 445` specifies the SMB port.
    - `--script smb-vuln-ms17-010` runs the NSE script to detect MS17-010 vulnerability.
