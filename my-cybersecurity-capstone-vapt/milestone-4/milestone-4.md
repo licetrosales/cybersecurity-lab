@@ -27,8 +27,9 @@ This milestone focuses on performing forensic analysis of a suspicious disk imag
 **Results:**
 - MD5 hash: `deb20836198d94dafdfd921f8e15c7cc`
 
-
+![Figure 1](../assets/md5sum-hash-8-jpeg-search.png)
 **Figure 1:** Terminal showing the `md5sum` command and hash saved.
+
 
 ---
 
