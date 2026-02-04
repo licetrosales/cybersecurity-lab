@@ -38,16 +38,18 @@ This milestone focuses on performing forensic analysis of a suspicious disk imag
 **Objective:** Create a new case in Autopsy, verify hash, and prepare for forensic examination.
 
 **Steps Taken:**
-1. Launched Autopsy and created a new case.
-2. Imported the `JPEG_Test_Host.dd` image.
-3. Verified the MD5 hash in Autopsy matches the pre-calculated one.
+1. Launch Autopsy and create a new case.
+2. Importe the `JPEG_Test_Host.dd` image.
+3. Verify the MD5 hash in Autopsy matches the pre-calculated one.
 
 **Results:**
 - Case setup was successful.
 - Autopsy confirmed the image hash matches: `deb20836198d94dafdfd921f8e15c7cc`
 
-
+![Figure 2](../assets/autopsy-case-host-image-setup.png)
 **Figure 2:** Autopsy interface showing case creation.
+
+![Figure 3](../assets/autopsy-hash-validation.png)
 **Figure:3** Hash verification screen in Autopsy.
 
 ---
