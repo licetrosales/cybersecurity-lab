@@ -27,7 +27,26 @@ This milestone focuses on performing forensic analysis of a suspicious disk imag
 **Results:**
 - MD5 hash: `deb20836198d94dafdfd921f8e15c7cc`
 
-**Screenshot to include:**
-- Terminal showing the `md5sum` command and hash saved.
+
+**Figure 1:** Terminal showing the `md5sum` command and hash saved.
+
+---
+
+### 3.2 Autopsy Case Setup
+
+**Objective:** Create a new case in Autopsy, verify hash, and prepare for forensic examination.
+
+**Steps Taken:**
+1. Launched Autopsy and created a new case.
+2. Imported the `JPEG_Test_Host.dd` image.
+3. Verified the MD5 hash in Autopsy matches the pre-calculated one.
+
+**Results:**
+- Case setup was successful.
+- Autopsy confirmed the image hash matches: `deb20836198d94dafdfd921f8e15c7cc`
+
+
+**Figure 2:** Autopsy interface showing case creation.
+**Figure:3** Hash verification screen in Autopsy.
 
 ---
