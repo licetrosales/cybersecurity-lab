@@ -11,9 +11,12 @@ Component             | Details                                             |
 | Evidence Source      | 8-jpeg-search.dd (forensic image)                  |
 | Tool Used            | Autopsy v2.24 (Digital Forensics Platform)         |
 
-
+### Tools Used
+- `md5sum` (hashing via terminal)
+- Autopsy (forensic GUI analysis)
+- File Manager (image location/export)
+  
 ---
-
 ## 3. Evidence Collection and Analysis
 
 ### 3.1 Hashing & Integrity Check
@@ -56,4 +59,5 @@ Component             | Details                                             |
 **Figure:3** Hash verification screen in Autopsy.
 
 ---
+
 
