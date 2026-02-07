@@ -59,7 +59,7 @@ Component             | Details                                             |
 **Figure:3** Hash verification screen in Autopsy.
 
 ---
-Identify Suspicious Files – Extension Mismatches
+### 3.3 Identify Suspicious Files – Extension Mismatches
 
 **Objective:** Detect files with misleading extensions.
 
@@ -74,5 +74,6 @@ Seven files were flagged. Six were confirmed JPEGs with incorrect extensions. On
 **Figure 4:** Metadata and MIME mismatch for file2.dat
 
 ---
+
 
 
