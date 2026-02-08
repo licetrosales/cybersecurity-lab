@@ -154,20 +154,13 @@ sudo nmap -sS -sV -O 192.168.57.20
 - Open Ports: 135, 139, 445
 - Services: MSRPC, NetBIOS, SMB
 
-#### SMB Enumeration
+#### Detecting MS17-010 with Nmap Script
 ```bash
-nmap -Pn --script smb-enum-shares -p445 192.168.57.20
+nmap -Pn -p445 --script smb-vuln-ms17-010 192.168.57.20
 ```
 - **Results**:
  
-  - IPC$ accessible anonymously, other shares denied (C$, ADMIN$).
-
-```bash
-nmap -Pn --script smb-security-mode -p445 192.168.57.20
-```
-- **Results**:
- 
-  - SMB message signing disabled, guest authentication supported.
+  - The host was flagged as vulnerable, exposing it to remote code execution (RCE), the same exploit used by ransomware like WannaCry.
 
 #### Vulnerabilities Identified
 
@@ -175,6 +168,9 @@ nmap -Pn --script smb-security-mode -p445 192.168.57.20
 ecution)
 - Anonymous access to IPC$
 - SMB message signing disabled (MITM risk)
+
+![Figure 5](../assets/namp-script-d-MS17-010.png)
+**Figure 5:** Detection of MS17-010 via Nmap Script on Port 445
 
 ### 4.3 Conclusion
 
@@ -198,7 +194,7 @@ The scan was configured using the following parameters:
 - **Configuration Path**: `Configuration > Targets`
 
 ![Figure 6](../assets/openvas-target-config.png)
-*Figure 5.1: OpenVAS Target Configuration (manual IP input and scan scope)*
+**Figure 5.1:** OpenVAS Target Configuration (manual IP input and scan scope)
 
 
 #### 5.1.2 Credential Setup
