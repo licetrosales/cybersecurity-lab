@@ -221,7 +221,7 @@ A scan task was created with the following parameters:
 - **QoD Threshold**: 70%
 
 ![Figure 8](../assets/openvas-task-setup.png)
-*Figure 8: Task setup with scan target, QoD threshold, and scanner type*
+**Figure 8:** Task setup with scan target, QoD threshold, and scanner type
 
 ---
 ### 5.2 Scan Results Summary
