@@ -229,11 +229,11 @@ A scan task was created with the following parameters:
 The scan executed successfully and generated a report highlighting vulnerabilities based on severity.
 
 
-![Figure 9](../assets/openvas-scan-vulnerabilities-torte.png)  
+![Figure 9](../assets/openvas-scan-vuln-torte.png)  
 *Figure 9: Scan summary showing high-risk vulnerabilities*
 
-![Figure 5.5](../assets/openvas-vuln-list.png)  
-*Figure 5.5: Vulnerability detail tab with CVSS, host IPs, and services*
+![Figure 10](../assets/openvas-vuln-list.png)  
+*Figure 10: Vulnerability detail tab with CVSS, host IPs, and services*
 
 Key findings from the scan included:
 
