@@ -3,14 +3,20 @@
 ## 1. Overview
 This milestone focuses on performing forensic analysis of a suspicious disk image using Autopsy. Tasks included verifying file integrity with hashing, importing and analyzing the forensic image in Autopsy, identifying hidden images with suspicious file types, examining extension mismatches, and exporting digital evidence. The findings provide insight into potential data concealment tactics and improper file labeling.
 
-## 2. Environment Setup and Tools
+## 2. Test Environment Setup 
 
-- **Forensic Workstation:** Kali Linux
-- **Tool Used:** Autopsy (Digital Forensics Platform)
-- **Evidence Source:** 8-jpeg-search.dd forensic image
+Component             | Details                                             |
+|----------------------|-----------------------------------------------------|
+| Forensic Workstation | Kali Linux (Username: kali, Password: kali)        |
+| Evidence Source      | 8-jpeg-search.dd (forensic image)                  |
+| Tool Used            | Autopsy v2.24 (Digital Forensics Platform)         |
 
+### Tools Used
+- `md5sum` (hashing via terminal)
+- Autopsy (forensic GUI analysis)
+- File Manager (image location/export)
+  
 ---
-
 ## 3. Evidence Collection and Analysis
 
 ### 3.1 Hashing & Integrity Check
@@ -53,3 +59,21 @@ This milestone focuses on performing forensic analysis of a suspicious disk imag
 **Figure:3** Hash verification screen in Autopsy.
 
 ---
+### 3.3 Identify Suspicious Files – Extension Mismatches
+
+**Objective:** Detect files with misleading extensions.
+
+**Steps Taken:**
+- Navigated to the "Extension Mismatch" category in Autopsy.
+- Cross-referenced MIME types, metadata, and file previews.
+- Verified file type by checking content signature and metadata.
+
+**Results:**
+Seven files were flagged. Six were confirmed JPEGs with incorrect extensions. One was a text file mislabeled as a JPG. Two deleted files were fully recovered and verified.
+
+**Figure 4:** Metadata and MIME mismatch for file2.dat
+
+---
+
+
+
