@@ -197,7 +197,7 @@ The scan was configured using the following parameters:
 - **IP Address**: `192.168.57.20`  
 - **Configuration Path**: `Configuration > Targets`
 
-![Figure 5.1](../assets/openvas-target-config.png)  
+![Figure 6](../assets/openvas-target-config.png)
 *Figure 5.1: OpenVAS Target Configuration (manual IP input and scan scope)*
 
 
