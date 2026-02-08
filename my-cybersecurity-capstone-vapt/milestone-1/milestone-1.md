@@ -194,7 +194,7 @@ The scan was configured using the following parameters:
 - **Configuration Path**: `Configuration > Targets`
 
 ![Figure 6](../assets/openvas-target-config.png)
-**Figure 5.1:** OpenVAS Target Configuration (manual IP input and scan scope)
+**Figure 6:** OpenVAS Target Configuration (manual IP input and scan scope)
 
 
 #### 5.1.2 Credential Setup
@@ -207,8 +207,8 @@ To perform an authenticated scan, SMB credentials were configured:
 - **Password**: `********`  
 - **Configuration Path**: `Configuration > Credentials`
 
-![Figure 5.2](../assets/openvas-credential-config.png)  
-*Figure 5.2: Credential configuration for SMB authentication*
+![Figure 7](../assets/openvas-credential-config.png)  
+**Figure 7:** Credential configuration for SMB authentication
 
 
 #### 5.1.3 Task Setup
@@ -220,16 +220,16 @@ A scan task was created with the following parameters:
 - **Scanner**: OpenVAS Default  
 - **QoD Threshold**: 70%
 
-![Figure 5.3](../assets/openvas-task-config.png)  
-*Figure 5.3: Task setup with scan target, QoD threshold, and scanner type*
+![Figure 8](../assets/openvas-task-setup.png)
+*Figure 8: Task setup with scan target, QoD threshold, and scanner type*
 
 ---
 ### 5.2 Scan Results Summary
 
 The scan executed successfully and generated a report highlighting vulnerabilities based on severity.
 
-![Figure 5.4](../assets/openvas-scan-summary.png)  
-*Figure 5.4: Scan summary showing high-risk vulnerabilities*
+![Figure 9](../assets/openvas-scan-summary.png)  
+*Figure 9: Scan summary showing high-risk vulnerabilities*
 
 ![Figure 5.5](../assets/openvas-vuln-list.png)  
 *Figure 5.5: Vulnerability detail tab with CVSS, host IPs, and services*
