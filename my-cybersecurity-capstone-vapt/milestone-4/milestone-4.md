@@ -80,7 +80,7 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
   - Sorter output with extension mismatches (p.9)
   - Metadata confirmation for `file2.dat` (p.10)
 
-
+![Figure 4](../assets/autopsy-sorter-summary-results.png)
 **Figure 4:** Sorter output summary showing counts for images and extension mistmaches.
 --- 
 ### 3.4 Identify Suspicious Files – Extension Mismatches
