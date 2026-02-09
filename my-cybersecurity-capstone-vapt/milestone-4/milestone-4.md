@@ -82,7 +82,12 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
 
 ![Figure 4](../assets/autopsy-sorter-summary-results.png)
 **Figure 4:** Sorter output summary showing counts for images and extension mistmaches.
+
+
+**Figure 5:** Thumbnail preview confirming JPEG content for file2.dat despite .dat extension.
+
 --- 
+
 ### 3.4 Identify Suspicious Files – Extension Mismatches
 
 **Objective:** Detect files with misleading extensions.
@@ -98,6 +103,7 @@ Seven files were flagged. Six were confirmed JPEGs with incorrect extensions. On
 **Figure 4:** Metadata and MIME mismatch for file2.dat
 
 ---
+
 
 
 
