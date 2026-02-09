@@ -56,10 +56,34 @@ Component             | Details                                             |
 **Figure 2:** Autopsy interface showing case creation.
 
 ![Figure 3](../assets/autopsy-hash-validation.png)
-**Figure:3** Hash verification screen in Autopsy.
+**Figure 3:** Hash verification screen in Autopsy.
 
 ---
-### 3.3 Identify Suspicious Files – Extension Mismatches
+### 3.3 Analyze Forensic Image
+
+### Objective
+Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspection, and extension mismatch detection.
+
+### Steps Taken
+1. Used Autopsy's "Sorter" to filter by "Images" and " Extension Mismatches" category.
+2. Visually reviewed thumbnails and metadata.
+3. Flagged suspicious files with incorrect extensions or deleted status.
+4. Verified content using metadata and previews.
+
+### Results
+- 6 JPEG files recovered; 4 had mismatched or suspicious extensions.
+- Files flagged:
+  - `file2.dat`, `file7.hmm`, `file9.boo`, `file13.dll:here`
+  - `file6.jpg` and `file7.hmm` were deleted images
+  - `file13.dll:here` used an alternate data stream (ADS)
+  
+  - Sorter output with extension mismatches (p.9)
+  - Metadata confirmation for `file2.dat` (p.10)
+
+
+**Figure 4:** Sorter output summary showing counts for images and extension mistmaches.
+--- 
+### 3.4 Identify Suspicious Files – Extension Mismatches
 
 **Objective:** Detect files with misleading extensions.
 
@@ -74,6 +98,7 @@ Seven files were flagged. Six were confirmed JPEGs with incorrect extensions. On
 **Figure 4:** Metadata and MIME mismatch for file2.dat
 
 ---
+
 
 
 
