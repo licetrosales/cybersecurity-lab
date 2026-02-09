@@ -71,39 +71,23 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
 4. Verified content using metadata and previews.
 
 ### Results
-- 6 JPEG files recovered; 4 had mismatched or suspicious extensions.
+- Seven files were flagged. Six were confirmed JPEGs with incorrect extensions. One was a text file mislabeled as a JPG. Two deleted files were fully recovered and verified..
 - Files flagged:
   - `file2.dat`, `file7.hmm`, `file9.boo`, `file13.dll:here`
   - `file6.jpg` and `file7.hmm` were deleted images
   - `file13.dll:here` used an alternate data stream (ADS)
   
-  - Sorter output with extension mismatches (p.9)
-  - Metadata confirmation for `file2.dat` (p.10)
-
+ 
 ![Figure 4](../assets/autopsy-sorter-summary-results.png)
 **Figure 4:** Sorter output summary showing counts for images and extension mistmaches.
 
 ![Figure 5](../assets/autopsy-file2-thumbnail-prev.png)
 **Figure 5:** Thumbnail preview confirming JPEG content for file2.dat despite .dat extension.
 
-
+![Figure 6](../assets/sum-img-findings.png)
+**Figure 6:** Summary of the File Type Mismatches and Findings.
 --- 
 
-### 3.4 Identify Suspicious Files – Extension Mismatches
-
-**Objective:** Detect files with misleading extensions.
-
-**Steps Taken:**
-- Navigated to the "Extension Mismatch" category in Autopsy.
-- Cross-referenced MIME types, metadata, and file previews.
-- Verified file type by checking content signature and metadata.
-
-**Results:**
-Seven files were flagged. Six were confirmed JPEGs with incorrect extensions. One was a text file mislabeled as a JPG. Two deleted files were fully recovered and verified.
-
-**Figure 4:** Metadata and MIME mismatch for file2.dat
-
----
 
 
 
