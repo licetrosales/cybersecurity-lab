@@ -84,7 +84,7 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
 ![Figure 5](../assets/autopsy-file2-thumbnail-prev.png)
 **Figure 5:** Thumbnail preview confirming JPEG content for file2.dat despite .dat extension.
 
-![Figure 6](../assets/tbl-sum-imgs.png)
+![Figure 6](../assets/tbl-sum-findings.png)
 **Figure 6:** Summary of the File Type Mismatches and Findings.
 
 
