@@ -116,8 +116,19 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
 ![Figure 8](../assets/imgs-folder-extracted.png)
 **Figure 8:** Export screen from Autopsy (or file paths of exported data).
 Recovered JPEGs from allocated and deleted space exported via Autopsy to the Extracted_Images folder.
----
 
+
+---
+## 4. Conclusions
+
+This forensic investigation successfully:
+
+- Verified the integrity of the forensic image using hashing.
+- Recovered 5 JPEG images hidden under misleading or deleted file names.
+- Identified extension mismatches suggesting attempts at obfuscation.
+- Exported and categorized relevant digital evidence following best practices.
+
+These findings demonstrate common tactics used to hide data (e.g., renamed extensions) and underscore the importance of automated forensic tools like Autopsy in detecting them.
 
 
 
