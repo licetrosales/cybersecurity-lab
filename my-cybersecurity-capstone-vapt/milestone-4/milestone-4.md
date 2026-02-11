@@ -110,11 +110,12 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
   - `Screenshots/`: For documentation and submission.
 
 ![Figure 7](../assets/folder-structure-exports.png)
---Figure 7:** File explorer showing organized folder structure.
+**Figure 7:** File explorer showing organized folder structure.
 
 
-- Export screen from Autopsy (or file paths of exported data).
-
+![Figure 8](../assets/imgs-folder-extracted.png)
+**Figure 8:** Export screen from Autopsy (or file paths of exported data).
+Recovered JPEGs from allocated and deleted space exported via Autopsy to the Extracted_Images folder.
 ---
 
 
