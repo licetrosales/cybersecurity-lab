@@ -124,7 +124,7 @@ Recovered JPEGs from allocated and deleted space exported via Autopsy to the Ext
 This forensic investigation successfully:
 
 - Verified the integrity of the forensic image using hashing.
-- Recovered 5 JPEG images hidden under misleading or deleted file names.
+- Recovered 6 JPEG images hidden under misleading or deleted file names.
 - Identified extension mismatches suggesting attempts at obfuscation.
 - Exported and categorized relevant digital evidence following best practices.
 
