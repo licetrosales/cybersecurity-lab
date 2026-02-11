@@ -109,8 +109,10 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
   - `Hashes/`: Original image hash.
   - `Screenshots/`: For documentation and submission.
 
-**Screenshots to include:**
-- Screenshot of file explorer showing organized folder structure.
+![Figure 7](../assets/folder-structure-exports.png)
+--Figure 7:** File explorer showing organized folder structure.
+
+
 - Export screen from Autopsy (or file paths of exported data).
 
 ---
