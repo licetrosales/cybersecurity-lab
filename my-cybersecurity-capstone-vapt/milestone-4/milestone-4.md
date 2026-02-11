@@ -90,6 +90,30 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
 
 --- 
 
+### 3.4 Exporting Evidence Files
+
+**Objective:** Export relevant files and metadata for report documentation and further analysis.
+
+**Steps Taken:**
+1. Exported image files and mismatch files into:
+   - `Extracted_Images/`
+   - `Extension_Mismatches/`
+2. Exported Autopsy reports (HTML/CSV) to `Reports/`.
+3. Organized screenshots into `Screenshots/`.
+
+**Results:**
+- All forensic evidence organized in structured folders:
+  - `Extracted_Images/`: JPEG images with correct headers.
+  - `Extension_Mismatches/`: Files with misleading extensions.
+  - `Reports/`: Autopsy-generated reports and metadata.
+  - `Hashes/`: Original image hash.
+  - `Screenshots/`: For documentation and submission.
+
+**Screenshots to include:**
+- Screenshot of file explorer showing organized folder structure.
+- Export screen from Autopsy (or file paths of exported data).
+
+---
 
 
 
