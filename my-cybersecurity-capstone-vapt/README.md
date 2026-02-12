@@ -183,16 +183,16 @@ Testing across different security levels demonstrated the effectiveness of:
 1. Nmap Project. *Nmap Reference Guide.*  
    https://nmap.org/book/man.html
 
-2. FIRST. *Common Vulnerability Scoring System (CVSS) v3.1 Specification.*
+2. FIRST. *Common Vulnerability Scoring System (CVSS) v3.1 Specification.*  
    https://www.first.org/cvss/specification-document
 
 3. Greenbone Networks. *Greenbone / OpenVAS Documentation.*  
    https://docs.greenbone.net/
 
-4. OWASP. *OWASP Web Security Testing Guide.*
+4. OWASP. *OWASP Web Security Testing Guide.*  
    https://owasp.org/www-project-web-security-testing-guide/
 
-5. OWASP. *SQL Injection Prevention Cheat Sheet.*
+5. OWASP. *SQL Injection Prevention Cheat Sheet.*  
    https://owasp.org/www-community/attacks/SQL_Injection
  
 6. Open Web Application Security Project (OWASP). *OWASP Top 10 – Web Application Security Risks.*  
