@@ -83,4 +83,8 @@ Example targets:
 7. Samba Project. *smbclient and rpcclient Tools*.  
    https://www.samba.org/samba/docs/
 
+8. Sleuthkit.org. *Autopsy Forensic Browser Documentation*.   
+   https://www.sleuthkit.org/autopsy/docs/user-docs/
+
+   
 ---
