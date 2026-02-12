@@ -71,13 +71,15 @@ Identify hidden or obfuscated JPEG artifacts via image preview, metadata inspect
 4. Verified content using metadata and previews.
 
 ### Results
-- Seven files were flagged. Six were confirmed JPEGs with incorrect extensions. One was a text file mislabeled as a JPG. Two deleted files were fully recovered and verified..
-- Files flagged:
-  - `file2.dat`, `file7.hmm`, `file9.boo`, `file13.dll:here`
-  - `file6.jpg` and `file7.hmm` were deleted images
-  - `file13.dll:here` used an alternate data stream (ADS)
-  
- 
+- **7** files with extension inconsistencies were analyzed.
+- **6** were valid JPEG images.
+- **1** file (`file3.jpg`) was a mislabeled text file.
+- Obfuscation techniques observed:
+  - Deleted file recovery (`file6.jpg`, `file7.hmm`)
+  - Alternate Data Stream (ADS): `file13.dll:here`
+  - Extension spoofing (`file2.dat`, `file7.hmm`)
+  - Disguised ZIP archive: `file9.boo` → contained `file9.jpg` and `random9.dat`
+
 ![Figure 4](../assets/autopsy-sorter-summary-results.png)
 **Figure 4:** Sorter output summary showing counts for images and extension mistmaches.
 
@@ -129,6 +131,7 @@ This forensic investigation successfully:
 - Exported and categorized relevant digital evidence following best practices.
 
 These findings demonstrate common tactics used to hide data (e.g., renamed extensions) and underscore the importance of automated forensic tools like Autopsy in detecting them.
+
 
 
 
