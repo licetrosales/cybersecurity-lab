@@ -192,45 +192,45 @@ Testing across different security levels demonstrated the effectiveness of:
 4. OWASP. *OWASP Web Security Testing Guide.*
    https://owasp.org/www-project-web-security-testing-guide/
 
-6. OWASP. *SQL Injection Prevention Cheat Sheet.*
+5. OWASP. *SQL Injection Prevention Cheat Sheet.*
    https://owasp.org/www-community/attacks/SQL_Injection
  
-7. Open Web Application Security Project (OWASP). *OWASP Top 10 – Web Application Security Risks.*  
+6. Open Web Application Security Project (OWASP). *OWASP Top 10 – Web Application Security Risks.*  
    https://owasp.org/www-project-top-ten/
 
-8. MITRE. (2017). *CVE-2017-0144 – Windows SMB Remote Code Execution Vulnerability.*  
+7. MITRE. (2017). *CVE-2017-0144 – Windows SMB Remote Code Execution Vulnerability.*  
    https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0144
 
-9. Rapid7. *Metasploit Framework Documentation.*  
+8. Rapid7. *Metasploit Framework Documentation.*  
    https://docs.rapid7.com/metasploit/
 
-10. Offensive Security. *Kali Linux Tools Documentation.*  
+9. Offensive Security. *Kali Linux Tools Documentation.*  
    https://tools.kali.org/
 
-11. Microsoft. (2017). *Microsoft Security Bulletin MS17-010 – Critical.*  
+10. Microsoft. (2017). *Microsoft Security Bulletin MS17-010 – Critical.*  
    https://docs.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010
 
-12. THC Hydra Project. *Hydra – Fast Network Logon Cracker.*  
+11. THC Hydra Project. *Hydra – Fast Network Logon Cracker.*  
    https://github.com/vanhauser-thc/thc-hydra
 
-13. Openwall. *John the Ripper Documentation.*  
+12. Openwall. *John the Ripper Documentation.*  
    https://www.openwall.com/john/
 
-14. Samba Project. *smbclient and rpcclient Documentation.*  
+13. Samba Project. *smbclient and rpcclient Documentation.*  
    https://www.samba.org/samba/docs/
 
-15. Microsoft. *Password Policy Best Practices.*  
+14. Microsoft. *Password Policy Best Practices.*  
 https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-policy
 
-16. NIST. (2017). *Digital Identity Guidelines (SP 800-63B).*  
+15. NIST. (2017). *Digital Identity Guidelines (SP 800-63B).*  
 https://pages.nist.gov/800-63-3/sp800-63b.html
 
-17. Sleuth Kit. *Autopsy Forensic Browser Documentation.*  
+16. Sleuth Kit. *Autopsy Forensic Browser Documentation.*  
     https://www.sleuthkit.org/autopsy/docs/
 
-18. Carrier, B. *File System Forensic Analysis.* Addison-Wesley.
+17. Carrier, B. *File System Forensic Analysis.* Addison-Wesley.
 
-19. National Institute of Standards and Technology (NIST). *Guide to Integrating Forensic Techniques into Incident Response (SP 800-86).*  
+18. National Institute of Standards and Technology (NIST). *Guide to Integrating Forensic Techniques into Incident Response (SP 800-86).*  
 https://csrc.nist.gov/publications/detail/sp/800-86/final
 
 
