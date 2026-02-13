@@ -20,4 +20,17 @@ Identify externally exposed TCP services and observe the impact of scan configur
 
 ---
 
+## 4. Methodology
+
+1. Perform baseline discovery scan
+
+2. Conduct TCP Connect scan
+
+3. Enable service/version detection
+
+4. Increase verbosity
+
+5. Export results for reporting purposes
+
+---
 
