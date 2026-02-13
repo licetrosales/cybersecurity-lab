@@ -32,6 +32,23 @@ This repository tracks my hands-on practice in:
 
 ---
 
+## Tool Guide
+
+Configuration + capability explanation.
+
+It includes:
+- Installation
+- Important flags
+- Common configurations
+- Script categories
+- Example command patterns 
+
+It answers:
+
+"How does this tool work and how do I use it?"
+
+---
+
 ## Walkthroughs
 
 Step-by-step execution of a real scenario.
