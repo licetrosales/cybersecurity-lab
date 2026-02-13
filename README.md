@@ -32,6 +32,23 @@ This repository tracks my hands-on practice in:
 
 ---
 
+## Walkthroughs
+
+Step-by-step execution of a real scenario.
+
+It shows:
+- A defined objective
+- A specific target
+- Exact commands used
+- What the output means
+- Conclusions / findings
+
+It answers:
+
+"What did I do in this lab and why?"
+
+---
+
 ## 👨‍💻 Learning Roadmap
 
 I'm currently focusing on:
