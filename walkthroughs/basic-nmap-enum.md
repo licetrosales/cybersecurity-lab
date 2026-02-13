@@ -14,4 +14,10 @@ This assessment demonstrates foundational external reconnaissance techniques usi
 
 ---
 
+## 3. Objective
+
+Identify externally exposed TCP services and observe the impact of scan configuration on result detail and output formats.
+
+---
+
 
