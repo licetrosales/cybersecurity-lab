@@ -1,7 +1,17 @@
 # External Enumeration Lab – Nmap Basics
 
-## Executive Overview
+## 1. Executive Overview
 
 This assessment demonstrates foundational external reconnaissance techniques using Nmap against an authorized test target. The objective was to identify exposed services and evaluate how scan configurations affect information discovery.
 
 ---
+
+## 2. Scope & Authorization
+- **Target:** `scanme.nmap.org`
+- **Assessment Type:** Black-box test external reconnaissance
+- **Authorization:** Publicly permitted by Nmap project
+- **Testing Phase:** Enumeration
+
+---
+
+
