@@ -1,1 +1,7 @@
-document.getElementById("year").textContent = new Date().getFullYear();
+// Auto-update footer year
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
+
