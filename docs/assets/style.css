@@ -119,10 +119,11 @@ header p {
   margin-bottom: 10px;
   color: #ffffff;
 }
+
 .profile-name {
-    font-size: 20px;
-    font-weight: 600;
-    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
     margin-bottom: 6px;
 }
 
@@ -219,6 +220,7 @@ a:hover {
     padding: 30px 15px;
   }
 }
+
 
 
 
