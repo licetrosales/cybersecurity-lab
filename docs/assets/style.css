@@ -173,15 +173,16 @@ header p {
 
 /* Profile Link Chips */
 .chip {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 8px;
   background-color: #16233b;
   border: 1px solid #334155;
   text-decoration: none;
   color: #cbd5e1;
-  font-size: 0.9rem;
-  transition: 0.2s ease;
+  font-size: 0.95rem;
+  margin-right: 6px;   /* extra safety spacing */
 }
 
 .chip:hover {
@@ -251,6 +252,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
