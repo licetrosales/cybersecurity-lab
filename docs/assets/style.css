@@ -164,6 +164,33 @@ header p {
   color: #ffffff;
 }
 
+.profile-links {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* Profile Link Chips */
+.chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: #16233b;
+  border: 1px solid #334155;
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+
+.chip:hover {
+  border-color: #3b82f6;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+
 /* =========================
    SKILLS GRID
 ========================= */
@@ -220,6 +247,7 @@ a:hover {
     padding: 30px 15px;
   }
 }
+
 
 
 
