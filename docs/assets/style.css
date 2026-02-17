@@ -223,16 +223,20 @@ footer {
 }
 
 /* =========================
-   LINKS
-========================= */
+   NAV LINKS (consistent)
+   ========================= */
 
-a {
-  color: #3b82f6;
-}
-
-a:hover {
+.nav a {
+  color: #60a5fa;
   text-decoration: underline;
+  text-underline-offset: 6px;
+  font-weight: 600;
 }
+
+.nav a:hover {
+  color: #93c5fd;
+}
+
 
 /* =========================
    RESPONSIVE
@@ -247,6 +251,7 @@ a:hover {
     padding: 30px 15px;
   }
 }
+
 
 
 
