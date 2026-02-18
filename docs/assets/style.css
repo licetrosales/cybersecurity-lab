@@ -170,6 +170,44 @@ header p {
   margin-top: 14px;
   flex-wrap: wrap;
 }
+/* Icon-only profile links */
+.profile-icons{
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.icon-link{
+  color: #cbd5e1;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: rgba(255,255,255,0.02);
+  transition: 0.2s ease;
+}
+
+.icon-link svg{
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.icon-link:hover{
+  color: #b98cff;        /* lilac hover */
+  border-color: #b98cff;
+  transform: translateY(-1px);
+}
+
+/* Prevent default visited purple anywhere in your site */
+a:visited{
+  color: inherit;
+}
 
 /* Profile Link Chips */
 .chip {
@@ -273,6 +311,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
