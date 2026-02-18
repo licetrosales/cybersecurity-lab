@@ -190,7 +190,28 @@ header p {
   color: #ffffff;
   transform: translateY(-2px);
 }
+/* HERO links (lilac + consistent even after visiting) */
+.hero-actions{
+  display: flex;
+  gap: 40px;            /* spacing symmetry like you wanted */
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
 
+.hero-link{
+  color: #b98cff;       /* lilac */
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+.hero-link:visited{
+  color: #b98cff;       /* prevents the “visited purple” problem */
+}
+
+.hero-link:hover{
+  color: #d2b3ff;
+}
 
 /* =========================
    SKILLS GRID
@@ -252,6 +273,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
