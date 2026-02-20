@@ -220,7 +220,7 @@ a:visited{
   text-decoration: none;
   color: #cbd5e1;
   font-size: 0.95rem;
-  margin-right: 6px;   /* extra safety spacing */
+  margin-right: 6px;   /* extra safety spacing between hyperlinks*/
 }
 
 .chip:hover {
@@ -311,6 +311,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
