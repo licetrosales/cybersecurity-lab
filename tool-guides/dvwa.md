@@ -8,7 +8,7 @@
 
   This method removes the container once it stops.
   
-- ✅ **Alternative (persistent container):**
+- **Alternative (persistent container):**
 
   Use this command to keep the container available even after stopping:
 
