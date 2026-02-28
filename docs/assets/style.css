@@ -231,7 +231,7 @@ a:visited{
 /* HERO links (lilac + consistent even after visiting) */
 .hero-actions{
   display: flex;
-  gap: 40px;            /* spacing symmetry */
+  gap: 40px;            /* spacing symmetry between hyperlinks */
   margin-top: 18px;
   flex-wrap: wrap;
 }
@@ -311,6 +311,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
