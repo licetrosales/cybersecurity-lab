@@ -270,7 +270,11 @@ a:hover {
   color: var(--primary);
   transform: translateY(-2px);
 }
-/* HERO links (lilac + consistent even after visiting) */
+
+.name {
+  font-size: 1.8rem;
+  font-weight: 750;
+}
 .hero-actions{
   display: flex;
   gap: 40px;            /* spacing symmetry between hyperlinks */
@@ -353,6 +357,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
