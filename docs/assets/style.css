@@ -219,8 +219,8 @@ header p {
 }
 
 .icon-link:hover{
-  color: #b98cff;        /* lilac hover */
-  border-color: #b98cff;
+   color: var(--primary);
+  border-color: var(--primary);
   transform: translateY(-1px);
 }
 
@@ -260,7 +260,7 @@ a:hover {
 }
 
 .hero-link{
-  color: #b98cff;       /* lilac */
+  color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 4px;
   font-weight: 600;
@@ -271,7 +271,7 @@ a:hover {
 }
 
 .hero-link:hover{
-  color: #d2b3ff;
+  color: var(--primary-hover);
 }
 
 /* =========================
@@ -334,4 +334,5 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
