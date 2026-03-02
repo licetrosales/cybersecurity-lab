@@ -26,6 +26,8 @@
   --primary-hover: #bfeadf;
   --link: #bfeadf;
   --link-hover: #d8fff6;
+  --link-default: #cbd5e1;   /* helles Grau (Links) */
+  --link-accent: var(--accent); /* mint nur für Nav/Highlights */
 }
 
 body {
@@ -226,15 +228,17 @@ header p {
   transform: translateY(-1px);
 }
 
-a {
-  color: var(--link);
+a,
+a:visited {
+  color: var(--link-default);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
-a:visited {
-  color: var(--link); 
-
 a:hover {
-  color: var(--link-hover);
+  color: var(--text);
+  text-decoration-color: var(--link-accent);
 }
 
 /* Profile Link Chips */
@@ -339,6 +343,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
