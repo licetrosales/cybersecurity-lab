@@ -227,7 +227,14 @@ header p {
   border-color: var(--primary);
   transform: translateY(-1px);
 }
+.name {
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 700;
+}
 
+.tagline {
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+}
 a,
 a:visited {
   color: var(--link-default);
@@ -271,10 +278,7 @@ a:hover {
   transform: translateY(-2px);
 }
 
-.name {
-  font-size: 1.8rem;
-  font-weight: 750;
-}
+
 .hero-actions{
   display: flex;
   gap: 40px;            /* spacing symmetry between hyperlinks */
@@ -357,6 +361,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
