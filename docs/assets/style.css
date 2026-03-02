@@ -240,6 +240,16 @@ a:hover {
   color: var(--text);
   text-decoration-color: var(--link-accent);
 }
+.top-nav a,
+.top-nav a:visited {
+  color: var(--link-accent);
+  text-decoration-color: color-mix(in srgb, var(--link-accent), transparent 55%);
+}
+
+.top-nav a:hover {
+  color: var(--link-accent);
+  text-decoration-color: var(--link-accent);
+}
 
 /* Profile Link Chips */
 .chip {
@@ -343,6 +353,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
