@@ -167,8 +167,9 @@ header p {
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
 }
 
 .btn-primary:hover {
@@ -177,7 +178,7 @@ header p {
 
 .btn-outline {
   border: 1px solid var(--primary);
-  color: var(--primary);
+  color: #0b1b2b;
 }
 
 .btn-outline:hover {
@@ -338,6 +339,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
