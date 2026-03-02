@@ -7,11 +7,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --bg: #0b1b2b;          /* deep navy */
+  --surface: #10263a;     /* card/navy surface */
+  --surface-2: #0e2234;   /* alternate section */
+  --border: #2a3f55;
+
+  --text: #eaf2ff;
+  --muted: #b6c7d9;
+
+  --accent: #bfeadf;      /* mint */
+  --accent-2: #7fd1c4;    /* deeper mint */
+  --link: #bfeadf;
+}
 
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #0f172a;
-  color: #e2e8f0;
+  background-color: var(--bg);
+  color: var(--text);
   line-height: 1.6;
 }
 
@@ -311,6 +324,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
