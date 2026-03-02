@@ -86,10 +86,10 @@ section {
 ========================= */
 
 header {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
   padding: 80px 20px;
   text-align: center;
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid var(--border);
 }
 
 header h1 {
@@ -334,5 +334,6 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
