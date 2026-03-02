@@ -20,7 +20,7 @@
   --accent-2: #7fd1c4;
 
   /* NEU (für konsistente UI) */
-  --card: #16233b;
+  --card: var(--surface); 
   --card-border: #334155;
   --primary: #7fd1c4;          /* nutzt dein mint als “Primary” */
   --primary-hover: #bfeadf;
@@ -337,5 +337,6 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
