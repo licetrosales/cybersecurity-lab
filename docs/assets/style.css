@@ -224,9 +224,12 @@ header p {
   transform: translateY(-1px);
 }
 
-/* Prevent default visited purple anywhere in your site */
-a:visited{
-  color: inherit;
+a {
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--link-hover);
 }
 
 /* Profile Link Chips */
@@ -331,3 +334,4 @@ footer {
     padding: 30px 15px;
   }
 }
+
