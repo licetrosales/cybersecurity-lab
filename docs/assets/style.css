@@ -111,6 +111,7 @@ header p {
 ========================= */
 
 .section-title {
+  color: var(--text);
   font-size: 1.8rem;
   margin-bottom: 20px;
   border-left: 4px solid var(--primary);
@@ -337,6 +338,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
