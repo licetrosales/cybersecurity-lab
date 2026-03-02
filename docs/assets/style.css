@@ -8,17 +8,24 @@
   box-sizing: border-box;
 }
 :root {
-  --bg: #0b1b2b;          /* deep navy */
-  --surface: #10263a;     /* card/navy surface */
-  --surface-2: #0e2234;   /* alternate section */
+  --bg: #0b1b2b;
+  --surface: #10263a;
+  --surface-2: #0e2234;
   --border: #2a3f55;
 
   --text: #eaf2ff;
   --muted: #b6c7d9;
 
-  --accent: #bfeadf;      /* mint */
-  --accent-2: #7fd1c4;    /* deeper mint */
+  --accent: #bfeadf;
+  --accent-2: #7fd1c4;
+
+  /* NEU (für konsistente UI) */
+  --card: #16233b;
+  --card-border: #334155;
+  --primary: #7fd1c4;          /* nutzt dein mint als “Primary” */
+  --primary-hover: #bfeadf;
   --link: #bfeadf;
+  --link-hover: #d8fff6;
 }
 
 body {
@@ -324,6 +331,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
