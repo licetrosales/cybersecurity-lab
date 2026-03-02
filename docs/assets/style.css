@@ -87,11 +87,36 @@ section {
    HEADER / HERO
 ========================= */
 
-header {
+.site-header {
   background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
-  padding: 80px 20px;
-  text-align: center;
   border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 1.8rem;
+}
+
+.name {
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: var(--muted);
 }
 
 header h1 {
@@ -361,6 +386,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
