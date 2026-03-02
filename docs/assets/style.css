@@ -228,6 +228,9 @@ a {
   color: var(--link);
 }
 
+a:visited {
+  color: var(--link); 
+
 a:hover {
   color: var(--link-hover);
 }
@@ -334,4 +337,5 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
