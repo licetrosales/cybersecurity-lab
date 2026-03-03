@@ -95,16 +95,29 @@ section {
   border-bottom: 1px solid var(--border);
 }
 
-.header-inner {
-  display: flex;
-  flex-direction: column;
+/* Header layout: center brand, keep nav right */
+.site-header .header-inner{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 16px;
+  padding: 28px 20px;
 }
-.brand {
+
+/* center the brand block */
+.site-header .brand{
+  grid-column: 2;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
+  text-align: center;
+}
+
+/* keep nav on the right */
+.site-header .top-nav{
+  grid-column: 3;
+  justify-self: end;
 }
 
 
@@ -375,6 +388,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
