@@ -22,7 +22,7 @@
   /* NEU (für konsistente UI) */
   --card: var(--surface); 
   --card-border: #334155;
-  --primary: #7fd1c4;          /* nutzt dein mint als “Primary” */
+  --primary: #7fd1c4;          /* nutzt mint als “Primary” */
   --primary-hover: #bfeadf;
   --link: #bfeadf;
   --link-hover: #d8fff6;
@@ -402,6 +402,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
