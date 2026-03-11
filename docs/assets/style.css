@@ -299,6 +299,12 @@ a:hover {
   text-decoration-color: var(--link-accent);
 }
 
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 /* Profile Link Chips */
 .chip {
   display: inline-flex;
@@ -402,6 +408,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
