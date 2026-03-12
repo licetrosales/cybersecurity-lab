@@ -148,10 +148,20 @@ header p {
   max-width: 700px;
   margin: 0 auto;
 }
-.lead-secondary {
-  margin-top: 10px;
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.65;
   color: #cbd5e1;
+  max-width: 720px;
+  margin-bottom: 6px;
+}
+
+.lead-secondary {
   font-size: 1.05rem;
+  line-height: 1.6;
+  color: #94a3b8;
+  max-width: 720px;
+  margin-bottom: 26px;
 }
 /* =========================
    SECTION TITLES
@@ -440,6 +450,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
