@@ -302,7 +302,9 @@ a:hover {
 .contact-buttons {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  gap: 18px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 /* Profile Link Chips */
@@ -408,6 +410,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
