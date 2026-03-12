@@ -194,7 +194,15 @@ header p {
 .card p {
   color: #cbd5e1;
 }
+.profile-summary {
+  margin-top: 22px;
+}
 
+.profile-subhead {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
 /* =========================
    BUTTONS
 ========================= */
@@ -411,6 +419,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
