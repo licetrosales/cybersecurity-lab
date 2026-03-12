@@ -148,7 +148,11 @@ header p {
   max-width: 700px;
   margin: 0 auto;
 }
-
+.lead-secondary {
+  margin-top: 10px;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+}
 /* =========================
    SECTION TITLES
 ========================= */
@@ -436,6 +440,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
