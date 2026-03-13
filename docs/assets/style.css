@@ -88,9 +88,6 @@ section {
 /* =========================
    HEADER / HERO
 ========================= */
-//* =========================
-   HEADER / HERO
-========================= */
 
 .site-header {
   background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
@@ -455,6 +452,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
