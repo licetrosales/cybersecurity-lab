@@ -218,10 +218,11 @@ header p {
   border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-.profile-subhead {
+.subhead {
   font-size: 1.35rem;
   font-weight: 700;
   color: #ffffff;
+  margin-top: 24px;
   margin-bottom: 14px;
   letter-spacing: 0.2px;
 }
@@ -452,6 +453,7 @@ footer {
     padding: 30px 15px;
   }
 }
+
 
 
 
