@@ -173,7 +173,30 @@ header p {
   border-left: 4px solid var(--primary);
   padding-left: 12px;
 }
+.section-head {
+  margin-bottom: 22px;
+}
 
+.section-head h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.sub {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+  max-width: 920px;
+  margin-bottom: 10px;
+}
+
+.tiny {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
 /* =========================
    CARDS
 ========================= */
@@ -218,12 +241,13 @@ header p {
 }
 
 .subhead {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-top: 24px;
-  margin-bottom: 12px;
-  letter-spacing: 0.1px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 18px;
+  margin-bottom: 10px;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .clean-list {
@@ -369,6 +393,12 @@ a:hover {
 .hero {
   padding-top: 40px;
 }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
 .hero-actions{
   display: flex;
   gap: 40px;            /* spacing symmetry between hyperlinks */
@@ -452,32 +482,3 @@ footer {
     padding: 30px 15px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
