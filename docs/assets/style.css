@@ -223,6 +223,9 @@ header p {
 .card p {
   color: #cbd5e1;
 }
+.profile {
+  margin-top: 10px;
+}
 .profile-name {
   font-size: 22px;
   font-weight: 700;
@@ -393,12 +396,7 @@ a:hover {
 .hero {
   padding-top: 40px;
 }
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 32px;
-  align-items: start;
-}
+
 .hero-actions{
   display: flex;
   gap: 40px;            /* spacing symmetry between hyperlinks */
@@ -489,4 +487,5 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
