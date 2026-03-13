@@ -482,3 +482,11 @@ footer {
     padding: 30px 15px;
   }
 }
+
+/* Hero layout mobile fallback */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
