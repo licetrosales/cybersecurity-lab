@@ -384,7 +384,7 @@ a:hover {
   text-decoration: none;
   color: #cbd5e1;
   font-size: 0.95rem;
-  margin-right: 6px;   /* extra safety spacing between hyperlinks */
+  margin-right: 6px;   /* for extra safety spacing between hyperlinks */
 }
 
 .chip:hover {
@@ -487,5 +487,6 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
