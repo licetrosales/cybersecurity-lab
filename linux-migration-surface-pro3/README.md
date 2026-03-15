@@ -124,9 +124,19 @@ Post-installation security configuration included:
 
 Example commands: 
 
+Example commands:
+
+```bash
+# Update package index
 sudo apt update
+
+# Install security updates
 sudo apt upgrade
+
+# Install firewall and network analysis tool
 sudo apt install ufw wireshark
+
+# Enable firewall
 sudo ufw enable
 
 
