@@ -138,7 +138,7 @@ sudo apt install ufw wireshark
 
 # Enable firewall
 sudo ufw enable
-
+```
 
 ---
 
