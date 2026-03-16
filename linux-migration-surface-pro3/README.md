@@ -170,6 +170,6 @@ Planned enhancements:
 
 ---
 
-## Author
+## Note
 
 Cybersecurity learning project focused on **risk mitigation, system security, and Linux platform adoption for security analysis workflows**.
