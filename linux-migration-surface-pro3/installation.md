@@ -255,6 +255,8 @@ The following represents the stable baseline after installation:
 * Boot: GRUB (EFI)
 * Display scaling configured (DPI 160)
 * Network: WiFi configured
+* Bluetooth: configured (mouse connected)
+* Touchscreen: functional with Onboard keyboard
 * Theme: Arc-Dark + Papirus-Dark
 * Cursor: Breeze Light (size 38)
 * System updated to latest packages
