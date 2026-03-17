@@ -154,7 +154,43 @@ sudo apt autoremove -y
 
 ---
 
-## 12. Observations
+## 13. Touchscreen Keyboard Configuration
+
+### Objective
+
+Enable on-screen keyboard for touchscreen-only usage (tablet mode).
+
+### Installation
+```bash
+sudo apt install onboard
+```
+
+### Configuration
+
+* Enabled **auto-show when editing text**
+* Enabled **show always on visible workspace**
+* Docking to screen edge was tested but **not used in final configuration**
+* Selected layout: **Compact**
+* Keyboard size adjusted via **manual resizing**
+
+### Observations
+
+* Keyboard functions correctly
+* Automatic display works when interacting with input fields
+* Manual resizing provides better usability than docking in this setup
+* Limited advanced scaling options available in XFCE environment
+
+### Decision
+
+Onboard retained as a **baseline solution**:
+
+* Stable and functional
+* Sufficient for occasional touchscreen input
+* Not fully optimized for high-DPI touchscreen usage
+* Alternative keyboards identified for future evaluation
+
+
+## 14. Observations
 
 * EFI warning observed during boot:
 
@@ -167,7 +203,7 @@ sudo apt autoremove -y
 
 ---
 
-## 13. Baseline Configuration (Post-Installation State)
+## 15. Baseline Configuration (Post-Installation State)
 
 The following represents the stable baseline after installation:
 
@@ -183,7 +219,7 @@ This baseline serves as the reference state for further hardening and configurat
 
 ---
 
-## 14. Status
+## 16. Status
 
 Installation phase completed successfully.
 
