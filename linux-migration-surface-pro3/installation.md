@@ -154,6 +154,50 @@ sudo apt autoremove -y
 
 ---
 
+## 12. Bluetooth Configuration
+
+### Objective
+
+Enable Bluetooth functionality for external devices (e.g., mouse).
+
+### Installation
+```bash
+sudo apt install bluetooth bluez blueman
+```
+
+### Service Configuration
+
+Enabled and started the Bluetooth service:
+
+```bash
+sudo systemctl enable bluetooth
+sudo systemctl start bluetooth
+```
+
+### Device Pairing
+
+* Opened **Bluetooth Manager (Blueman)**
+* Scanned for available devices
+* Connected to **Surface Mobile Mouse**
+
+### Observations
+
+* Device paired successfully and works reliably
+* Warning message observed during setup:
+
+```
+Failed to get power levels, probably a LE device
+```
+
+* No functional impact
+* Common for low-energy Bluetooth devices
+
+### Result
+
+Bluetooth functionality is operational and ready for use with external input devices.
+
+---
+
 ## 13. Touchscreen Keyboard Configuration
 
 ### Objective
