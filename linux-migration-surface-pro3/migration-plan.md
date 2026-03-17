@@ -129,3 +129,11 @@ Migration is considered successful when:
 ## Outcome
 
 The system now operates on a supported Linux platform, reducing the risks associated with unsupported operating systems and enabling a secure environment for working, learning and experimentation.
+
+## References
+
+- Debian Live Images (XFCE) – Official download source for Debian live installation images  
+  https://www.debian.org/CD/live/
+
+- Rufus – Tool for creating bootable USB installation media  
+  https://rufus.ie/en/
