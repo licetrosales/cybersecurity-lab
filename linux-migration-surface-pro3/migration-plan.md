@@ -63,6 +63,11 @@ Tools used:
 - Debian ISO
 - Rufus
 
+![Rufus configuration showing GPT and UEFI settings](rufus-status.png)
+
+*Figure 1: Rufus configuration used to create the Debian bootable USB.  
+Partition scheme set to GPT with UEFI target system and FAT32 filesystem.*
+
 ---
 
 ## Phase 3 – Installation
