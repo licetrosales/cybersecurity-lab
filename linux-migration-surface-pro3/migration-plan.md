@@ -55,8 +55,8 @@ Key findings:
 Tasks:
 
 - Backup important user data
-- Download Debian Linux ISO
-- Create bootable USB installation media
+-Download Debian Linux ISO
+- Create bootable USB installatio n media
 
 Tools used:
 
