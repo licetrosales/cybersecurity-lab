@@ -43,7 +43,9 @@ sudo ufw enable
 
 ```bash
 sudo ufw logging medium
-Verification
+```
+### Verification
+```bash
 sudo ufw status verbose
 ```
 
@@ -118,7 +120,7 @@ Logging enables visibility into system activity and supports troubleshooting and
 
 A secondary standard user account was created for non-administrative use.
 
-- Primary user: `licetu` (administrative user with sudo privileges)
+- Primary user: `username` (administrative user with sudo privileges)
 - Secondary user: standard user without sudo privileges
 
 User accounts were reviewed using:
@@ -136,14 +138,14 @@ awk -F: '$3 >= 1000 {print $1}' /etc/passwd
 User group memberships were inspected:
 
 ```bash
-groups licetu
-groups michaelu
+groups username
+groups guest
 ```
 
 Results:
 
-- licetu belongs to administrative and device-related groups, including sudo
-- michaelu has no sudo privileges
+- username belongs to administrative and device-related groups, including sudo
+- guest has no sudo privileges
 
 ### Root Account Status
 
@@ -197,7 +199,7 @@ SSH key pairs were generated on:
 The key was copied using:
 
 ```bash
-ssh-copy-id licetu@192.168.178.49
+ssh-copy-id username@192.168.xxx.xxx
 ```
 
 ### Windows Key Transfer
@@ -205,7 +207,7 @@ ssh-copy-id licetu@192.168.178.49
 On Windows PowerShell, the public key was transferred to the Surface Pro 3 using:
 
 ```bash
-type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh licetu@192.168.178.49 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh username@192.168.xxx.xxx "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 ```
 
 This command appends the Windows public key directly to the authorized_keys file of the target user.
@@ -215,7 +217,7 @@ This command appends the Windows public key directly to the authorized_keys file
 SSH login was tested successfully from both MacBook and Windows Lifebook:
 
 ```bash
-ssh usernameu@192.168.xxx.xx
+ssh usernameu@192.168.xxx.xxx
 ```
 
 Results:
@@ -238,7 +240,7 @@ The following settings were added explicitly:
 PasswordAuthentication no
 PermitRootLogin no
 PubkeyAuthentication yes
-AllowUsers licetu
+AllowUsers username
 ```
 
 ### Service Restart
@@ -285,7 +287,7 @@ Final SSH-related firewall state:
 - SSH accessible only from trusted devices in the local network
 - password authentication disabled
 - direct root login disabled
-- only explicitly allowed administrative user (licetu) can connect remotely
+- only explicitly allowed administrative user (username) can connect remotely
 
 ### Rationale
 
