@@ -640,8 +640,8 @@ ls -ld /home/*
 
 Observed:
 ```bash
-drwx------ /home/licetu
-drwx------ /home/michaelu
+drwx------ /home/username
+drwx------ /home/guest
 ```
 
 #### Result
@@ -688,7 +688,114 @@ Filesystem hardening:
 - enforces strong user isolation
 
 ---
-## 13. Shell Usability & Configuration (ZSH)
+
+## 13. Intrusion Prevention (Fail2Ban)
+
+### Objective
+
+Implement host-based intrusion prevention to detect and mitigate brute-force attacks against exposed services, particularly SSH.
+
+---
+
+### Installation
+
+Fail2Ban was installed using:
+
+```bash
+sudo apt install fail2ban
+```
+
+### Service Enablement
+Fail2Ban service was enabled and started:
+
+```bash
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+```
+
+### Configuration
+A local configuration file was created to override default settings:
+```bash
+sudo nano /etc/fail2ban/jail.local
+```
+#### Configuration Content
+```bash
+[DEFAULT]
+bantime = 1h
+findtime = 10m
+maxretry = 7
+backend = systemd
+
+[sshd]
+enabled = true
+port = ssh
+logpath = %(sshd_log)s
+```
+### Configuration Explanation
+- bantime = 1h
+Offending IP addresses are blocked for 1 hour
+
+- findtime = 10m  
+Failed login attempts are counted within a 10-minute window
+
+- maxretry = 7  
+IP is banned after 7 failed authentication attempts
+
+- backend = systemd  
+Uses systemd journal for log monitoring
+
+- [sshd] jail enabled   
+Protects SSH service from brute-force attacks
+
+### Service Restart
+
+Configuration changes were applied:
+
+```bash
+sudo systemctl restart fail2ban
+```
+### Verification
+
+Global status:
+```bash
+sudo fail2ban-client status
+```
+SSH jail status:
+```bash
+sudo fail2ban-client status sshd
+```
+Observed:
+
+- SSH jail active
+- No banned IPs at time of verification
+- Monitoring system logs successfully
+
+### Result
+- Automatic detection of repeated failed SSH login attempts
+- Dynamic blocking of malicious IP addresses via firewall rules
+- Protection against brute-force and credential guessing attacks
+
+### Security Context
+This system already enforces:
+- SSH key-based authentication only
+- Disabled password authentication
+- SSH access restricted to local network (LAN)
+
+Fail2Ban adds an additional defensive layer:
+- Detects suspicious behavior even within trusted networks
+- Provides automated response to repeated failed access attempts
+
+### Rationale
+
+Fail2Ban enhances system security by:
+- Reducing the risk of brute-force attacks
+- Automating incident response
+- Complementing firewall and SSH hardening
+- Implementing defense-in-depth strategy
+
+---
+
+## 14. Shell Usability & Configuration (ZSH)
 ### Installation
 
 ```bash
@@ -723,7 +830,162 @@ Improves operational security by reducing command errors.
 
 ---
 
-## 14. Baseline Security Posture
+## 15. Audit Logging (Auditd)
+
+### Overview
+
+Auditd provides detailed logging of system activity, including:
+
+- File access and modifications
+- Permission changes
+- Privileged operations
+- Authentication-related events
+
+This enables detection, investigation, and forensic analysis.
+
+---
+
+### Installation
+
+```bash
+sudo apt install auditd audispd-plugins
+sudo systemctl enable auditd
+sudo systemctl start auditd
+```
+
+### Verify Service
+sudo auditctl -s
+
+Expected output:
+
+- enabled 1 → auditing active
+- failure 1 → system logs critical failures
+
+### Configured Rules
+
+Custom rules were added:
+```bash
+sudo nano /etc/audit/rules.d/hardening.rules
+```
+Identity Changes
+```bash
+## ================================
+## Identity & Account Changes
+## ================================
+-w /etc/passwd -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/group -p wa -k identity
+
+## ================================
+## Privilege Escalation
+## ================================
+-w /etc/sudoers -p wa -k privilege
+-w /etc/sudoers.d/ -p wa -k privilege
+
+## ================================
+## SSH Configuration Changes
+## ================================
+-w /etc/ssh/sshd_config -p wa -k ssh
+
+## ================================
+## Authentication Logs
+## ================================
+-w /var/log/auth.log -p wa -k auth
+
+## ================================
+## Kernel Module Activity
+## ================================
+-w /sbin/insmod -p x -k modules
+-w /sbin/rmmod -p x -k modules
+-w /sbin/modprobe -p x -k modules
+
+## ================================
+## File Deletion Monitoring
+## ================================
+-a always,exit -F arch=b64 -S unlink,unlinkat,rename,renameat -k delete
+
+## ================================
+## Permission Changes
+## ================================
+-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -k perm_mod
+```
+
+### Load Rules
+```bash
+sudo augenrules --load
+```
+### Verification
+List active rules:
+```bash
+sudo auditctl -l
+```
+### Testing
+Test 1: File creation
+```bash
+touch testfile
+```
+Test 2: Permission change
+```bash
+chmod 777 testfile
+```
+Search logs:
+```bash
+sudo ausearch -k perm_mod
+```
+### Reporting
+Generate summary:
+```bash
+sudo aureport
+```
+### Security Benefits
+
+- Detect unauthorized file changes
+- Monitor privilege escalation attempts
+- Track system configuration modifications
+- Provide forensic traceability
+
+### Notes
+
+- System users (e.g., dhcpcd) may appear in logs
+- Auditd records both user and system activity
+- Rules can impact performance if too broad
+
+### Report Interpretation
+
+The `aureport` command provides a high-level summary of system activity.
+
+Key indicators:
+
+- **failed logins / authentications**  
+  Detect brute-force or unauthorized access attempts
+
+- **anomaly events**  
+  Indicate suspicious or unexpected system behavior
+
+- **failed syscalls**  
+  May indicate exploitation attempts or misconfigurations
+
+- **number of users**  
+  Includes both human and system users (e.g., services)
+
+- **number of events**  
+  Reflects overall system activity
+
+---
+
+### Baseline Observation
+
+During initial hardening:
+
+- No failed logins or authentication attempts
+- No anomaly or integrity events detected
+- All activity corresponds to administrative actions
+- Audit rules successfully capture permission and file changes
+
+This establishes a clean baseline for future monitoring.
+---
+
+## 16. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
 
@@ -781,7 +1043,7 @@ After applying the above measures, the system has the following characteristics:
 
 ---
 
-## 15. Status
+## 17. Status
 
 Hardening phase (initial baseline) completed successfully.
 
