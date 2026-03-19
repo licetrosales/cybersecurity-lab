@@ -342,7 +342,68 @@ Correct system time is important for:
 
 ---
 
-## 9. Shell Usability & Configuration (ZSH)
+## 9. Service Hardening (Attack Surface Reduction)
+
+### Objective
+
+Reduce system attack surface by identifying and disabling unnecessary services.
+
+### Service Review
+
+Running services were reviewed using:
+
+```bash
+systemctl list-units --type=service --state=running
+```
+### Disabled Services
+
+The following services were identified as unnecessary based on system usage and were disabled:
+
+#### ModemManager
+
+```bash
+sudo systemctl disable --now ModemManager
+```
+
+- Purpose: Mobile broadband (SIM/LTE connectivity)
+- Decision: Not required (device uses WiFi only)
+
+#### CUPS (Printing Services)
+
+```bash
+sudo systemctl disable --now cups
+sudo systemctl disable --now cups-browsed
+```
+- Purpose: Printing and printer discovery
+- Decision: Not required (no printer in use)
+
+### Retained Services
+
+The following services were kept due to functional requirements:
+
+- NetworkManager → WiFi connectivity
+- wpa_supplicant → wireless authentication
+- bluetooth → wireless headphones
+- ssh → remote administration
+- systemd-* services → core system functionality
+- cron, dbus, polkit → essential system services
+
+### Optional Services (Not Modified)
+
+avahi-daemon → retained (network discovery; may be disabled later if not required)
+
+### Result
+
+- Reduced number of running services (26 → 23)
+- Lower system exposure to potential vulnerabilities
+- Improved system performance and maintainability
+
+### Rationale
+
+Disabling unused services minimizes the attack surface and follows the principle of least functionality, reducing the risk of exploitation.
+---
+
+## 10. Shell Usability & Configuration (ZSH)
 ### Installation
 
 ```bash
@@ -377,7 +438,7 @@ Improves operational security by reducing command errors.
 
 ---
 
-## 10. Baseline Security Posture
+## 11. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
 
@@ -398,7 +459,7 @@ After applying the above measures, the system has the following characteristics:
 
 ---
 
-## 11. Status
+## 12. Status
 
 Hardening phase (initial baseline) completed successfully.
 
