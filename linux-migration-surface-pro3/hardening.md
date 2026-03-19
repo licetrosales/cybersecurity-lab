@@ -594,7 +594,7 @@ mount | grep /tmp
 - reduce privilege escalation risks
 - ensure safe multi-user usage via sticky bit
 
-### 12.2 '/dev/shm' Hardening
+### 12.2 `/dev/shm` Hardening
 #### Current State
 
 '/dev/shm' is a shared memory filesystem ('tmpfs') used for inter-process communication.
@@ -632,7 +632,7 @@ Shared memory can be abused for fileless or in-memory attacks. Hardening reduces
 - execution of malicious code from RAM
 - exploitation of shared memory mechanisms
 
-### 11.3 Home Directory Permissions
+### 12.3 Home Directory Permissions
 #### Verification
 ```bash
 ls -ld /home/*
@@ -653,7 +653,7 @@ drwx------ /home/michaelu
 
 Ensures user data confidentiality and enforces isolation between accounts.
 
-### 11.4 Sticky Bit Verification (`/tmp`)
+### 12.4 Sticky Bit Verification (`/tmp`)
 #### Verification
 ```bash
 ls -ld /tmp
@@ -671,14 +671,14 @@ drwxrwxrwt
 #### Rationale
 Prevents users from interfering with other users’ files in shared directories.
 
-### 11.5 Result
+### 12.5 Result
 
 - `/tmp` hardened with execution and privilege restrictions
 - `/dev/shm` secured against in-memory execution attacks
 - user home directories properly isolated
 - sticky bit enforced for safe shared directory usage
 
-### 11.6 Rationale (Summary)
+### 12.6 Rationale (Summary)
 
 Filesystem hardening:
 
@@ -688,7 +688,7 @@ Filesystem hardening:
 - enforces strong user isolation
 
 ---
-## 12. Shell Usability & Configuration (ZSH)
+## 13. Shell Usability & Configuration (ZSH)
 ### Installation
 
 ```bash
@@ -723,28 +723,65 @@ Improves operational security by reducing command errors.
 
 ---
 
-## 13. Baseline Security Posture
+## 14. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
 
 - Regular updates enabled
 - Firewall active with restrictive inbound policy
-- Logging enabled for network activity
-- System snapshot capability configured
+- Firewall logging enabled
+- System snapshot capability configured (Timeshift)
 - User data excluded from system backups
-- separation of administrative and standard users
-- locked root account
-- SSH key-based authentication from trusted devices
-- disabled SSH password authentication
-- disabled direct root login
-- SSH access restricted to the local network
-- Time synchronization enabled (via NTP)
-- firewall enforcing least-privilege access
-- improved shell usability
+
+### Identity & Access Management
+
+- Separation of administrative and standard users
+- Limited sudo access (principle of least privilege)
+- Root account locked
+- SSH key-based authentication enforced
+- SSH password authentication disabled
+- Direct root login disabled
+- SSH access restricted to local network (LAN only)
+
+### Network Security
+
+- Unnecessary services removed (e.g., CUPS, ModemManager)
+- Kernel-level network hardening applied (sysctl)
+  - IP spoofing protection enabled
+  - ICMP redirects disabled
+  - Source routing disabled
+  - SYN flood protection enabled
+  - Suspicious packet logging enabled
+
+### System Hardening
+
+- Core dumps disabled (prevents sensitive memory leaks)
+- Resource limits enforced (`ulimit`, `/etc/security/limits.conf`)
+- Reduced risk of privilege escalation via kernel protections
+
+### Filesystem Security
+
+- `/tmp` mounted with:
+  - `noexec`, `nosuid`, `nodev`
+- `/dev/shm` mounted with:
+  - `noexec`, `nosuid`, `nodev`
+- Sticky bit enforced on shared directories (`/tmp`)
+- Home directories restricted to owner access only
+- Reduced risk of execution from temporary or shared locations
+
+### System Reliability
+
+- Time synchronization enabled (systemd-timesyncd, NTP)
+- Consistent system clock for logging and auditing
+
+### Usability Improvements
+
+- Enhanced shell configuration (ZSH, syntax highlighting)
+- Improved command visibility and error detection
 
 ---
 
-## 14. Status
+## 15. Status
 
 Hardening phase (initial baseline) completed successfully.
 
