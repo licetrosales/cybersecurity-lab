@@ -540,6 +540,154 @@ Together, these provide defense-in-depth against unintended memory disclosure.
 
 ---
 
+## 12. Filesystem Hardening
+
+### Objective
+
+Strengthen filesystem security by restricting execution, limiting privilege escalation vectors, and enforcing proper permissions on shared and user directories.
+
+---
+
+### 12.1 `/tmp` Hardening
+
+#### Current State
+
+`/tmp` is mounted as a `tmpfs` (memory-backed filesystem), which is appropriate for temporary data.
+
+#### Configuration
+
+The `/tmp` mount options were hardened via:
+
+```bash
+sudo nano /etc/fstab
+```
+Modified entry:
+
+```bash
+tmpfs /tmp tmpfs defaults,noatime,noexec,nosuid,nodev,mode=1777 0 0
+```
+
+#### Applied Changes
+
+```bash
+sudo systemctl daemon-reexec
+sudo mount -o remount /tmp
+```
+
+#### Verification
+
+```bash
+mount | grep /tmp
+```
+
+#### Result:
+- noexec → prevents execution of binaries from /tmp
+- nosuid → disables SUID/SGID privilege escalation
+- nodev → prevents device file usage
+- mode=1777 → ensures world-writable directory with sticky bit protection
+
+#### Rationale
+
+'/tmp' is a shared writable directory and a common target for attacks. These restrictions:
+
+- prevent execution of malicious payloads
+- reduce privilege escalation risks
+- ensure safe multi-user usage via sticky bit
+
+### 12.2 '/dev/shm' Hardening
+#### Current State
+
+'/dev/shm' is a shared memory filesystem ('tmpfs') used for inter-process communication.
+
+#### Configuration
+
+A dedicated secure mount entry was added:
+
+```bash
+sudo nano /etc/fstab
+```
+Added entry:
+
+```bash
+tmpfs /dev/shm tmpfs defaults,noexec,nosuid,nodev 0 0
+```
+#### Applied Changes
+
+```bash
+sudo systemctl daemon-reexec
+sudo mount -o remount /dev/shm
+```
+#### Verification
+mount | grep shm
+
+#### Result:
+
+- noexec → prevents execution from shared memory
+- nosuid → disables privilege escalation
+- nodev → blocks device file usage
+
+#### Rationale
+
+Shared memory can be abused for fileless or in-memory attacks. Hardening reduces:
+- execution of malicious code from RAM
+- exploitation of shared memory mechanisms
+
+### 11.3 Home Directory Permissions
+#### Verification
+```bash
+ls -ld /home/*
+```
+
+Observed:
+```bash
+drwx------ /home/licetu
+drwx------ /home/michaelu
+```
+
+#### Result
+
+- user home directories are restricted to their owners
+- no access for other users or groups
+
+#### Rationale
+
+Ensures user data confidentiality and enforces isolation between accounts.
+
+### 11.4 Sticky Bit Verification (`/tmp`)
+#### Verification
+```bash
+ls -ld /tmp
+```
+
+Observed:
+```bash
+drwxrwxrwt
+```
+#### Result
+
+- sticky bit (t) is set
+- users can only delete their own files
+
+#### Rationale
+Prevents users from interfering with other users’ files in shared directories.
+
+### 11.5 Result
+
+- `/tmp` hardened with execution and privilege restrictions
+- `/dev/shm` secured against in-memory execution attacks
+- user home directories properly isolated
+- sticky bit enforced for safe shared directory usage
+
+### 11.6 Rationale (Summary)
+
+Filesystem hardening:
+
+- reduces attack surface in shared writable locations
+- mitigates privilege escalation vectors
+- prevents execution of untrusted code
+- enforces strong user isolation
+
+---
 ## 12. Shell Usability & Configuration (ZSH)
 ### Installation
 
