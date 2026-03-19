@@ -983,6 +983,7 @@ During initial hardening:
 - Audit rules successfully capture permission and file changes
 
 This establishes a clean baseline for future monitoring.
+
 ---
 
 ## 16. Baseline Security Posture
@@ -992,6 +993,7 @@ After applying the above measures, the system has the following characteristics:
 - Regular updates enabled
 - Firewall active with restrictive inbound policy
 - Firewall logging enabled
+- Intrusion prevention via Fail2Ban (SSH protection)
 - System snapshot capability configured (Timeshift)
 - User data excluded from system backups
 
@@ -1020,7 +1022,8 @@ After applying the above measures, the system has the following characteristics:
 - Core dumps disabled (prevents sensitive memory leaks)
 - Resource limits enforced (`ulimit`, `/etc/security/limits.conf`)
 - Reduced risk of privilege escalation via kernel protections
-
+- SUID dumpability disabled (`fs.suid_dumpable = 0`)
+  
 ### Filesystem Security
 
 - `/tmp` mounted with:
@@ -1031,16 +1034,45 @@ After applying the above measures, the system has the following characteristics:
 - Home directories restricted to owner access only
 - Reduced risk of execution from temporary or shared locations
 
+### Monitoring & Auditing
+
+- Auditd enabled for system activity monitoring
+- Key security-relevant files monitored:
+  - `/etc/passwd`, `/etc/shadow`, `/etc/group`
+  - `/etc/sudoers`, `/etc/sudoers.d`
+  - `/etc/ssh/sshd_config`
+  - `/var/log/auth.log`
+- System call auditing enabled for:
+  - Permission changes (`chmod`, `fchmod`)
+  - File deletion (`unlink`, `rename`)
+  - Kernel module operations
+- Audit rules categorized using keys:
+  - `identity`, `privilege`, `ssh`, `auth`, `modules`, `delete`, `perm_mod`
+- Audit logs searchable via `ausearch` and summarized via `aureport`
+- Baseline system activity established (no anomalies detected)
+
+### Active Defense
+
+- Fail2Ban configured for SSH protection
+  - Bans IPs after repeated failed login attempts
+  - Configured thresholds:
+    - `maxretry = 7`
+    - `findtime = 10m`
+    - `bantime = 1h`
+- Integrated with systemd journal for log monitoring
+
 ### System Reliability
 
 - Time synchronization enabled (systemd-timesyncd, NTP)
 - Consistent system clock for logging and auditing
-
+- Reduced risk of log inconsistencies
+  
 ### Usability Improvements
 
 - Enhanced shell configuration (ZSH, syntax highlighting)
 - Improved command visibility and error detection
-
+- Better operational awareness during administration
+  
 ---
 
 ## 17. Status
