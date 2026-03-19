@@ -29,6 +29,8 @@ The system is configured to receive updates regularly to ensure security patches
 
 Keeping the system up to date reduces exposure to known vulnerabilities and ensures stability.
 
+---
+
 ## 3. Firewall Configuration (UFW)
 ### Configuration Steps
 
@@ -59,6 +61,8 @@ sudo ufw status verbose
 ### Rationale
 
 A default-deny firewall policy reduces attack surface by blocking unsolicited incoming connections.
+
+---
 
 ## 4. System Backup & Recovery (Timeshift)
 ### Installation
@@ -101,6 +105,8 @@ An initial system snapshot was created manually to establish a baseline recovery
 
 Separating system snapshots from user data ensures efficient storage usage and faster recovery operations.
 
+---
+
 ## 5. Logging and Monitoring
 Firewall Logging
 
@@ -113,6 +119,8 @@ Firewall Logging
 ### Rationale
 
 Logging enables visibility into system activity and supports troubleshooting and incident response.
+
+---
 
 ## 6. User & Privilege Hardening
 
@@ -166,6 +174,8 @@ Observed result indicated:
 - Limiting sudo access enforces the principle of least privilege
 - A locked root account reduces exposure to direct privileged access
 
+---
+
 ## 8. SSH Configuration & Hardening
 ### SSH Installation & Verification
 
@@ -187,7 +197,7 @@ sudo ufw status verbose
 
 This temporarily created a rule allowing SSH on port 22 from any source.
 
-### SSH Key-Based Authentication
+### Key-Based Authentication
 
 SSH key pairs were generated on:
 
@@ -243,7 +253,7 @@ PubkeyAuthentication yes
 AllowUsers username
 ```
 
-### Service Restart
+### Apply Changes: Service Restart
 ```bash
 sudo systemctl restart ssh
 ```
@@ -296,7 +306,9 @@ Final SSH-related firewall state:
 - Restricts administrative access to trusted local systems
 - Enforces strong authentication using SSH keys
 
-## 8. Time Synchronization (NTP)
+---
+
+## 9. Time Synchronization (NTP)
 ### Issue
 
 System time was initially not synchronized automatically.
@@ -328,7 +340,9 @@ Correct system time is important for:
 - certificate validation
 - reliable scheduling and system behavior
 
-## 9. Baseline Security Posture
+---
+
+## 11. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
 
