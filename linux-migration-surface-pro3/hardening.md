@@ -342,6 +342,41 @@ Correct system time is important for:
 
 ---
 
+## 10. Shell Usability & Configuration (ZSH)
+### Installation
+
+```bash
+sudo apt install zsh
+chsh -s /bin/zsh
+```
+### Syntax Highlighting
+
+```bash
+sudo apt install zsh-syntax-highlighting
+```
+### Configuration
+
+```bash
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+```
+### Verification
+
+```bash
+ls /usr/share/zsh-syntax-highlighting/
+source ~/.zshrc
+```
+
+### Result
+
+- Commands visually highlighted
+- Invalid commands easier to detect
+
+### Rationale
+
+Improves operational security by reducing command errors.
+
+---
+
 ## 11. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
@@ -357,10 +392,13 @@ After applying the above measures, the system has the following characteristics:
 - disabled SSH password authentication
 - disabled direct root login
 - SSH access restricted to the local network
-- synchronized system time via NTP
+- Time synchronization enabled (via NTP)
 - firewall enforcing least-privilege access
+- improved shell usability
 
-## 7. Status
+---
+
+## 12. Status
 
 Hardening phase (initial baseline) completed successfully.
 
