@@ -401,9 +401,146 @@ avahi-daemon → retained (network discovery; may be disabled later if not requi
 ### Rationale
 
 Disabling unused services minimizes the attack surface and follows the principle of least functionality, reducing the risk of exploitation.
+
 ---
 
-## 10. Shell Usability & Configuration (ZSH)
+## 10 Kernel & Network Hardening
+
+### Configuration
+
+Kernel parameters were hardened using sysctl to improve network security and reduce attack surface.
+
+#### Configuration file:
+
+```bash
+sudo nano /etc/sysctl.d/99-hardening.conf
+```
+
+### Applied settings:
+
+```bash
+# IP Spoofing protection
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+# Ignore ICMP redirects (MITM protection)
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv6.conf.all.accept_redirects = 0
+net.ipv6.conf.default.accept_redirects = 0
+
+# Disable sending redirects
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+
+# Log suspicious packets
+net.ipv4.conf.all.log_martians = 1
+
+# Ignore bogus ICMP errors
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+
+# Disable source routing
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv6.conf.all.accept_source_route = 0
+net.ipv6.conf.default.accept_source_route = 0
+
+# SYN flood protection
+net.ipv4.tcp_syncookies = 1
+
+# Disable core dumps (security hardening)
+fs.suid_dumpable = 0
+kernel.core_pattern = |/bin/false
+```
+
+### Apply Configuration
+
+```bash
+sudo sysctl --system
+```
+
+### Verification
+```bash
+sysctl net.ipv4.conf.all.rp_filter
+sysctl net.ipv4.tcp_syncookies
+```
+
+### Result
+
+- IP spoofing protection enabled
+- ICMP redirect attacks mitigated
+- Source routing disabled
+- Suspicious packets logged
+- SYN flood protection enabled
+- Core dumps disabled at kernel level
+
+### Rationale
+
+These kernel-level protections:
+
+- reduce exposure to network-based attacks
+- prevent traffic manipulation (MITM, spoofing)
+- improve system resilience against denial-of-service conditions
+- protect sensitive memory from being written to disk
+
+
+---
+
+## 11. Resource Limits Hardening**
+
+### Configuration
+
+System-wide resource limits were configured to prevent core dump generation and reduce risk of sensitive data exposure.
+
+### Configuration file:
+
+```bash
+sudo nano /etc/security/limits.conf
+```
+
+### Applied setting:
+
+```bash
+* hard core 0
+```
+
+### Verification
+
+```bash
+ulimit -c
+```
+
+### Result:
+
+```
+0
+```
+### Result
+
+- Core dump generation disabled for all users
+- No process can write memory dumps to disk
+
+### Rationale
+
+Disabling core dumps:
+
+- prevents sensitive memory contents from being written to disk
+- reduces risk of credential or data leakage
+- limits forensic exposure in case of compromise
+
+### Notes
+
+This configuration works in conjunction with kernel-level settings:
+```
+fs.suid_dumpable = 0
+kernel.core_pattern = |/bin/false
+```
+
+Together, these provide defense-in-depth against unintended memory disclosure.
+
+---
+
+## 12. Shell Usability & Configuration (ZSH)
 ### Installation
 
 ```bash
@@ -438,7 +575,7 @@ Improves operational security by reducing command errors.
 
 ---
 
-## 11. Baseline Security Posture
+## 13. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
 
@@ -459,7 +596,7 @@ After applying the above measures, the system has the following characteristics:
 
 ---
 
-## 12. Status
+## 14. Status
 
 Hardening phase (initial baseline) completed successfully.
 
