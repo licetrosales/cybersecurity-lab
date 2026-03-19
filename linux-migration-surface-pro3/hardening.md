@@ -176,7 +176,7 @@ Observed result indicated:
 
 ---
 
-## 8. SSH Configuration & Hardening
+## 7. SSH Configuration & Hardening
 ### SSH Installation & Verification
 
 OpenSSH server was installed and verified:
@@ -308,7 +308,7 @@ Final SSH-related firewall state:
 
 ---
 
-## 9. Time Synchronization (NTP)
+## 8. Time Synchronization (NTP)
 ### Issue
 
 System time was initially not synchronized automatically.
@@ -342,7 +342,7 @@ Correct system time is important for:
 
 ---
 
-## 10. Shell Usability & Configuration (ZSH)
+## 9. Shell Usability & Configuration (ZSH)
 ### Installation
 
 ```bash
@@ -377,7 +377,7 @@ Improves operational security by reducing command errors.
 
 ---
 
-## 11. Baseline Security Posture
+## 10. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
 
@@ -398,13 +398,13 @@ After applying the above measures, the system has the following characteristics:
 
 ---
 
-## 12. Status
+## 11. Status
 
 Hardening phase (initial baseline) completed successfully.
 
 Next steps may include:
 
-- User and privilege hardening
-- SSH hardening (if remote access is used)
+- Service hardening (disable unnecessary services)
+- Intrusion detection (e.g., fail2ban)
 - Disk encryption (if required)
-- Intrusion detection / monitoring tools
+- Advanced monitoring
