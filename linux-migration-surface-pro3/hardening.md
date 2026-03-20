@@ -128,8 +128,8 @@ Logging enables visibility into system activity and supports troubleshooting and
 
 A secondary standard user account was created for non-administrative use.
 
-- Primary user: `username` (administrative user with sudo privileges)
-- Secondary user: standard user without sudo privileges
+- Primary user: `<ADMIN_USER>` (administrative user with sudo privileges)
+- Secondary user: `<STANDARD_USER>` (standard user without sudo privileges)
 
 User accounts were reviewed using:
 
@@ -146,14 +146,14 @@ awk -F: '$3 >= 1000 {print $1}' /etc/passwd
 User group memberships were inspected:
 
 ```bash
-groups username
-groups guest
+groups <ADMIN_USER>
+groups <STANDARD_USER>
 ```
 
 Results:
 
-- username belongs to administrative and device-related groups, including sudo
-- guest has no sudo privileges
+- <ADMIN_USER> belongs to administrative and device-related groups, including sudo
+- <STANDARD_USER> has no sudo privileges
 
 ### Root Account Status
 
@@ -209,7 +209,7 @@ SSH key pairs were generated on:
 The key was copied using:
 
 ```bash
-ssh-copy-id username@192.168.xxx.xxx
+ssh-copy-id <ADMIN_USER>@<LOCAL_ID>
 ```
 
 ### Windows Key Transfer
@@ -217,7 +217,7 @@ ssh-copy-id username@192.168.xxx.xxx
 On Windows PowerShell, the public key was transferred to the Surface Pro 3 using:
 
 ```bash
-type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh username@192.168.xxx.xxx "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh <ADMIN_USER>@<LOCAL_ID> "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 ```
 
 This command appends the Windows public key directly to the authorized_keys file of the target user.
@@ -227,7 +227,7 @@ This command appends the Windows public key directly to the authorized_keys file
 SSH login was tested successfully from both MacBook and Windows Lifebook:
 
 ```bash
-ssh usernameu@192.168.xxx.xxx
+ssh <ADMIN_USER>@<LOCAL_ID>
 ```
 
 Results:
@@ -250,7 +250,7 @@ The following settings were added explicitly:
 PasswordAuthentication no
 PermitRootLogin no
 PubkeyAuthentication yes
-AllowUsers username
+AllowUsers <ADMIN_USER>
 ```
 
 ### Apply Changes: Service Restart
@@ -281,7 +281,7 @@ sudo ufw delete allow ssh
 Restricted replacement rule applied:
 
 ```bash
-sudo ufw allow from 192.168.178.0/24 to any port 22 proto tcp
+sudo ufw allow from <LAN_SUBNET> to any port 22 proto tcp
 sudo ufw status verbose
 ```
 
@@ -289,7 +289,7 @@ sudo ufw status verbose
 
 Final SSH-related firewall state:
 
-- SSH allowed only from 192.168.178.0/24
+- SSH allowed only from <LAN_SUBNET>
 - no global Anywhere SSH rule remains
 
 ### Result
@@ -297,7 +297,7 @@ Final SSH-related firewall state:
 - SSH accessible only from trusted devices in the local network
 - password authentication disabled
 - direct root login disabled
-- only explicitly allowed administrative user (username) can connect remotely
+- only explicitly allowed administrative user (<ADMIN_USER>) can connect remotely
 
 ### Rationale
 
@@ -640,8 +640,8 @@ ls -ld /home/*
 
 Observed:
 ```bash
-drwx------ /home/username
-drwx------ /home/guest
+drwx------ /home/<ADMIN_USER>
+drwx------ /home/<STANDARD_USER>
 ```
 
 #### Result
@@ -1083,5 +1083,14 @@ Next steps may include:
 
 - Service hardening (disable unnecessary services)
 - Intrusion detection (e.g., fail2ban)
-- Disk encryption (if required)
 - Advanced monitoring
+
+### Anonymization Notice
+
+All user-specific data such as usernames, IP addresses, and identifiers have been replaced with placeholders:
+
+- `<ADMIN_USER>` → administrative user
+- `<STANDARD_USER>` → non-privileged user
+- `<LOCAL_IP>` → internal system IP address
+- `<LAN_SUBNET>` → local network range
+- `<EMAIL>` → user email address
