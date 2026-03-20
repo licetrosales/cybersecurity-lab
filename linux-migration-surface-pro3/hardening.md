@@ -1077,13 +1077,36 @@ After applying the above measures, the system has the following characteristics:
 
 ## 17. Status
 
-Hardening phase (initial baseline) completed successfully.
+Hardening phase (baseline configuration) completed successfully.
 
-Next steps may include:
+The system now implements:
 
-- Service hardening (disable unnecessary services)
-- Intrusion detection (e.g., fail2ban)
-- Advanced monitoring
+- Network-level protection (UFW, restricted SSH access)
+- Strong authentication (SSH key-based access only)
+- Principle of least privilege (user separation, limited sudo)
+- Reduced attack surface (disabled unnecessary services)
+- Kernel and filesystem hardening (sysctl, mount options)
+- Intrusion prevention (Fail2Ban)
+- System auditing and monitoring (Auditd)
+- Reliable logging and time synchronization
+
+### Current Security Posture
+
+The system is considered:
+
+- suitable for secure daily use
+- appropriate for cybersecurity lab activities
+- hardened against common attack vectors (brute force, misconfiguration, privilege escalation)
+
+### Next Steps (Advanced Hardening)
+
+Future improvements will focus on deeper security layers:
+
+- Mandatory Access Control (AppArmor / SELinux tuning)
+- Disk encryption enhancements (e.g., LUKS key management)
+- Centralized logging or SIEM integration
+- File integrity monitoring (e.g., AIDE)
+- USB device control and hardware-level restrictions
 
 ### Anonymization Notice
 
