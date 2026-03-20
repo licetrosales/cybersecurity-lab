@@ -1,7 +1,8 @@
 #!/bin/bash
 
-DISPLAY="eDP-1"
+OUTPUT="eDP-1"
 TOUCH_NAME="NTRG0001:01 1B96:1B05"
+LAST=""
 
 rotate_touch() {
   case "$1" in
@@ -20,23 +21,21 @@ rotate_touch() {
   esac
 }
 
+apply_rotation() {
+  ORIENTATION="$1"
+
+  [ "$ORIENTATION" = "$LAST" ] && return
+
+  xrandr --output "$OUTPUT" --rotate "$ORIENTATION"
+  rotate_touch "$ORIENTATION"
+  LAST="$ORIENTATION"
+}
+
 monitor-sensor | while read -r line; do
   case "$line" in
-    *"normal"*)
-      xrandr --output "$DISPLAY" --rotate normal
-      rotate_touch normal
-      ;;
-    *"bottom-up"*)
-      xrandr --output "$DISPLAY" --rotate inverted
-      rotate_touch inverted
-      ;;
-    *"right-up"*)
-      xrandr --output "$DISPLAY" --rotate right
-      rotate_touch right
-      ;;
-    *"left-up"*)
-      xrandr --output "$DISPLAY" --rotate left
-      rotate_touch left
-      ;;
+    *"normal"*) apply_rotation normal ;;
+    *"bottom-up"*) apply_rotation inverted ;;
+    *"right-up"*) apply_rotation right ;;
+    *"left-up"*) apply_rotation left ;;
   esac
 done
