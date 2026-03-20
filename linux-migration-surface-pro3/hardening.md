@@ -1108,6 +1108,17 @@ Future improvements will focus on deeper security layers:
 - File integrity monitoring (e.g., AIDE)
 - USB device control and hardware-level restrictions
 
+---
+
+## 18. Lessons Learned
+
+- Security hardening is most effective when applied in layers (defense-in-depth)
+- Default system configurations prioritize usability over security
+- Minimal service exposure significantly reduces attack surface
+- Strong authentication (SSH keys) eliminates entire attack classes (password brute force)
+- Kernel and filesystem settings provide low-level protections often overlooked
+- Logging and auditing are essential for visibility, not just prevention
+- Hardening must balance security and usability to remain practical
 ### Anonymization Notice
 
 All user-specific data such as usernames, IP addresses, and identifiers have been replaced with placeholders:
