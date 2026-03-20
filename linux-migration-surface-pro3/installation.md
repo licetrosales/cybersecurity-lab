@@ -86,7 +86,7 @@ Install Debian 13 (XFCE) on a Surface Pro 3, replacing the existing system and e
 ## 7. Network Configuration
 
 * Connected to WiFi using system network manager
-* Retrieved WiFi credentials via router interface (FRITZ!Box)
+* Retrieved WiFi credentials via router interface (local gateway)
 
 ---
 
@@ -178,7 +178,7 @@ sudo systemctl start bluetooth
 
 * Opened **Bluetooth Manager (Blueman)**
 * Scanned for available devices
-* Connected to **Surface Mobile Mouse**
+* Connected to **Bluetooth mouse**
 
 ### Observations
 
