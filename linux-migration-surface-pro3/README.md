@@ -120,7 +120,7 @@ Post-installation security configuration included:
 
 - System update and patch management
 - Firewall activation
-- Installation of monitoring and network analysis tools
+- Installation of monitoring and security control
 
 Example commands: 
 
@@ -165,7 +165,6 @@ Planned enhancements:
 
 - Installation of security monitoring tools
 - Network traffic analysis lab setup
-- Virtual machines for penetration testing environments
 - Host-based intrusion detection testing
 
 ---
