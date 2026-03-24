@@ -986,6 +986,24 @@ This establishes a clean baseline for future monitoring.
 
 ---
 
+## 19. Mandatory Access Control (AppArmor)
+
+### Objective
+
+Enhance system security by implementing Mandatory Access Control (MAC) using AppArmor to restrict application behavior and reduce the impact of potential compromises.
+
+---
+
+### 19.1 Installation & Enablement
+
+AppArmor and its utilities were installed and enabled:
+
+```bash
+sudo apt install apparmor apparmor-utils
+sudo systemctl enable apparmor
+sudo systemctl start apparmor
+```
+---
 ## 16. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
