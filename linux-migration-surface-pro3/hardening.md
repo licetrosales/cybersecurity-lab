@@ -986,7 +986,7 @@ This establishes a clean baseline for future monitoring.
 
 ---
 
-## 19. Mandatory Access Control (AppArmor)
+## 16. Mandatory Access Control (AppArmor)
 
 ### Objective
 
