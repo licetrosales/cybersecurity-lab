@@ -994,7 +994,7 @@ Enhance system security by implementing Mandatory Access Control (MAC) using App
 
 ---
 
-### 19.1 Installation & Enablement
+### 16.1 Installation & Enablement
 
 AppArmor and its utilities were installed and enabled:
 
@@ -1004,7 +1004,7 @@ sudo systemctl enable apparmor
 sudo systemctl start apparmor
 ```
 ---
-## 16. Baseline Security Posture
+## 17. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
 
@@ -1093,7 +1093,7 @@ After applying the above measures, the system has the following characteristics:
   
 ---
 
-## 17. Status
+## 18. Status
 
 Hardening phase (baseline configuration) completed successfully.
 
@@ -1128,7 +1128,7 @@ Future improvements will focus on deeper security layers:
 
 ---
 
-## 18. Lessons Learned
+## 19. Lessons Learned
 
 - Security hardening is most effective when applied in layers (defense-in-depth)
 - Default system configurations prioritize usability over security
