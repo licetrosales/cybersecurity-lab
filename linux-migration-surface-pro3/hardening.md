@@ -1137,6 +1137,9 @@ Future improvements will focus on deeper security layers:
 - Kernel and filesystem settings provide low-level protections often overlooked
 - Logging and auditing are essential for visibility, not just prevention
 - Hardening must balance security and usability to remain practical
+
+---
+
 ### Anonymization Notice
 
 All user-specific data such as usernames, IP addresses, and identifiers have been replaced with placeholders:
