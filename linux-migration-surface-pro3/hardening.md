@@ -1003,7 +1003,30 @@ sudo apt install apparmor apparmor-utils
 sudo systemctl enable apparmor
 sudo systemctl start apparmor
 ```
+### 16.2 Profile Configuration (SSH)
+
+A profile for the SSH service was configured:
+
+```bash
+sudo nano /etc/apparmor.d/usr.sbin.sshd
+```
+Key requirement:
+
+Ensure the file starts with:
+```bash
+#include <tunables/global>
+profile /usr/sbin/sshd {
+```
+
+This profile defines allowed capabilities, file access, and execution behavior for the SSH daemon.
+
+After configuration, the profile was reloaded:
+```bash
+sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.sshd
+```
+
 ---
+
 ## 17. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
