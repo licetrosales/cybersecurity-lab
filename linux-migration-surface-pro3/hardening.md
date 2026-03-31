@@ -1069,6 +1069,11 @@ Limits access to system resources
 Reduces impact of potential exploits
 Adds an additional security layer (defense-in-depth)
 
+### Final State
+- AppArmor enabled
+- SSH profile loaded
+- SSH daemon running in enforce mode
+
 ---
 
 ## 17. Baseline Security Posture
@@ -1108,6 +1113,9 @@ After applying the above measures, the system has the following characteristics:
 - Resource limits enforced (`ulimit`, `/etc/security/limits.conf`)
 - Reduced risk of privilege escalation via kernel protections
 - SUID dumpability disabled (`fs.suid_dumpable = 0`)
+- Application-level confinement enforced via AppArmor
+ - SSH daemon restricted to defined capabilities and file access
+ - Subprofiles (e.g., passwd) applied where required
   
 ### Filesystem Security
 
@@ -1172,6 +1180,7 @@ The system now implements:
 - Reduced attack surface (disabled unnecessary services)
 - Kernel and filesystem hardening (sysctl, mount options)
 - Intrusion prevention (Fail2Ban)
+- Mandatory Access Control (AppArmor – SSH enforced)
 - System auditing and monitoring (Auditd)
 - Reliable logging and time synchronization
 
@@ -1187,7 +1196,7 @@ The system is considered:
 
 Future improvements will focus on deeper security layers:
 
-- Mandatory Access Control (AppArmor / SELinux tuning)
+- AppArmor profile expansion (additional services)
 - Disk encryption enhancements (e.g., LUKS key management)
 - Centralized logging or SIEM integration
 - File integrity monitoring (e.g., AIDE)
@@ -1201,6 +1210,7 @@ Future improvements will focus on deeper security layers:
 - Default system configurations prioritize usability over security
 - Minimal service exposure significantly reduces attack surface
 - Strong authentication (SSH keys) eliminates entire attack classes (password brute force)
+- Mandatory Access Control (AppArmor) provides strong containment even if a service is compromised 
 - Kernel and filesystem settings provide low-level protections often overlooked
 - Logging and auditing are essential for visibility, not just prevention
 - Hardening must balance security and usability to remain practical
