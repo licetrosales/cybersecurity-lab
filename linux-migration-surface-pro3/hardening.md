@@ -1024,6 +1024,16 @@ After configuration, the profile was reloaded:
 ```bash
 sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.sshd
 ```
+### 16.3 Service Restart
+
+Apply changes:
+
+```bash
+sudo systemctl restart apparmor
+sudo systemctl restart ssh
+```
+
+
 
 ---
 
