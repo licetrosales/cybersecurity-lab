@@ -1032,7 +1032,36 @@ Apply changes:
 sudo systemctl restart apparmor
 sudo systemctl restart ssh
 ```
+### 16.4 Verification
+Check profile is loaded:
+```bash
+sudo cat /sys/kernel/security/apparmor/profiles | grep sshd
+```
+Expected output:
+```
+/usr/sbin/sshd (enforce)
+/usr/sbin/sshd//passwd (enforce)
+```
+Check running process:
+```bash
+ps -efZ | grep sshd
+```
+Expected:
 
+- Main SSH daemon runs in enforce mode
+- Session processes may appear as unconfined
+
+Alternative check:
+```bash
+sudo /usr/sbin/aa-status | grep sshd
+```
+This confirms:
+
+- Profile is loaded
+- Subprofiles (e.g., passwd) are active
+- Running process is attached to the profile
+
+---
 
 
 ---
