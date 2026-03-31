@@ -1062,7 +1062,12 @@ This confirms:
 - Running process is attached to the profile
 
 ---
+### Rationale 
 
+Restricts SSH daemon capabilities
+Limits access to system resources
+Reduces impact of potential exploits
+Adds an additional security layer (defense-in-depth)
 
 ---
 
