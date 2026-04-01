@@ -1062,12 +1062,37 @@ This confirms:
 - Running process is attached to the profile
 
 ---
+### 16.5 Profile Tuning & Enforcement
+
+During initial enforcement, the SSH service experienced connection failures due to incomplete AppArmor rules. To safely refine the profile, the following approach was used:
+
+- The SSH profile was temporarily placed in complain mode:
+
+```bash
+sudo aa-complain /etc/apparmor.d/usr.sbin.sshd
+```
+- Missing permissions were identified and interactively added using:
+```bash
+sudo aa-logprof
+```
+- Required capabilities and file access rules (e.g., sshd-session, log files, capabilities such as fsetid) were incorporated into the profile.
+- After tuning, the profile was switched back to enforce mode:
+```bash
+sudo aa-enforce /etc/apparmor.d/usr.sbin.sshd
+```
+- SSH service functionality was revalidated successfully after enforcement.
+### Result
+- SSH operates correctly under AppArmor confinement
+- Profile refined based on real system behavior
+- No denied operations impacting functionality observed
+
+---
 ### Rationale 
 
-Restricts SSH daemon capabilities
-Limits access to system resources
-Reduces impact of potential exploits
-Adds an additional security layer (defense-in-depth)
+- Restricts SSH daemon capabilities
+- Limits access to system resources
+- Reduces impact of potential exploits
+- Adds an additional security layer (defense-in-depth)
 
 ### Final State
 - AppArmor enabled
