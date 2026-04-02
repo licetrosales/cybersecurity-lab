@@ -1101,6 +1101,23 @@ sudo aa-enforce /etc/apparmor.d/usr.sbin.sshd
 
 ---
 
+### 16.6 AppArmor Profile Expansion (Optional)
+
+Further AppArmor profile expansion (e.g., for additional services such as avahi-daemon or desktop applications) was evaluated but not fully implemented.
+
+### Rationale:
+
+- Additional profiles require iterative tuning and testing
+- Risk of disrupting system functionality (e.g., networking or GUI services)
+- Current implementation already protects a critical service (SSH)
+
+#### Decision:
+
+- Maintain a stable and secure baseline configuration
+- Prioritize reliability over aggressive confinement
+
+---
+
 ## 17. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
