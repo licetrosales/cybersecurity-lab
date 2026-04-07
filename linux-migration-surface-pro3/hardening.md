@@ -1118,6 +1118,102 @@ Further AppArmor profile expansion (e.g., for additional services such as avahi-
 
 ---
 
+
+## 17. File Integrity Monitoring (AIDE)
+### Objective
+
+Implement file integrity monitoring using AIDE (Advanced Intrusion Detection Environment) to detect unauthorized changes to critical system files. 
+
+### 17.1 Installation
+
+AIDE was installed using:
+```bash
+sudo apt install aide
+```
+### 17.2 Initialization (Baseline Creation)
+
+An initial database was created to establish a trusted baseline of the filesystem:
+```bash
+sudo aideinit
+```
+This process scans the system and records file metadata (permissions, hashes, ownership, timestamps).
+
+Note: Initialization may take several minutes depending on system size.
+
+### 17.3 Database Activation
+
+After initialization, the generated database was activated:
+```bash
+sudo mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+```
+This step replaces the active database with the newly generated baseline.
+
+### 17.4 Integrity Check
+
+A manual integrity check was performed:
+```bash
+sudo aide --config /etc/aide/aide.conf --check
+```
+### 17.5 Observations
+
+AIDE reported differences between the database and the current filesystem state.
+
+Observed changes included:
+
+- Temporary files in /tmp
+- Log file updates (/var/log/*)
+- Timeshift backup logs
+- User activity (shell history, browser cache)
+- Replacement of AIDE database file
+
+These changes were consistent with normal system operation.
+
+### 17.6 Interpretation
+- AIDE successfully detected file system changes
+- No indications of unauthorized or malicious modifications were observed
+- Most changes originated from expected system and user activity
+### 17.7 Automation
+
+AIDE supports automated execution via systemd timers.
+
+To enable daily integrity checks:
+```bash
+sudo systemctl enable dailyaidecheck.timer
+sudo systemctl start dailyaidecheck.timer
+```
+Verification:
+```bash
+systemctl list-timers | grep aide
+```
+### 17.8 Limitations & Noise
+
+Certain directories generate frequent changes and may produce noise in reports:
+
+- `/tmp`
+- `/run`
+- `/var/log`
+- Browser cache directories
+- Timeshift-related paths
+
+Future tuning of the AIDE configuration is required to reduce false positives.
+
+### 17.9 Result
+- File integrity monitoring successfully implemented
+- Baseline database established
+- Manual integrity check validated functionality
+- System ready for automated monitoring
+
+### Rationale
+
+AIDE enhances system security by:
+
+- Detecting unauthorized file modifications
+- Providing visibility into system changes
+- Supporting forensic analysis
+- Strengthening defense-in-depth strategy
+
+---
+
 ## 17. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
