@@ -1214,7 +1214,7 @@ AIDE enhances system security by:
 
 ---
 
-## 17. Baseline Security Posture
+## 18. Baseline Security Posture
 
 After applying the above measures, the system has the following characteristics:
 
@@ -1306,7 +1306,7 @@ After applying the above measures, the system has the following characteristics:
   
 ---
 
-## 18. Status
+## 19. Status
 
 Hardening phase (baseline configuration) completed successfully.
 
@@ -1342,7 +1342,7 @@ Future improvements will focus on deeper security layers:
 
 ---
 
-## 19. Lessons Learned
+## 20. Lessons Learned
 
 - Security hardening is most effective when applied in layers (defense-in-depth)
 - Default system configurations prioritize usability over security
