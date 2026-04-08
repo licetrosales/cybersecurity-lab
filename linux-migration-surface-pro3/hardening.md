@@ -1172,6 +1172,7 @@ These changes were consistent with normal system operation.
 - AIDE successfully detected file system changes
 - No indications of unauthorized or malicious modifications were observed
 - Most changes originated from expected system and user activity
+
 ### 17.7 Automation
 
 AIDE supports automated execution via systemd timers.
@@ -1254,7 +1255,7 @@ After applying the above measures, the system has the following characteristics:
 - Application-level confinement enforced via AppArmor
  - SSH daemon restricted to defined capabilities and file access
  - Subprofiles (e.g., passwd) applied where required
-  
+- File integrity baseline established and protected (/var/lib/aide/aide.db)
 ### Filesystem Security
 
 - `/tmp` mounted with:
@@ -1280,7 +1281,10 @@ After applying the above measures, the system has the following characteristics:
 - Audit rules categorized using keys:
   - `identity`, `privilege`, `ssh`, `auth`, `modules`, `delete`, `perm_mod`
 - Audit logs searchable via `ausearch` and summarized via `aureport`
-- Baseline system activity established (no anomalies detected)
+- File integrity monitoring implemented (AIDE)
+  - Baseline database created
+  - Integrity checks available (manual and automated)
+- Baseline system activity established (Auditd and AIDE confirm expected system behavior)
 
 ### Active Defense
 
@@ -1319,8 +1323,9 @@ The system now implements:
 - Kernel and filesystem hardening (sysctl, mount options)
 - Intrusion prevention (Fail2Ban)
 - Mandatory Access Control (AppArmor – SSH enforced)
-- System auditing and monitoring (Auditd)
 - Reliable logging and time synchronization
+- File integrity monitoring (AIDE)
+- System auditing and monitoring (Auditd, AIDE)
 
 ### Current Security Posture
 
@@ -1328,16 +1333,14 @@ The system is considered:
 
 - suitable for secure daily use
 - appropriate for cybersecurity lab activities
-- hardened against common attack vectors (brute force, misconfiguration, privilege escalation)
+- hardened against common attack vectors (brute force, misconfiguration, privilege escalation, unauthorized file modification)
 
 ### Next Steps (Advanced Hardening)
 
 Future improvements will focus on deeper security layers:
 
-- AppArmor profile expansion (additional services)
 - Disk encryption enhancements (e.g., LUKS key management)
 - Centralized logging or SIEM integration
-- File integrity monitoring (e.g., AIDE)
 - USB device control and hardware-level restrictions
 
 ---
@@ -1350,9 +1353,10 @@ Future improvements will focus on deeper security layers:
 - Strong authentication (SSH keys) eliminates entire attack classes (password brute force)
 - Mandatory Access Control (AppArmor) provides strong containment even if a service is compromised 
 - Kernel and filesystem settings provide low-level protections often overlooked
-- Logging and auditing are essential for visibility, not just prevention
+- Logging, auditing, and integrity monitoring are essential for visibility, not just prevention
 - Hardening must balance security and usability to remain practical
-
+- File integrity monitoring (AIDE) provides visibility into system changes and supports detection of unauthorized modifications
+- Baseline quality is critical: integrity monitoring is only reliable if the initial state is trusted
 ---
 
 ### Anonymization Notice
