@@ -1275,6 +1275,13 @@ Verification:
 ```bash
 systemctl list-timers | grep aide
 ```
+Verification with `systemctl list-timers | grep aide` confirmed that `dailyaidecheck.timer` is active, has already executed successfully, and is scheduled for the next daily run.
+The timer status was verified using:
+
+```bash
+systemctl status dailyaidecheck.timer
+```
+
 ### 17.11 Limitations
 - AIDE generates alerts for all changes, including legitimate ones
 - Requires manual verification of reported differences
@@ -1340,6 +1347,7 @@ After applying the above measures, the system has the following characteristics:
  - SSH daemon restricted to defined capabilities and file access
  - Subprofiles (e.g., passwd) applied where required
 - File integrity baseline established and protected (/var/lib/aide/aide.db)
+
 ### Filesystem Security
 
 - `/tmp` mounted with:
