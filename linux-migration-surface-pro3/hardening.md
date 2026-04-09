@@ -1136,7 +1136,7 @@ An initial database was created to establish a trusted baseline of the filesyste
 ```bash
 sudo aideinit
 ```
-This process scans the system and records file metadata (permissions, hashes, ownership, timestamps).
+This process scans the system and records file metadata (permissions, file hashes, ownership, timestamps).
 
 Note: Initialization may take several minutes depending on system size.
 
@@ -1162,16 +1162,42 @@ Observed changes included:
 
 - Temporary files in /tmp
 - Log file updates (/var/log/*)
+- Browser cahce and user activity
 - Timeshift backup logs
-- User activity (shell history, browser cache)
-- Replacement of AIDE database file
+- Package manager metadata (`/var/lib/dpkg`, `/var/lib/apt`)
+- System libraries and binaries (e.g., OpenSSL)
 
-These changes were consistent with normal system operation.
+### 17.6 Verification of Changes
 
-### 17.6 Interpretation
-- AIDE successfully detected file system changes
+To determine whether detected changes were legitimate, system package logs were analyzed:
+```bash
+grep " upgrade " /var/log/dpkg.log | tail -20
+grep -Ei "openssl|libssl" /var/log/dpkg.log | tail -20
+```
+The logs confirmed recent package upgrades, including:
+- openssl
+- libssl
+- openssl-provider-legacy
+
+These upgrades explained the large number of reported file changes in:
+
+- `/usr/bin/openssl`
+- `/usr/lib/...`
+- `/etc/ssl`
+- `/usr/share/doc/...`
+- `/var/lib/dpkg/...`
+
+This demonstrates that AIDE correctly detects changes caused by legitimate system updates.
+
+### 17.7 Interpretation
+- AIDE successfully detected filesystem modifications
+- Detected changes were correlated with legitimate package updates
 - No indications of unauthorized or malicious modifications were observed
-- Most changes originated from expected system and user activity
+
+Important:
+
+  AIDE does not classify changes as malicious or benign — it only reports differences.
+  Interpretation must always be performed by the administrator.
 
 ### 17.7 Automation
 
