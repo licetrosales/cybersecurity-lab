@@ -1199,6 +1199,69 @@ Important:
   AIDE does not classify changes as malicious or benign — it only reports differences.
   Interpretation must always be performed by the administrator.
 
+### 17.8 Baseline Maintenance
+
+After legitimate system changes (e.g., package updates), the AIDE baseline must be updated to reflect the new trusted state.
+
+Procedure:
+```bash
+sudo aideinit
+sudo mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+```
+This ensures that future integrity checks only report new or unexpected changes.
+
+### 17.9 Limitations & Noise
+
+Certain directories generate frequent changes and may produce noise in reports:
+
+- `/tmp`
+- `/run`
+- `/var/log`
+- Browser cache directories
+- Timeshift-related paths
+
+#### 17.10 Noise Reduction (Configuration Tuning)
+
+Certain directories generate frequent changes and produce noise in AIDE reports.
+
+To reduce false positives, exclusions were added to /etc/aide/aide.conf:
+
+# === Noise reduction (custom exclusions) ===
+!/tmp$
+!/tmp/
+!/run$
+!/run/
+!/var/tmp$
+!/var/tmp/
+!/var/log$
+!/var/log/
+!/timeshift$
+!/timeshift/
+
+!/home/[^/]+/\.cache$
+!/home/[^/]+/\.cache/
+!/home/[^/]+/\.mozilla$
+!/home/[^/]+/\.mozilla/
+!/home/[^/]+/\.config/google-chrome$
+!/home/[^/]+/\.config/google-chrome/
+!/home/[^/]+/\.zsh_history$
+
+!/var/cache/apt$
+!/var/cache/apt/
+!/root/\.temp$
+!/root/\.temp/
+!/var/spool/anacron/cron\.yearly$
+!/run/user/[0-9]+/doc$
+!/run/user/[0-9]+/doc/
+
+These paths are excluded because they change frequently during normal system operation.
+
+Note:
+
+- Noise reduction improves readability of reports
+- Excessive exclusions may reduce security visibility
+- Critical system paths (e.g., /etc, /usr/bin) should never be excluded
+
 ### 17.7 Automation
 
 AIDE supports automated execution via systemd timers.
@@ -1212,18 +1275,6 @@ Verification:
 ```bash
 systemctl list-timers | grep aide
 ```
-### 17.8 Limitations & Noise
-
-Certain directories generate frequent changes and may produce noise in reports:
-
-- `/tmp`
-- `/run`
-- `/var/log`
-- Browser cache directories
-- Timeshift-related paths
-
-Future tuning of the AIDE configuration is required to reduce false positives.
-
 ### 17.9 Result
 - File integrity monitoring successfully implemented
 - Baseline database established
