@@ -1220,12 +1220,12 @@ Certain directories generate frequent changes and may produce noise in reports:
 - Browser cache directories
 - Timeshift-related paths
 
-#### 17.10 Noise Reduction (Configuration Tuning)
+### 17.10 Noise Reduction (Configuration Tuning)
 
 Certain directories generate frequent changes and produce noise in AIDE reports.
 
 To reduce false positives, exclusions were added to /etc/aide/aide.conf:
-
+```
 # === Noise reduction (custom exclusions) ===
 !/tmp$
 !/tmp/
@@ -1253,7 +1253,7 @@ To reduce false positives, exclusions were added to /etc/aide/aide.conf:
 !/var/spool/anacron/cron\.yearly$
 !/run/user/[0-9]+/doc$
 !/run/user/[0-9]+/doc/
-
+```
 These paths are excluded because they change frequently during normal system operation.
 
 Note:
@@ -1262,7 +1262,7 @@ Note:
 - Excessive exclusions may reduce security visibility
 - Critical system paths (e.g., /etc, /usr/bin) should never be excluded
 
-### 17.7 Automation
+### 17.10 Automation
 
 AIDE supports automated execution via systemd timers.
 
@@ -1275,11 +1275,18 @@ Verification:
 ```bash
 systemctl list-timers | grep aide
 ```
-### 17.9 Result
+### 17.11 Limitations
+- AIDE generates alerts for all changes, including legitimate ones
+- Requires manual verification of reported differences
+- High number of changes after system updates
+- Cannot prevent attacks, only detect changes
+
+### 17.12 Result
 - File integrity monitoring successfully implemented
-- Baseline database established
-- Manual integrity check validated functionality
-- System ready for automated monitoring
+- Baseline database established and maintained
+- Integrity verification process validated using system logs
+- Noise reduced through configuration tuning
+- Automated monitoring enabled
 
 ### Rationale
 
@@ -1288,7 +1295,7 @@ AIDE enhances system security by:
 - Detecting unauthorized file modifications
 - Providing visibility into system changes
 - Supporting forensic analysis
-- Strengthening defense-in-depth strategy
+- Complementing other hardening measures (e.g., AppArmor) and strengthening defense-in-depth strategy
 
 ---
 
