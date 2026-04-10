@@ -1376,7 +1376,12 @@ After applying the above measures, the system has the following characteristics:
 - File integrity monitoring implemented (AIDE)
   - Baseline database created
   - Integrity checks available (manual and automated)
-- Baseline system activity established (Auditd and AIDE confirm expected system behavior)
+- Baseline system activity established (Audit and AIDE confirm expected system behavior)
+- File integrity monitoring (AIDE) integrated into monitoring strategy
+  - Baseline established and maintained
+  - Automated daily checks via systemd timer
+  - Integrity alerts validated against system logs (e.g., dpkg)
+  - Supports detection of unauthorized modifications and post-change verification
 
 ### Active Defense
 
@@ -1400,6 +1405,8 @@ After applying the above measures, the system has the following characteristics:
 - Improved command visibility and error detection
 - Better operational awareness during administration
   
+Overall, the system implements a layered security model combining prevention (hardening, firewall, AppArmor), detection (Auditd, AIDE), and response mechanisms (Fail2Ban).
+
 ---
 
 ## 19. Status
@@ -1416,7 +1423,7 @@ The system now implements:
 - Intrusion prevention (Fail2Ban)
 - Mandatory Access Control (AppArmor – SSH enforced)
 - Reliable logging and time synchronization
-- File integrity monitoring (AIDE)
+- File integrity monitoring (AIDE) with baseline management and automated verification
 - System auditing and monitoring (Auditd, AIDE)
 
 ### Current Security Posture
@@ -1426,13 +1433,15 @@ The system is considered:
 - suitable for secure daily use
 - appropriate for cybersecurity lab activities
 - hardened against common attack vectors (brute force, misconfiguration, privilege escalation, unauthorized file modification)
+- capable of detecting and validating system changes through integrity monitoring and log correlation
 
 ### Next Steps (Advanced Hardening)
 
-Future improvements will focus on deeper security layers:
+Future improvements will focus on deeper security layers and monitoring capabilities:
 
 - Disk encryption enhancements (e.g., LUKS key management)
-- Centralized logging or SIEM integration
+- Centralized logging / SIEM integration (e.g., forwarding Auditd and AIDE logs)
+- AIDE alerting (e.g., email or log-based notifications)
 - USB device control and hardware-level restrictions
 
 ---
@@ -1447,7 +1456,9 @@ Future improvements will focus on deeper security layers:
 - Kernel and filesystem settings provide low-level protections often overlooked
 - Logging, auditing, and integrity monitoring are essential for visibility, not just prevention
 - Hardening must balance security and usability to remain practical
-- File integrity monitoring (AIDE) provides visibility into system changes and supports detection of unauthorized modifications
+- File integrity monitoring (AIDE) detects all changes, not only malicious ones; effective use requires correlation with system activity logs
+- Integrity monitoring follows a lifecycle: baseline creation → detection → verification → baseline update
+- Package updates can generate large volumes of legitimate changes, requiring careful validation before updating the baseline
 - Baseline quality is critical: integrity monitoring is only reliable if the initial state is trusted
 ---
 
