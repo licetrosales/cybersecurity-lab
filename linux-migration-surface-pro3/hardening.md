@@ -1262,7 +1262,7 @@ Note:
 - Excessive exclusions may reduce security visibility
 - Critical system paths (e.g., /etc, /usr/bin) should never be excluded
 
-### 17.10 Automation
+### 17.11 Automation
 
 AIDE supports automated execution via systemd timers.
 
@@ -1282,13 +1282,13 @@ The timer status was verified using:
 systemctl status dailyaidecheck.timer
 ```
 
-### 17.11 Limitations
+### 17.12 Limitations
 - AIDE generates alerts for all changes, including legitimate ones
 - Requires manual verification of reported differences
 - High number of changes after system updates
 - Cannot prevent attacks, only detect changes
 
-### 17.12 Result
+### 17.13 Result
 - File integrity monitoring successfully implemented
 - Baseline database established and maintained
 - Integrity verification process validated using system logs
