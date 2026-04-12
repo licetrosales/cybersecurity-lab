@@ -1346,7 +1346,7 @@ After applying the above measures, the system has the following characteristics:
 - Application-level confinement enforced via AppArmor
  - SSH daemon restricted to defined capabilities and file access
  - Subprofiles (e.g., passwd) applied where required
-- File integrity baseline established and protected (/var/lib/aide/aide.db)
+- File integrity baseline established and protected (`/var/lib/aide/aide.d`)
 
 ### Filesystem Security
 
