@@ -68,7 +68,28 @@ Debian with XFCE desktop environment.
 - Widely used base system 
 
 ---
+## Security Architecture (Defense-in-Depth)
 
+This system implements a layered security model:
+
+### Prevention
+- UFW firewall (default deny inbound)
+- SSH hardening (key-based authentication, no root login, LAN restriction)
+- Kernel hardening (sysctl – anti-spoofing, SYN flood protection)
+- Filesystem hardening (/tmp, /dev/shm with noexec, nosuid, nodev)
+- Service minimization (disabled unnecessary services)
+- AppArmor (Mandatory Access Control for SSH)
+
+### Detection
+- Auditd for system activity monitoring (privileged actions, file changes, authentication)
+- AIDE for file integrity monitoring with baseline management
+  
+### Response
+- Fail2Ban for automated blocking of suspicious login attempts
+
+This layered approach reduces attack surface, increases visibility, and enables faster response to security events.
+
+---
 ## Implementation Steps
 
 ### 1. System Assessment
