@@ -135,8 +135,9 @@ Full technical implementation: **hardening.md**
 
 - Eliminates reliance on unsupported operating system
 - Restores patch management capability
-- Provides secure environment for cybersecurity labs
-- Reduces attack surface compared to legacy Windows system
+- Reduces attack surface through system hardening
+- Implements monitoring and detection mechanisms
+- Enables secure environment for cybersecurity labs
 
 ---
 
