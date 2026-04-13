@@ -1,31 +1,23 @@
-# Cybersecurity Lab – Linux Migration Project
+# Cybersecurity Lab – Linux Hardening & Migration Project
 
 ## Project Objective
-Demonstrate a risk-based approach to endpoint security by mitigating the security risks associated with the **End of Life (EOL) of Windows 10** through migration to a supported Linux operating system.
+This project demonstrates a risk-based approach to endpoint security by mitigating the risks associated with the End of Life (EOL) of Windows 10 through migration to a hardened Linux system.
 
-This project documents system analysis, risk identification, mitigation planning, and secure system deployment.
-
----
-
-## Security Domain
-- Endpoint Security
-- System Hardening
-- Risk Management
-- Linux System Administration
+The goal is to transform a legacy device into a secure, monitored, and resilient endpoint using industry-aligned cybersecurity practices.
 
 ---
-
-## Skills Demonstrated
-- Risk assessment
-- Security-focused system migration
-- Linux deployment and configuration
-- System hardening
-- Documentation of security controls
 
 ## Overview
-This project documents the migration of a **Microsoft Surface Pro 3** from **Windows 10 Pro (22H2)** to a Linux-based system in order to mitigate security risks associated with the **End of Life (EOL) of Windows 10 in October 2025**.
+This project documents the migration of a **Microsoft Surface Pro 3** from **Windows 10 Pro (22H2)** to a hardened **Debian Linux (XFCE) system**. 
 
-The objective is to demonstrate a **risk-based security approach** consistent with cybersecurity analyst practices and **CompTIA CySA+ principles**: identifying risks, assessing impact, and implementing mitigation controls.
+It follows a structured cybersecurity workflow:
+
+- Identify risk (EOL system)
+- Assess impact and likelihood
+- Implement mitigation controls
+- Apply system hardening and monitoring
+
+The result is a defense-in-depth security architecture that reduces attack surface, improves visibility, and enables secure system operation.
 
 ---
 
@@ -37,13 +29,13 @@ The objective is to demonstrate a **risk-based security approach** consistent wi
 **Storage:** 119 GB SSD  
 **Firmware:** UEFI  
 **Previous OS:** Windows 10 Pro 22H2  
-
+**Current OS:** Debian (XFCE)
 ---
 
 ## Risk Identification
 
 ### Asset
-Endpoint workstation used for cybersecurity learning and development.
+Endpoint system used for cybersecurity learning and development.
 
 ### Risk
 Operating system reaching **End of Support (EOL)**.
@@ -54,17 +46,17 @@ Unpatched vulnerabilities due to discontinued vendor security updates.
 ### Impact
 - Increased exposure to malware and exploitation
 - Loss of vendor support
-- Compliance and security posture degradation
+- Degraded security posture
 
 ### Likelihood
-High – EOL date publicly defined by vendor.
+High (publicly defined EOL timeline)
 
 ---
 
 ## Mitigation Strategy
 
 ### Control Implemented
-Migration to a supported Linux distribution.
+Migration to a supported Linux distribution with applied system hardening.
 
 ### Selected Operating System
 Debian with XFCE desktop environment.
@@ -73,7 +65,7 @@ Debian with XFCE desktop environment.
 - Long-term security updates
 - Lightweight for legacy hardware
 - Strong package management and security community
-- Widely used base system for cybersecurity distributions
+- Widely used base system 
 
 ---
 
@@ -141,6 +133,23 @@ sudo ufw enable
 ```
 
 ---
+
+
+## Security Domain
+- Endpoint Security
+- System Hardening
+- Risk Management
+- Linux System Administration
+
+---
+
+## Skills Demonstrated
+- Risk assessment
+- Security-focused system migration
+- Linux deployment and configuration
+- System hardening
+- Documentation of security controls
+
 
 ## Security Benefits
 
