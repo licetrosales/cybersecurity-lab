@@ -164,6 +164,52 @@ Full technical implementation: **hardening.md**
 - File integrity monitoring requires continuous baseline management
 ---
 
+## Project Documentation Structure
+
+This repository is structured to reflect a complete security workflow, from risk analysis to system hardening and troubleshooting.
+
+### Core Documentation
+
+* **[risk-assessment.md](./risk-assessment.md)**
+  Structured risk analysis of Windows 10 End-of-Life, including threat identification, impact assessment, and mitigation strategy.
+
+* **[migration-plan.md](./migration-plan.md)**
+  High-level migration strategy outlining assessment, preparation, installation, and validation phases.
+
+* **[installation.md](./installation.md)**
+  Step-by-step documentation of the Debian installation process, including boot configuration, partitioning, and initial system setup.
+
+* **[post-installation.md](./post-installation.md)**
+  Controlled environment setup with minimal software installation, secure authentication (SSH), and usability adjustments.
+
+* **[hardening.md](./hardening.md)**
+  Comprehensive system hardening implementation covering firewall, kernel, filesystem, access control, monitoring, and defense mechanisms.
+
+* **[apparmor-ssh-troubleshooting.md](./apparmor-ssh-troubleshooting.md)**
+  Detailed troubleshooting case study demonstrating secure configuration, log analysis, and safe recovery strategies.
+
+---
+
+### Supporting Files
+
+* **scripts/**
+  Automation scripts (e.g., touchscreen rotation handling)
+
+* **rufus-status.png**
+  Bootable USB creation configuration reference
+
+---
+
+### How to Navigate This Repository
+
+1. Start with **risk-assessment.md** to understand the problem
+2. Review **migration-plan.md** for the strategy
+3. Follow **installation.md** and **post-installation.md** for implementation
+4. Explore **hardening.md** for security controls
+5. See **apparmor-ssh-troubleshooting.md** for real-world problem solving
+
+---
+
 ## Note
 
 This is a hands-on cybersecurity project focused on risk mitigation, system hardening, and secure Linux deployment aligned with real-world security practices.
