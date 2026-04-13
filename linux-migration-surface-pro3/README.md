@@ -90,68 +90,25 @@ This system implements a layered security model:
 This layered approach reduces attack surface, increases visibility, and enables faster response to security events.
 
 ---
-## Implementation Steps
+## Implementation Summary
 
-### 1. System Assessment
-Collected system information using: msinfo32
-
-
-Confirmed compatibility:
-- x64 processor
-- UEFI firmware
-- SSD storage
-
----
-
+### 1. System Migration
+- Created bootable installation media
+- Installed Debian XFCE
+- Configured disk partitions and users
 ### 2. Data Protection
-Performed backup of user data prior to migration.
+- Backed up user data before migration
+### 3. System Hardening
+- Applied network, kernel, and filesystem hardening
+- Configured secure authentication (SSH keys only)
+- Enforced least privilege (user separation)
+### 4. Monitoring & Defense
+- Enabled logging (journald, UFW)
+- Configured Auditd (security-relevant events)
+- Implemented AIDE (file integrity monitoring)
+- Deployed Fail2Ban (intrusion prevention)
 
----
-
-### 3. Bootable Media Creation
-Created installation media using:
-
-- Debian ISO
-- Rufus USB creation tool
-
----
-
-### 4. Operating System Installation
-Booted system from USB and installed Debian with XFCE desktop environment.
-
-Configuration included:
-
-- Disk partitioning
-- User account creation
-- Network configuration
-
----
-
-### 5. System Hardening
-
-Post-installation security configuration included:
-
-- System update and patch management
-- Firewall activation
-- Installation of monitoring and security control
-
-Example commands: 
-
-Example commands:
-
-```bash
-# Update package index
-sudo apt update
-
-# Install security updates
-sudo apt upgrade
-
-# Install firewall and network analysis tool
-sudo apt install ufw wireshark
-
-# Enable firewall
-sudo ufw enable
-```
+Full technical implementation: **hardening.md**
 
 ---
 
