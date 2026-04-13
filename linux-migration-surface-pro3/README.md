@@ -141,24 +141,29 @@ Full technical implementation: **hardening.md**
 
 ---
 
-## Lessons Learned
+## Future Improvements
 
-- Legacy hardware can remain operational through lightweight Linux distributions
-- Risk-based decision making improves system lifecycle management
-- Linux environments provide strong flexibility for security tooling and experimentation
+- Centralized logging / SIEM integration
+- Alerting for AIDE and Auditd events
+- Disk encryption enhancements (LUKS key management)
+- Extended AppArmor profiles for additional services
+- Endpoint monitoring integration (e.g., Wazuh)
 
 ---
 
-## Future Improvements
 
-Planned enhancements:
+## Lessons Learned
 
-- Installation of security monitoring tools
-- Network traffic analysis lab setup
-- Host-based intrusion detection testing
-
+- Legacy hardware can remain operational through lightweight Linux distributions
+- Linux environments provide strong flexibility for security tooling and experimentation
+- Security hardening is most effective when applied in layers (defense-in-depth)
+- Default system configurations prioritize usability over security
+- Reducing exposed services significantly lowers risk
+- Strong authentication eliminates entire attack classes (e.g., brute force)
+- Monitoring and logging are essential for visibility and incident response
+- File integrity monitoring requires continuous baseline management
 ---
 
 ## Note
 
-Cybersecurity learning project focused on **risk mitigation, system security, and Linux platform adoption for security analysis workflows**.
+This is a hands-on cybersecurity project focused on risk mitigation, system hardening, and secure Linux deployment aligned with real-world security practices.
