@@ -112,7 +112,6 @@ Full technical implementation: **hardening.md**
 
 ---
 
-
 ## Security Domain
 - Endpoint Security
 - System Hardening
@@ -122,11 +121,14 @@ Full technical implementation: **hardening.md**
 ---
 
 ## Skills Demonstrated
-- Risk assessment
-- Security-focused system migration
-- Linux deployment and configuration
-- System hardening
-- Documentation of security controls
+- Risk-based security decision making (EOL mitigation)
+- Linux system hardening (network, kernel, filesystem)
+- Identity & access management (SSH, privilege separation)
+- Host-based intrusion detection & prevention (Auditd, AIDE, Fail2Ban)
+- Mandatory Access Control (AppArmor)
+- Security monitoring and log analysis
+- Secure system deployment and configuration
+- Technical documentation of security controls
 
 
 ## Security Benefits
