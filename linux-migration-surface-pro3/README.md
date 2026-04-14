@@ -108,8 +108,6 @@ This layered approach reduces attack surface, increases visibility, and enables 
 - Implemented AIDE (file integrity monitoring)
 - Deployed Fail2Ban (intrusion prevention)
 
-Full technical implementation: **hardening.md**
-
 ---
 
 ## Security Domain
