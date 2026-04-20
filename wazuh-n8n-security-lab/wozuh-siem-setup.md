@@ -1,8 +1,8 @@
-# Wazuh SIEM Setup on Windows (WSL2 + Debian)
+# Wazuh SIEM Setup deployment on Windows (WSL2 + Ubuntu + Docker)
 
 ## Overview
 
-This guide documents the setup of a **Wazuh SIEM environment** using:
+This guide documents the deployment of a **Wazuh single-node SIEM stack** using:
 
 * Windows 11 (host)
 * WSL2 (Linux runtime)
