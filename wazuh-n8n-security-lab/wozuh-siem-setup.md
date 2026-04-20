@@ -1,6 +1,6 @@
-# 🛡️ Wazuh SIEM Setup on Windows (WSL2 + Debian)
+# Wazuh SIEM Setup on Windows (WSL2 + Debian)
 
-## 📌 Overview
+## Overview
 
 This guide documents the setup of a **Wazuh SIEM environment** using:
 
