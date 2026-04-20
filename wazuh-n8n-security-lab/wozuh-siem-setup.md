@@ -4,12 +4,12 @@
 
 This guide documents the setup of a **Wazuh SIEM environment** using:
 
-* Windows 11 (host system)
+* Windows 11 (host)
 * WSL2 (Linux runtime)
-* Debian (Linux distribution)
-* Docker (container platform)
+* Ubuntu (Linux distribution)
+* Docker Desktop (container platform)
 
-The goal is to run Wazuh in a **stable, Linux-native environment** without architecture issues (e.g., ARM/amd64 mismatch).
+The setup provides a **stable, Linux-native environment** for Wazuh avoiding architecture-related issues (e.g., ARM/amd64 incompatibilities).
 
 ---
 
@@ -18,7 +18,7 @@ The goal is to run Wazuh in a **stable, Linux-native environment** without archi
 ```
 Windows 11
    ↓
-WSL2 (Debian)
+WSL2 (Ubuntu)
    ↓
 Docker (via Docker Desktop)
    ↓
