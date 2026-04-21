@@ -11,6 +11,14 @@ This guide documents the deployment of a **Wazuh single-node SIEM stack** using:
 
 The setup provides a **stable, Linux-native environment** for Wazuh avoiding architecture-related issues (e.g., ARM/amd64 incompatibilities).
 
+The environment is built using:
+
+- Windows 11 (host system)
+- WSL2 (Linux virtualization layer)
+- Ubuntu (Linux runtime)
+- Docker Desktop (container platform)
+- Wazuh (SIEM solution)
+
 ---
 
 ## Architecture
