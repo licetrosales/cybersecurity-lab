@@ -17,12 +17,12 @@ The setup provides a **stable, Linux-native environment** for Wazuh avoiding arc
 
 ```
 Windows 11
-   ↓
-WSL2 (Ubuntu)
-   ↓
-Docker (via Docker Desktop)
-   ↓
-Wazuh Stack (Manager + Indexer + Dashboard)
+   └── WSL2 (Ubuntu)
+         └── Docker (via Docker Desktop)
+               └── Wazuh Stack
+                        ├── Wazuh Manager
+                        ├── Wazuh Indexer
+                        └── Wazuh Dashboard
 ```
 
 ---
