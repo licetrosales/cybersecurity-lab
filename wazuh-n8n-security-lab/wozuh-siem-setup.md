@@ -45,22 +45,10 @@ Windows 11
 
 ## 1. Install WSL2
 
-Open **PowerShell as Administrator**:
-
+Run **PowerShell as Administrator**:
 ```bash
 wsl --install
 ```
-
-Reboot your system.
-
----
-
-## 2. Install Debian
-
-```bash
-wsl --install -d Debian
-```
-
 On first launch:
 
 * Set username
@@ -68,43 +56,36 @@ On first launch:
 
 ---
 
-## Verify Installation
-
-```bash
+## 2. Verify WSL Installation
+```powershell
 wsl -l -v
 ```
-
 Expected output:
-
 ```
-Debian    Running    Version 2
+NAME      STATE    VERSION
+Ubuntu    Running  2
 ```
+## 3. Initialize Ubuntu
 
----
-
-## 3. Prepare Debian
-
-Enter WSL:
-
-```bash
+Start WSL:
+```powershell
 wsl
 ```
+Create your Linux user:
+```
+Create a default Unix user account: <username>
+```
+## 4. Update System
 
-Update system:
-
+Inside Ubuntu:
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
-
-Install required tools:
-
+## 5. Install Required Tools
 ```bash
 sudo apt install -y curl git ca-certificates
 ```
-
----
-
-## 4. Install & Configure Docker
+## 6. Install & Configure Docker
 
 Install:
 
