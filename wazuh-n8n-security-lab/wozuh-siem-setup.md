@@ -85,32 +85,63 @@ sudo apt update && sudo apt upgrade -y
 ```bash
 sudo apt install -y curl git ca-certificates
 ```
-## 6. Install & Configure Docker
+## 6. Install Docker Desktop (Windows)
 
-Install:
+Download:
 
-* Docker Desktop for Windows
+` https://docs.docker.com/desktop/install/windows-install/`
 
-### Enable WSL Integration
+Run installer as Administrator
 
-In Docker Desktop:
+Configuration:
+-  Use WSL 2 instead
+  
+## 7. Fix Docker Installation Issue (Permission Error)
+### Problem
 
-* Go to **Settings → Resources → WSL Integration**
-* Enable **Debian**
+Docker installation failed due to:
+```
+C:\ProgramData\DockerDesktop must be owned by an elevated account
+```
+### Solution
 
----
+Run PowerShell as Administrator:
+```powershell
+Remove-Item -Recurse -Force "C:\ProgramData\DockerDesktop"
+```
+Verify:
+```powershell
+Test-Path "C:\ProgramData\DockerDesktop"
+```
+Recreate and fix permissions:
+```powershell
+New-Item -ItemType Directory -Path "C:\ProgramData\DockerDesktop"
+```
+```powershell
+icacls "C:\ProgramData\DockerDesktop" /inheritance:r
+icacls "C:\ProgramData\DockerDesktop" /grant "SYSTEM:(OI)(CI)F"
+icacls "C:\ProgramData\DockerDesktop" /grant "Administrators:(OI)(CI)F"
+```
+Verify:
+```powershell
+(Get-Acl "C:\ProgramData\DockerDesktop").Access | Format-List
+```
+Expected:
+```
+SYSTEM → FullControl
+Administrators → FullControl
+```
+## 8. Verify Docker Installation
 
-## Verify Docker in Debian
-
+Inside WSL:
 ```bash
+docker version
 docker ps
 ```
-
 Expected:
-
-* No error message
-* Empty container list
-
+```
+(empty container list)
+```
 ---
 
 ## 5. Deploy Wazuh
