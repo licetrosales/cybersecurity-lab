@@ -216,7 +216,7 @@ Restart the stack:
 docker compose down
 docker compose up -d
 ```
-### 9.5. Verify Running Containers
+### 9.5 Verify Running Containers
 
 Check container status:
 ```bash
@@ -229,7 +229,7 @@ All services should be Up:
 - wazuh-indexer
 - wazuh-dashboard
 
-### 9.6. Verify Port Mappings
+### 9.6 Verify Port Mappings
 
 Expected ports:
 
@@ -241,81 +241,30 @@ Expected ports:
 
 ---
 
-## 8. Access Dashboard
+### 9.7 Access Dashboard
 
 Open in browser:
 
 ```
 https://localhost
 ```
+Notes
+- A certificate warning will appear (self-signed certificate)
 
-### SSL Warning
+### 9.8 Login to Dashboard
 
-You will see:
-
-```
-Your connection is not private
-```
-
-This is expected due to self-signed certificates.
-
-Proceed via:
-
-```
-Advanced → Proceed to localhost
-```
-
----
-
-## Default Credentials
-
-Typical default:
-
+Default credentials:
 ```
 Username: admin
 Password: SecretPassword
 ```
+### 9.9 Verify Deployment
+After login:
 
----
+- Dashboard loads successfully
+- No agents connected (expected initial state)
+- All services operational
 
-## Troubleshooting
-
-### Docker not working in WSL
-
-Check:
-
-```bash
-docker ps
-```
-
-If error:
-
-* Ensure WSL integration is enabled in Docker Desktop
-
----
-
-### Wazuh API not available
-
-Check logs:
-
-```bash
-docker compose logs -f
-```
-
-Wait 2–5 minutes after initial startup.
-
----
-
-### Containers not starting
-
-Restart:
-
-```bash
-docker compose down
-docker compose up -d
-```
-
----
 
 ## Next Steps
 
