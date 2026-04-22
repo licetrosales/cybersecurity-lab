@@ -144,39 +144,20 @@ Expected:
 ```
 ---
 
-## 5. Deploy Wazuh
+## 9. Deploy Wazuh
+### 9.1 Create Working Directory (WSL)
 
-Create working directory:
+All project-related files should be stored inside the WSL Linux filesystem 
+for optimal Docker performance.
+
+Create project directory
 
 ```bash
 mkdir -p ~/projects
 cd ~/projects
+Create working directory:
+
 ```
-
-Clone repository:
-
-```bash
-git clone https://github.com/wazuh/wazuh-docker.git -b v4.7.0
-cd wazuh-docker/single-node
-```
-
----
-
-## 6. Generate Certificates
-
-```bash
-docker compose -f generate-indexer-certs.yml run --rm generator
-```
-
----
-
-## 7. Start Wazuh
-
-```bash
-docker compose up -d
-```
-
----
 
 ## 🔍 Verify Containers
 
