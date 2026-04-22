@@ -155,21 +155,89 @@ Create project directory
 ```bash
 mkdir -p ~/projects
 cd ~/projects
-Create working directory:
-
 ```
+Create working directory:
+Verify location
+```bash
+pwd
+```
+Expected output:
+```
+/home/<your-username>/projects
+```
+### 9.2 Clone Wazuh Docker Repository
 
-## 🔍 Verify Containers
+Clone the official Wazuh Docker repository (version 4.7.0):
+```bash
+git clone https://github.com/wazuh/wazuh-docker.git -b v4.7.0
+cd wazuh-docker/single-node
+```
+Notes
+- The -b v4.7.0 flag ensures a stable, tested version
+- You may see a message about detached HEAD → this is expected
 
+
+### 9.3 Start Wazuh Stack (Docker Compose)
+
+Start all services in detached mode:
+```bash
+docker compose up -d
+```
+Expected behavior
+- Docker pulls images:
+   - wazuh-manager
+   - wazuh-indexer
+   - wazuh-dashboard
+- Containers are created and started
+
+### 9.4 Troubleshooting: Port Conflict (WSL/Docker Desktop)
+
+During deployment, the following error may occur:
+```
+Error response from daemon: ports are not available
+```
+#### Root Cause
+- WSL2 port forwarding conflict
+- Docker Desktop unable to bind API port (55000/55001)
+
+#### Solution
+Edit the compose file:
+```bash
+nano docker-compose.yml
+```
+Locate and comment out the API port:
+```
+# - "55000:55000"
+```
+Save and exit.
+
+Restart the stack:
+```bash
+docker compose down
+docker compose up -d
+```
+### 9.5. Verify Running Containers
+
+Check container status:
 ```bash
 docker ps
 ```
+Expected output
 
-Expected containers:
+All services should be Up:
+- wazuh-manager
+- wazuh-indexer
+- wazuh-dashboard
 
-* wazuh-manager
-* wazuh-indexer
-* wazuh-dashboard
+### 9.6. Verify Port Mappings
+
+Expected ports:
+
+| Service          | Host Port | Container Port |
+| ---------------- | --------- | -------------- |
+| Wazuh Dashboard  | 443       | 5601           |
+| Wazuh Indexer    | 9200      | 9200           |
+| Wazuh Manager    | 1514      | 1514           |
 
 ---
 
