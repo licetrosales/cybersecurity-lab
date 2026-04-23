@@ -265,6 +265,29 @@ After login:
 - No agents connected (expected initial state)
 - All services operational
 
+## 9.10 Validation (Operational Check)
+
+After deployment, the following checks were performed:
+
+### Container Status
+```bash
+docker ps
+```
+All containers are running:
+
+- wazuh-manager
+- wazuh-indexer
+- wazuh-dashboard
+
+### Dashboard Access
+- `URL: https://localhost`
+- Login successful with default credentials
+### Observations
+- No agents connected (expected initial state)
+- Docker volumes created for persistence
+- Port conflict resolved by removing API port binding
+### Conclusion
+The Wazuh SIEM stack is fully operational and ready for agent integration.
 
 ## Next Steps
 
