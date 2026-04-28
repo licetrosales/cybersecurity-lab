@@ -47,6 +47,13 @@ True
 ---
 
 ## 1.2 Agent Registration
+### Agent Authentication Note
+
+If the agent is not automatically registered during installation,
+use `agent-auth.exe` to manually enroll the agent.
+
+This step ensures the agent receives a valid authentication key
+from the Wazuh manager before starting the service.
 
 Navigate to the agent installation directory:
 
@@ -69,9 +76,12 @@ INFO: Valid key received
 ---
 
 ## 1.3 Start the Agent Service
-
+### If service is stopped:
 ```powershell
 Start-Service WazuhSvc
+```
+### If it fails:
+```powershell
 Get-Service WazuhSvc
 ```
 
@@ -82,6 +92,9 @@ Status   Name        DisplayName
 ------   ----        -----------
 Running  WazuhSvc    Wazuh
 ```
+### Note:
+In some cases, the service does not start automatically after installation.
+Manual start may be required.
 
 ---
 
@@ -119,10 +132,13 @@ Get-Content "C:\Program Files (x86)\ossec-agent\client.keys"
 Service does not start
 
 Cause:
-- Wrong manager IP in ossec.conf
+- Agent not registered (missing key)
+- Previous OSSEC installation conflict
+- Service installed but not initialized
 
 Fix:
-- Update <address> field
+- Run agent-auth.exe manually
+- Verify client.keys exists
 - Restart service
 
 ### Configuration Note
@@ -136,9 +152,18 @@ C:\Program Files (x86)\ossec-agent\ossec.conf
 Example:
 
 <address>192.168.X.X</address>
-----
 
-## 1.6 Dashboard Verification
+## 1.6 Log Verification
+```powershell
+Get-Content "C:\Program Files (x86)\ossec-agent\logs\ossec.log" -Tail 20
+```
+Expected:
+```
+Connected to manager
+```
+---
+
+## 1.7 Dashboard Verification
 
 In the Wazuh web interface:
 
