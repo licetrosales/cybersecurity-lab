@@ -8,8 +8,45 @@ Agent Information
 * **Wazuh Manager address:** `192.168.X.X` *(replace with your internal IP range or leave masked)*
 
 ---
+## 1.1 Download and Install the Agent
 
-## 1.1 Agent Registration
+Download the Wazuh agent installer:
+
+```powershell
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.0-1.msi -OutFile "$env:TEMP\wazuh-agent.msi"
+```
+
+Install the agent silently:
+
+```powershell
+msiexec.exe /i "$env:TEMP\wazuh-agent.msi" /qn
+```
+
+### Alternative (GUI installation)
+
+* Run the `.msi` installer manually
+* Accept the license agreement
+* Click **Install**
+* Finish setup
+
+---
+
+### Verification
+
+Check installation directory:
+
+```powershell
+Test-Path "C:\Program Files (x86)\ossec-agent"
+```
+
+Expected result:
+
+```text
+True
+```
+---
+
+## 1.2 Agent Registration
 
 Navigate to the agent installation directory:
 
@@ -31,7 +68,7 @@ INFO: Valid key received
 
 ---
 
-## 1.2 Start the Agent Service
+## 1.3 Start the Agent Service
 
 ```powershell
 Start-Service WazuhSvc
@@ -48,7 +85,7 @@ Running  WazuhSvc    Wazuh
 
 ---
 
-## 1.3 Connectivity Validation
+## 1.4 Connectivity Validation
 
 Verify network connectivity to the manager:
 
@@ -64,7 +101,7 @@ TcpTestSucceeded : True
 
 ---
 
-## 1.4 Agent Key Verification
+## 1.5 Agent Key Verification
 
 ```powershell
 Get-Content "C:\Program Files (x86)\ossec-agent\client.keys"
@@ -77,8 +114,31 @@ Get-Content "C:\Program Files (x86)\ossec-agent\client.keys"
 ```
 
 ---
+### Common Issue
 
-## 1.5 Dashboard Verification
+Service does not start
+
+Cause:
+- Wrong manager IP in ossec.conf
+
+Fix:
+- Update <address> field
+- Restart service
+
+### Configuration Note
+
+The agent will not connect if the manager IP is incorrect.
+
+Verify the configuration file:
+
+C:\Program Files (x86)\ossec-agent\ossec.conf
+
+Example:
+
+<address>192.168.X.X</address>
+----
+
+## 1.6 Dashboard Verification
 
 In the Wazuh web interface:
 
