@@ -172,8 +172,33 @@ In the Wazuh web interface:
 * Disconnected agents: `0`
 
 ---
+# ## 2 macOS Agent (MacBook)
 
-### Naming Convention (Recommended)
+The second endpoint agent was installed on a macOS client system (MacBook).
+
+---
+
+## 2.1 Agent Information
+
+- **Agent name:** `mac-cli-mbp-01`
+- **Wazuh Manager address:** `192.168.178.51`
+
+---
+
+## 2.2 Download and Install the Agent
+
+Download the macOS agent package:
+
+```bash
+curl -O https://packages.wazuh.com/4.x/macos/wazuh-agent-4.7.0-1.pkg
+
+Install the package:
+```bash
+sudo installer -pkg wazuh-agent-4.7.0-1.pkg -target /
+```
+---
+
+### Naming Convention 
 
 ```
 <os>-<role>-<device-id>
