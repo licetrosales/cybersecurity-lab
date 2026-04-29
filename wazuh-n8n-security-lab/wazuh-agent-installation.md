@@ -180,8 +180,8 @@ The second endpoint agent was installed on a macOS client system (MacBook).
 
 ## 2.1 Agent Information
 
-- **Agent name:** `mac-cli-mbp-01`
-- **Wazuh Manager address:** `192.168.178.51`
+- **Agent name:** `mac-cli-01`
+- **Wazuh Manager address:** `192.168.XX.XX`
 
 ---
 
@@ -191,11 +191,72 @@ Download the macOS agent package:
 
 ```bash
 curl -O https://packages.wazuh.com/4.x/macos/wazuh-agent-4.7.0-1.pkg
-
+```
 Install the package:
 ```bash
 sudo installer -pkg wazuh-agent-4.7.0-1.pkg -target /
 ```
+---
+
+## 2.3 Configure Manager
+
+Edit the agent configuration file:
+```bash
+sudo nano /Library/Ossec/etc/ossec.conf
+```
+Update the manager address:
+```
+<client>
+  <server>
+    <address>192.168.XX.XX</address>
+    <port>1514</port>
+    <protocol>tcp</protocol>
+  </server>
+</client>
+```
+## 2.4 Agent Registration (Manual Enrollment)
+
+Register the agent with the Wazuh manager:
+```bash
+sudo /Library/Ossec/bin/agent-auth -m 192.168.XX.XX -A mac-cli-01
+```
+Expected output:
+```
+INFO: Valid key received
+```
+## 2.5 Start and Verify Agent
+
+Start the agent:
+```bash
+sudo /Library/Ossec/bin/wazuh-control start
+```
+Check status:
+```bash
+sudo /Library/Ossec/bin/wazuh-control status
+```
+Expected:
+```
+wazuh-agentd is running...
+```
+## 2.6 Connectivity Verification
+
+Verify connectivity from macOS to the manager:
+```bash
+nc -zv 192.168.XX.XX 1514
+nc -zv 192.168.XX.XX 1515
+```
+Expected:
+```
+succeeded!
+```
+## 2.7 Dashboard Verification
+
+In Wazuh Dashboard:
+
+* Total agents: `2`
+* Active agents: `2`
+* Status: `Active`
+
 ---
 
 ### Naming Convention 
@@ -206,10 +267,10 @@ sudo installer -pkg wazuh-agent-4.7.0-1.pkg -target /
 
 Examples:
 
-* `win-client-01`
+* `win-cli-01`
 * `linux-server-01`
 * `raspi-sensor-01`
-* `mac-client-01`
+* `mac-cli-01`
 
 ## Next Steps
 
