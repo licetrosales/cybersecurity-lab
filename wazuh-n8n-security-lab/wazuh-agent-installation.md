@@ -258,6 +258,65 @@ In Wazuh Dashboard:
 * Status: `Active`
 
 ---
+## 2.8 Troubleshooting Commands & Fixes
+### Network Debugging
+
+Test ports from macOS:
+```bash
+nc -zv 192.168.XX.XX 1514
+nc -zv 192.168.XX.XX 1515
+```
+Test connectivity inside WSL:
+```bash
+nc -zv localhost 1514
+nc -zv 172.23.106.128 1514
+```
+Windows Connectivity Check
+```powershell
+Test-NetConnection 127.0.0.1 -Port 1514
+Test-NetConnection 192.168.178.51 -Port 1514
+```
+Check Docker Containers
+```powershell
+docker ps
+```
+Show container names:
+```powershell
+docker ps --format "table {{.Names}}\t{{.Image}}"
+```
+Access Wazuh Manager Container
+```powershell
+docker exec -it single-node-wazuh.manager-1 bash
+```
+Check Wazuh Logs (macOS)
+```bash
+sudo tail -n 20 /Library/Ossec/logs/ossec.log
+```
+Restart Agent (macOS)
+```bash
+sudo /Library/Ossec/bin/wazuh-control restart
+```
+Remove Agent Key (Reset)
+```bash
+sudo rm /Library/Ossec/etc/client.keys
+```
+Re-register Agent
+```bash
+sudo /Library/Ossec/bin/agent-auth -m 192.168.178.51 -A mac-cli-mbp-01
+```
+Fix Duplicate Agent Error
+
+Error:
+```
+Duplicate agent name
+```
+Fix:
+
+Delete agent from manager OR
+Change agent name:
+-A mac-cli-02
+
+---
 
 ### Naming Convention 
 
