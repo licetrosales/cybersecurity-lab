@@ -333,7 +333,7 @@ Examples:
 
 ## Next Steps
 
-* Add agents (macOS, Linux)
+* Add agents (Linux)
 * Trigger test alerts
 * Integrate n8n for automation
 * Implement alert-based workflows
