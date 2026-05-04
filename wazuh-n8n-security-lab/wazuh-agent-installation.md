@@ -333,7 +333,7 @@ Examples:
 
 ## Next Steps
 
-* Add agents (Linux)
+* Add agents (Linux Debian, raspi 5)
 * Trigger test alerts
 * Integrate n8n for automation
 * Implement alert-based workflows
