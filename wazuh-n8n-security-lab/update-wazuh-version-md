@@ -216,6 +216,62 @@ Remove disconnected agents:
 ```bash
 docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
 ```
+---
+
+# 7. Final State
+
+## Dashboard shows:
+
+* Active agents: Ok
+* OS distribution:
+
+  * macOS (darwin)
+  * Windows
+
+## Example:
+
+```text
+mac-cli-01 → Active
+windows-client → Active
+```
 
 ---
 
+# 8. Troubleshooting Summary
+
+| Issue                  | Cause               | Fix                  |
+| ---------------------- | ------------------- | -------------------- |
+| SSL error              | old certificates    | regenerate certs     |
+| Agent version mismatch | outdated manager    | upgrade stack        |
+| Dashboard not ready    | indexer not healthy | check cluster health |
+| Port error             | port already used   | change port          |
+| Permission denied      | root-owned files    | use sudo             |
+
+---
+
+# 9. Lessons Learned 
+
+* Version compatibility is critical
+* Certificates must match cluster version
+* Clean agent lifecycle avoids duplicates
+* Logs are the primary troubleshooting source
+
+---
+
+# 10. Next Steps (Recommended)
+
+* Enable File Integrity Monitoring (FIM)
+* Configure alerts (email / Slack)
+* Create agent groups (macOS / Windows)
+* Simulate security events
+
+---
+
+# Status
+
+- Deployment complete
+- Upgrade successful
+- Agents connected and reporting
+- Dashboard operational
+
+---
