@@ -18,6 +18,25 @@ This document describes:
     * wazuh-indexer
     * wazuh-dashboard
 
+## WSL2 Networking Architecture
+
+The Wazuh manager runs inside:
+
+- Docker
+- inside Ubuntu WSL2
+- hosted on Windows 11
+
+Internal WSL IP:
+
+172.23.XX.XX
+
+LAN-facing Windows host IP:
+
+192.168.XX.XX
+
+External agents must connect to the Windows host IP,
+because WSL2 performs internal NAT and port forwarding.
+
 ## Systems
 
 * Wazuh Manager: Docker (WSL Ubuntu)
