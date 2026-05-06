@@ -1,9 +1,11 @@
-Wazuh Deployment & Upgrade Documentation (Home Lab)
-Overview
+# Wazuh Upgrade
+
+## Overview
 
 This document describes:
 
-Initial deployment of Wazuh (Docker single-node)
-Upgrade from version 4.7 → 4.14.5
-Agent installation (Windows & macOS)
-Troubleshooting and resolution steps
+* Upgrade from initial deployment of Wazuh version **4.7 → 4.14.5**
+* Agent reinstallation (Windows, macOS & linux)
+* Troubleshooting and resolution steps
+
+---
