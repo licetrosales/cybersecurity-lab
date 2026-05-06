@@ -32,3 +32,65 @@ This document describes:
 ---
 
 
+# 3. Upgrade from 4.7 → 4.14.5
+
+## Root Cause
+
+Agent connection failed due to:
+
+```text
+ERROR: Agent version must be lower or equal to manager version
+```
+
+Manager was outdated (4.7)
+
+---
+
+## Upgrade Steps
+
+### 1. Edit docker-compose.yml
+
+Update all images:
+
+```yaml
+image: wazuh/wazuh-manager:4.14.5
+image: wazuh/wazuh-indexer:4.14.5
+image: wazuh/wazuh-dashboard:4.14.5
+```
+
+---
+
+### 2. Stop old containers
+
+```bash
+docker compose down
+```
+
+---
+
+### 3. Pull new images
+
+```bash
+docker compose pull
+```
+
+---
+
+### 4. Start updated stack
+
+```bash
+docker compose up -d
+```
+
+---
+
+## Issue: SSL Certificate Errors
+
+### Symptoms:
+
+```text
+unable to verify the first certificate
+SSLHandshakeException (bad_certificate)
+```
+
+---
