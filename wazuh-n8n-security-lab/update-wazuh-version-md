@@ -9,3 +9,26 @@ This document describes:
 * Troubleshooting and resolution steps
 
 ---
+
+# 1. Initial Environment
+- Initial Deployment (Wazuh 4.7) 
+  - Location: wazuh-docker/single-node
+  - Components started
+    * wazuh-manager
+    * wazuh-indexer
+    * wazuh-dashboard
+
+## Systems
+
+* Wazuh Manager: Docker (WSL Ubuntu)
+* macOS client (MacBook)
+* Windows client
+
+## Network
+
+* Wazuh Manager IP: `192.168.XX.XX`
+* Agent communication port: `1514/tcp`
+
+---
+
+
