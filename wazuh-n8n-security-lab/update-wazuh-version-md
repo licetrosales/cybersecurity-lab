@@ -173,3 +173,49 @@ sudo /Library/Ossec/bin/wazuh-control restart
 
 ---
 
+# 5. Rename Agent (Best Practice)
+
+## Limitation
+
+Wazuh does NOT support renaming existing agents.
+
+---
+
+## Solution
+
+### 1. Remove old agent
+
+```bash
+docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
+```
+
+→ Remove old ID
+
+---
+
+### 2. Re-register with new name
+
+```bash
+sudo /Library/Ossec/bin/agent-auth -m 192.168.178.51 -A mac-cli-01
+```
+
+---
+
+### 3. Restart agent
+
+```bash
+sudo /Library/Ossec/bin/wazuh-control restart
+```
+
+---
+
+# 6. Cleanup
+
+Remove disconnected agents:
+
+```bash
+docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
+```
+
+---
+
