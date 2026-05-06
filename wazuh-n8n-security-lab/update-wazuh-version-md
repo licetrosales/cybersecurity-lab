@@ -94,3 +94,44 @@ SSLHandshakeException (bad_certificate)
 ```
 
 ---
+## Fix: Regenerate certificates
+
+### 1. Remove old certificates
+
+```bash
+sudo rm -rf config/wazuh_indexer_ssl_certs
+```
+
+---
+
+### 2. Generate new certificates
+
+```bash
+docker compose -f generate-indexer-certs.yml run --rm generator
+```
+
+---
+
+### 3. Restart stack
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+---
+
+## Verification
+
+```bash
+curl -k -u admin:SecretPassword https://localhost:9200/_cluster/health?pretty
+```
+
+Expected:
+
+```json
+"status": "green"
+```
+
+---
+
