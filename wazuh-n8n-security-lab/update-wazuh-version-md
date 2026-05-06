@@ -134,4 +134,42 @@ Expected:
 ```
 
 ---
+# 4. Agent re-installation
+
+---
+
+## Windows Agent
+
+Installed via official Wazuh installer.
+
+✔ Successfully connected
+✔ Visible in dashboard
+
+---
+
+## macOS Agent
+
+### Install
+
+```bash
+sudo installer -pkg wazuh-agent.pkg -target /
+```
+
+---
+
+### Register agent
+
+```bash
+sudo /Library/Ossec/bin/agent-auth -m 192.168.XX.XX
+```
+
+---
+
+### Restart agent
+
+```bash
+sudo /Library/Ossec/bin/wazuh-control restart
+```
+
+---
 
