@@ -208,6 +208,19 @@ sudo /Library/Ossec/bin/wazuh-control restart
 ```
 
 ---
+## WSL2 Networking Observation
+
+After deployment, the Windows host appeared in Wazuh
+with an internal WSL2 IP address such as:
+
+172.23.X.X
+
+This is expected behavior because WSL2 uses a virtual
+network adapter between Windows and the Linux runtime.
+
+The Wazuh manager therefore sees the Windows endpoint
+through the WSL2 internal bridge network.
+---
 
 # 6. Cleanup
 
