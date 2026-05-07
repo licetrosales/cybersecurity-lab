@@ -11,6 +11,109 @@ This project implements a small security monitoring and automation setup using:
 The focus is on collecting system events, generating alerts, and processing selected events through automation.
 
 ---
+# Wazuh Home SOC Lab
+
+## Overview
+This project documents the implementation of a lightweight Home SOC (Security Operations Center) using:
+
+- Wazuh SIEM
+- Docker
+- WSL2
+- Windows 11
+- macOS
+- Debian Linux
+- Raspberry Pi 5
+
+The environment was built for cybersecurity learning, SIEM monitoring, endpoint visibility, and SOC operations practice.
+
+---
+
+# Architecture
+
+## Infrastructure Components
+
+| Component | Role |
+|---|---|
+| Wazuh Manager | Central SIEM management |
+| Wazuh Indexer | Event indexing and storage |
+| Wazuh Dashboard | Web visualization |
+| Docker | Container runtime |
+| WSL2 | Linux virtualization layer |
+
+---
+
+# Monitored Endpoints
+
+| Agent | OS | IP |
+|---|---|---|
+| mac-cli-01 | macOS | 192.168.178.55 |
+| win-cli-01 | Windows 11 | 192.168.178.51 |
+| licet-surfacepro3 | Debian Linux | 192.168.178.49 |
+| raspi-cli-01 | Raspberry Pi OS | 192.168.178.67 |
+
+---
+
+# Installation Documentation
+
+1. Wazuh SIEM installation
+2. Wazuh agent deployment
+3. Wazuh 4.7 → 4.14.5 migration
+4. Linux endpoint onboarding
+5. Raspberry Pi sensor integration
+6. Troubleshooting and recovery
+
+---
+
+# Security Objectives
+
+- Endpoint visibility
+- Linux monitoring
+- Windows event monitoring
+- macOS telemetry
+- SSH monitoring
+- File integrity monitoring
+- Vulnerability scanning
+- Centralized log analysis
+
+---
+
+# Future Improvements
+
+- Suricata IDS
+- Zeek Network Monitoring
+- Syslog centralization
+- Docker monitoring
+- Alert tuning
+- Custom dashboards
+- Active response rules
+
+---
+
+# Technologies
+
+- Docker
+- WSL2
+- Wazuh
+- OpenSearch
+- Linux
+- Debian
+- Raspberry Pi
+- macOS
+- Windows 11
+
+---
+
+# Screenshots
+
+
+
+---
+
+# Author
+
+
+
+---
 
 ## Architecture
 
