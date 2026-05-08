@@ -202,21 +202,6 @@ Detailed setup documentation:
 - [Wazuh Version Upgrade](./update-wazuh-version.md)
   
 ---
-##  Next Steps
+## Author
 
-* Connect Wazuh alerts to n8n webhook
-* Implement first automated response (e.g. block IP after repeated failures)
-* Add filtering logic (rule ID, severity)
-* Extend monitoring on Raspberry Pi (Docker + SSH events)
-
----
-
-## 📎 Summary
-
-This setup provides:
-
-* Centralized log collection (Wazuh)
-* Basic event detection across multiple systems
-* Separate automation layer (n8n on Raspberry Pi)
-
-The environment is designed to stay small, transparent, and easy to modify while still allowing end-to-end testing of detection and response workflows.
+Cybersecurity learning project focused on practical SOC operations, monitoring, and detection engineering.
