@@ -2,13 +2,20 @@
 
 ## Overview
 
-This project implements a small security monitoring and automation setup using:
+This project documents the implementation of a lightweight Home SOC (Security Operations Center) built with Wazuh, Docker, and multiple monitored endpoints.
 
-* Wazuh (SIEM)
-* n8n (workflow automation)
-* Multiple endpoints (macOS, Windows, Linux)
+The lab was created for cybersecurity learning, SIEM administration practice, endpoint monitoring, and detection engineering fundamentals.
 
-The focus is on collecting system events, generating alerts, and processing selected events through automation.
+Current capabilities include:
+
+- Centralized log collection
+- Multi-platform endpoint monitoring
+- Security event analysis
+- File integrity monitoring
+- Authentication event monitoring
+- Basic alert generation and investigation
+
+Planned future work includes automation workflows using n8n.
 
 ---
 # Wazuh Home SOC Lab
