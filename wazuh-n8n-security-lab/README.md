@@ -40,6 +40,31 @@ The environment was built for cybersecurity learning, SIEM monitoring, endpoint 
 | Docker | Container runtime |
 | WSL2 | Linux virtualization layer |
 
+### Wazuh Home SOC Architecture
+
+```text
+                           ┌────────────────────────────┐
+                           │ Windows 11 Host            │
+                           │ Fujitsu Laptop             │
+                           │ 192.168.178.51             │
+                           │ WSL2 + Docker              │
+                           └─────────────┬──────────────┘
+                                         │
+                    ┌────────────────────┼────────────────────┐
+                    │                    │                    │
+          ┌─────────▼─────────┐ ┌────────▼────────┐ ┌────────▼────────┐
+          │ Wazuh Manager     │ │ Wazuh Indexer   │ │ Wazuh Dashboard │
+          │ Port 1514 / 1515  │ │ Port 9200       │ │ HTTPS 443       │
+          └─────────┬─────────┘ └─────────────────┘ └─────────────────┘
+                    │
+     ┌──────────────┼─────────────────────────────────────────────┐
+     │              │                     │                       │
+┌────▼─────┐ ┌──────▼──────┐ ┌────────────▼──────────┐ ┌─────────▼────────┐
+│ macOS    │ │ Windows 11  │ │ Debian Linux          │ │ Raspberry Pi 5   │
+│ mac-cli  │ │ win-cli-01  │ │ licet-surfacepro3     │ │ raspi-cli-01     │
+│ Agent    │ │ Agent       │ │ Agent                 │ │ Sensor Node       │
+└──────────┘ └─────────────┘ └───────────────────────┘ └──────────────────┘
+```
 ---
 
 # Monitored Endpoints
