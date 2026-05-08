@@ -65,80 +65,49 @@ Planned future work includes automation workflows using n8n.
 
 
 ---
+## Detection Capabilities
 
-# Installation Documentation
+The environment currently monitors:
 
-1. Wazuh SIEM installation
-2. Wazuh agent deployment
-3. Wazuh 4.7 → 4.14.5 migration
-4. Linux endpoint onboarding
-5. Raspberry Pi sensor integration
-6. Troubleshooting and recovery
+- SSH authentication events
+- Failed login attempts
+- Privileged command execution
+- File integrity changes
+- System and service logs
+- Linux audit events
+- Windows security events
 
----
+Additional integrations include:
 
-# Security Objectives
-
-- Endpoint visibility
-- Linux monitoring
-- Windows event monitoring
-- macOS telemetry
-- SSH monitoring
-- File integrity monitoring
-- Vulnerability scanning
-- Centralized log analysis
+- Auditd
+- AIDE
+- Fail2Ban
 
 ---
 
-# Future Improvements
+## Example Test Cases
 
-- Suricata IDS
-- Zeek Network Monitoring
-- Syslog centralization
-- Docker monitoring
-- Alert tuning
-- Custom dashboards
-- Active response rules
+### Failed SSH Login
 
----
+```bash
+ssh invaliduser@localhost
+```
 
-# Technologies
+### File Modification
 
-- Docker
-- WSL2
-- Wazuh
-- OpenSearch
-- Linux
-- Debian
-- Raspberry Pi
-- macOS
-- Windows 11
+```bash
+sudo nano /etc/passwd
+```
+
+### Privileged Command Execution
+
+```bash
+sudo useradd testuser
+```
+
+These activities generate alerts visible in the Wazuh dashboard.
 
 ---
-
-# Screenshots
-
-
-
----
-
-# Author
-
-
-
----
-
-## Architecture
-
-| Component                                | Location              | Function                                      |
-| ---------------------------------------- | --------------------- | --------------------------------------------- |
-| Wazuh (Manager + OpenSearch + Dashboard) | MacBook (Docker)      | Central log collection, correlation, alerting |
-| n8n                                      | Raspberry Pi (Docker) | Automation workflows                          |
-| macOS                                    | MacBook               | Monitored endpoint                            |
-| Windows 11                               | Fujitsu notebook      | Monitored endpoint                            |
-| Debian Linux                             | Surface Pro           | Monitored endpoint                            |
-| Raspberry Pi                             | Raspberry Pi 8 GB     | Automation host + optional monitored endpoint |
-| Kali Linux VM                            | VMware Fusion         | Test system for event generation              |
 
 ---
 
