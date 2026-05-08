@@ -1,4 +1,4 @@
-# Wazuh + n8n Lab Setup (Docker-based)
+# Wazuh Home SOC Lab
 
 ## Overview
 
