@@ -313,6 +313,15 @@ This enables simple event-driven automation without additional infrastructure.
 
 ---
 
+## Documentation
+
+Detailed setup documentation:
+
+- [Wazuh SIEM Installation](./wazuh-siem-setup.md)
+- [Wazuh Agent Installation](./wazuh-agent-installation.md)
+- [Wazuh Version Upgrade](./update-wazuh-version.md)
+  
+---
 ##  Next Steps
 
 * Connect Wazuh alerts to n8n webhook
