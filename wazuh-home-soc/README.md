@@ -54,14 +54,15 @@ Planned future work includes automation workflows using n8n.
 ```
 ---
 
-# Monitored Endpoints
+## Monitored Endpoints
 
-| Agent | OS | IP |
+| Hostname | Operating System | Role |
 |---|---|---|
-| mac-cli-01 | macOS | 192.168.178.55 |
-| win-cli-01 | Windows 11 | 192.168.178.51 |
-| licet-surfacepro3 | Debian Linux | 192.168.178.49 |
-| raspi-cli-01 | Raspberry Pi OS | 192.168.178.67 |
+| mac-cli-01 | macOS | Workstation endpoint |
+| win-cli-01 | Windows 11 | Primary SIEM host |
+| licet-surfacepro3 | Debian Linux | Linux monitored endpoint |
+| raspi-cli-01 | Raspberry Pi OS | Sensor and monitoring node |
+
 
 ---
 
