@@ -316,4 +316,4 @@ This setup provides:
 
 ---
 
-This environment is ready for detection, monitoring, and automation workflows.
+
