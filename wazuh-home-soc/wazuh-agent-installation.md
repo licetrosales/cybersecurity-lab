@@ -1,73 +1,99 @@
-# Wazuh Agent Installation and Enrollment 
-## 1 Windows Agent 
-The first endpoint agent was installed on a Windows 11 client system.
+# Wazuh Agent Installation and Enrollment
 
-Agent Information
+## Overview
 
-* **Agent name:** `win-client-01`
-* **Wazuh Manager address:** `192.168.X.X` *(replace with your internal IP range or leave masked)*
+This document describes the installation, enrollment, and validation of Wazuh agents across multiple operating systems within the Home SOC lab environment.
+
+The monitored endpoints include:
+
+* Windows 11
+* macOS
+* Debian Linux
+* Raspberry Pi OS
+
+The goal of the deployment is to provide centralized endpoint visibility and security event monitoring through the Wazuh SIEM platform.
 
 ---
-## 1.1 Download and Install the Agent
 
-Download the Wazuh agent installer:
+# Agent Naming Convention
 
-```powershell
-Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.0-1.msi -OutFile "$env:TEMP\wazuh-agent.msi"
+To maintain consistency across monitored assets, the following hostname convention is used:
+
+```text
+<os>-<role>-<id>
 ```
 
-Install the agent silently:
+Examples:
+
+| Hostname     | Description              |
+| ------------ | ------------------------ |
+| win-cli-01   | Windows workstation      |
+| mac-cli-01   | macOS workstation        |
+| linux-cli-01 | Debian Linux endpoint    |
+| raspi-cli-01 | Raspberry Pi sensor node |
+
+This naming standard simplifies:
+
+* asset identification,
+* dashboard visibility,
+* alert correlation,
+* endpoint management.
+
+---
+
+# Wazuh Manager Information
+
+| Component                | Value         |
+| ------------------------ | ------------- |
+| Wazuh Manager Address    | `192.168.X.X` |
+| Agent Communication Port | `1514/tcp`    |
+| Enrollment Port          | `1515/tcp`    |
+
+---
+
+# Windows Agent Deployment
+
+## 1. Download the Agent
+
+Download the official Wazuh Windows agent installer:
+
+```powershell
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.14.5-1.msi -OutFile "$env:TEMP\wazuh-agent.msi"
+```
+
+---
+
+## 2. Install the Agent
+
+Silent installation:
 
 ```powershell
 msiexec.exe /i "$env:TEMP\wazuh-agent.msi" /qn
 ```
 
-### Alternative (GUI installation)
+Alternative GUI installation:
 
-* Run the `.msi` installer manually
+* Launch the `.msi` installer
 * Accept the license agreement
-* Click **Install**
-* Finish setup
+* Complete the installation wizard
 
 ---
 
-### Verification
+## 3. Register the Agent
 
-Check installation directory:
-
-```powershell
-Test-Path "C:\Program Files (x86)\ossec-agent"
-```
-
-Expected result:
-
-```text
-True
-```
----
-
-## 1.2 Agent Registration
-### Agent Authentication Note
-
-If the agent is not automatically registered during installation,
-use `agent-auth.exe` to manually enroll the agent.
-
-This step ensures the agent receives a valid authentication key
-from the Wazuh manager before starting the service.
-
-Navigate to the agent installation directory:
+Navigate to the installation directory:
 
 ```powershell
 cd "C:\Program Files (x86)\ossec-agent"
 ```
 
-Register the agent with the Wazuh manager:
+Register the endpoint with the Wazuh manager:
 
 ```powershell
-.\agent-auth.exe -m 192.168.X.X -A win-client-01
+.\agent-auth.exe -m 192.168.X.X -A win-cli-01
 ```
 
-**Expected output:**
+Expected output:
 
 ```text
 INFO: Valid key received
@@ -75,30 +101,31 @@ INFO: Valid key received
 
 ---
 
-## 1.3 Start the Agent Service
-### If service is stopped:
+## 4. Start the Agent Service
+
+Start the Wazuh service:
+
 ```powershell
 Start-Service WazuhSvc
 ```
-### If it fails:
+
+Verify service status:
+
 ```powershell
 Get-Service WazuhSvc
 ```
 
-**Expected result:**
+Expected output:
 
 ```text
 Status   Name        DisplayName
 ------   ----        -----------
 Running  WazuhSvc    Wazuh
 ```
-### Note:
-In some cases, the service does not start automatically after installation.
-Manual start may be required.
 
 ---
 
-## 1.4 Connectivity Validation
+## 5. Validate Connectivity
 
 Verify network connectivity to the manager:
 
@@ -106,7 +133,7 @@ Verify network connectivity to the manager:
 Test-NetConnection 192.168.X.X -Port 1514
 ```
 
-**Expected result:**
+Expected result:
 
 ```text
 TcpTestSucceeded : True
@@ -114,228 +141,272 @@ TcpTestSucceeded : True
 
 ---
 
-## 1.5 Agent Key Verification
+## 6. Verify Agent Registration
+
+Check the generated client key:
 
 ```powershell
 Get-Content "C:\Program Files (x86)\ossec-agent\client.keys"
 ```
 
-**Expected output:**
+Example output:
 
 ```text
-001 win-client-01 any <redacted_key>
+001 win-cli-01 any <redacted_key>
 ```
 
 ---
-### Common Issue
 
-Service does not start
+## 7. Verify Logs
 
-Cause:
-- Agent not registered (missing key)
-- Previous OSSEC installation conflict
-- Service installed but not initialized
+Inspect the agent log:
 
-Fix:
-- Run agent-auth.exe manually
-- Verify client.keys exists
-- Restart service
-
-### Configuration Note
-
-The agent will not connect if the manager IP is incorrect.
-
-Verify the configuration file:
-
-C:\Program Files (x86)\ossec-agent\ossec.conf
-
-Example:
-
-<address>192.168.X.X</address>
-
-## 1.6 Log Verification
 ```powershell
 Get-Content "C:\Program Files (x86)\ossec-agent\logs\ossec.log" -Tail 20
 ```
-Expected:
-```
+
+Expected result:
+
+```text
 Connected to manager
 ```
----
-
-## 1.7 Dashboard Verification
-
-In the Wazuh web interface:
-
-* Total agents: `1`
-* Active agents: `1`
-* Disconnected agents: `0`
-
----
-# ## 2 macOS Agent (MacBook)
-
-The second endpoint agent was installed on a macOS client system (MacBook).
 
 ---
 
-## 2.1 Agent Information
+# macOS Agent Deployment
 
-- **Agent name:** `mac-cli-01`
-- **Wazuh Manager address:** `192.168.XX.XX`
+## 1. Download the Agent
 
----
-
-## 2.2 Download and Install the Agent
-
-Download the macOS agent package:
+Download the macOS package:
 
 ```bash
-curl -O https://packages.wazuh.com/4.x/macos/wazuh-agent-4.7.0-1.pkg
+curl -O https://packages.wazuh.com/4.x/macos/wazuh-agent-4.14.5-1.pkg
 ```
+
+---
+
+## 2. Install the Agent
+
 Install the package:
+
 ```bash
-sudo installer -pkg wazuh-agent-4.7.0-1.pkg -target /
+sudo installer -pkg wazuh-agent-4.14.5-1.pkg -target /
 ```
+
 ---
 
-## 2.3 Configure Manager
+## 3. Configure the Manager Address
 
-Edit the agent configuration file:
+Edit the agent configuration:
+
 ```bash
 sudo nano /Library/Ossec/etc/ossec.conf
 ```
-Update the manager address:
-```
+
+Update the manager section:
+
+```xml
 <client>
   <server>
-    <address>192.168.XX.XX</address>
+    <address>192.168.X.X</address>
     <port>1514</port>
     <protocol>tcp</protocol>
   </server>
 </client>
 ```
-## 2.4 Agent Registration (Manual Enrollment)
 
-Register the agent with the Wazuh manager:
+---
+
+## 4. Register the Agent
+
+Register the endpoint with the manager:
+
 ```bash
-sudo /Library/Ossec/bin/agent-auth -m 192.168.XX.XX -A mac-cli-01
+sudo /Library/Ossec/bin/agent-auth -m 192.168.X.X -A mac-cli-01
 ```
-Expected output:
-```
+
+Expected result:
+
+```text
 INFO: Valid key received
 ```
-## 2.5 Start and Verify Agent
 
-Start the agent:
+---
+
+## 5. Start the Agent
+
+Start the Wazuh agent:
+
 ```bash
 sudo /Library/Ossec/bin/wazuh-control start
 ```
-Check status:
+
+Verify status:
+
 ```bash
 sudo /Library/Ossec/bin/wazuh-control status
 ```
-Expected:
-```
+
+Expected output:
+
+```text
 wazuh-agentd is running...
 ```
-## 2.6 Connectivity Verification
 
-Verify connectivity from macOS to the manager:
+---
+
+## 6. Validate Connectivity
+
+Verify connectivity to the manager:
+
 ```bash
-nc -zv 192.168.XX.XX 1514
-nc -zv 192.168.XX.XX 1515
+nc -zv 192.168.X.X 1514
+nc -zv 192.168.X.X 1515
 ```
-Expected:
-```
+
+Expected result:
+
+```text
 succeeded!
 ```
-## 2.7 Dashboard Verification
-
-In Wazuh Dashboard:
-
-* Total agents: `2`
-* Active agents: `2`
-* Status: `Active`
 
 ---
-## 2.8 Troubleshooting Commands & Fixes
-### Network Debugging
 
-Test ports from macOS:
-```bash
-nc -zv 192.168.XX.XX 1514
-nc -zv 192.168.XX.XX 1515
-```
-Test connectivity inside WSL:
-```bash
-nc -zv localhost 1514
-nc -zv 172.23.106.128 1514
-```
-Windows Connectivity Check
-```powershell
-Test-NetConnection 127.0.0.1 -Port 1514
-Test-NetConnection 192.168.178.51 -Port 1514
-```
-Check Docker Containers
-```powershell
-docker ps
-```
-Show container names:
-```powershell
-docker ps --format "table {{.Names}}\t{{.Image}}"
-```
-Access Wazuh Manager Container
-```powershell
-docker exec -it single-node-wazuh.manager-1 bash
-```
-Check Wazuh Logs (macOS)
-```bash
-sudo tail -n 20 /Library/Ossec/logs/ossec.log
-```
-Restart Agent (macOS)
-```bash
-sudo /Library/Ossec/bin/wazuh-control restart
-```
-Remove Agent Key (Reset)
-```bash
-sudo rm /Library/Ossec/etc/client.keys
-```
-Re-register Agent
-```bash
-sudo /Library/Ossec/bin/agent-auth -m 192.168.178.51 -A mac-cli-mbp-01
-```
-Fix Duplicate Agent Error
+## 7. Verify Dashboard Registration
 
-Error:
+After successful enrollment:
+
+* Endpoint visible in the Wazuh dashboard
+* Agent status displayed as `Active`
+* Logs successfully forwarded to the SIEM
+
+---
+
+# Common Troubleshooting
+
+## Service Does Not Start
+
+### Possible Causes
+
+* Agent not registered
+* Missing client key
+* Incorrect manager IP
+* Existing OSSEC installation conflict
+
+### Resolution
+
+Re-register the agent:
+
+```powershell
+.\agent-auth.exe -m 192.168.X.X -A win-cli-01
 ```
+
+Restart the service:
+
+```powershell
+Restart-Service WazuhSvc
+```
+
+---
+
+## Duplicate Agent Name
+
+### Error
+
+```text
 Duplicate agent name
 ```
-Fix:
 
-Delete agent from manager OR
-Change agent name:
--A mac-cli-02
+### Cause
+
+An existing agent record already exists in the manager database.
+
+### Resolution
+
+Remove the old agent entry from the manager:
+
+```bash
+docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
+```
+
+Re-register the endpoint using the standardized naming convention.
 
 ---
 
-### Naming Convention 
+## Connectivity Issues
 
+Verify manager connectivity:
+
+### Windows
+
+```powershell
+Test-NetConnection 192.168.X.X -Port 1514
 ```
-<os>-<role>-<device-id>
+
+### macOS / Linux
+
+```bash
+nc -zv 192.168.X.X 1514
 ```
-
-Examples:
-
-* `win-cli-01`
-* `linux-server-01`
-* `raspi-sensor-01`
-* `mac-cli-01`
-
-## Next Steps
-
-* Add agents (Linux Debian, raspi 5)
-* Trigger test alerts
-* Integrate n8n for automation
-* Implement alert-based workflows
 
 ---
+
+## WSL2 Networking Considerations
+
+The Wazuh manager runs inside Docker containers hosted within Ubuntu on WSL2.
+
+Because WSL2 uses virtual networking and NAT, endpoints must communicate using the Windows host IP address rather than the internal WSL2 IP.
+
+Expected behavior:
+
+```text
+Windows Host → WSL2 → Docker → Wazuh Manager
+```
+
+---
+
+# Operational Validation
+
+After onboarding, the environment successfully reported:
+
+* Active endpoint agents
+* Multi-platform log collection
+* Authentication events
+* File integrity monitoring events
+* System log visibility
+
+The Wazuh dashboard confirmed all connected agents as operational.
+
+---
+
+# Lessons Learned
+
+Key operational observations during endpoint onboarding:
+
+* Consistent naming improves SIEM visibility and asset management
+* Manual enrollment may be required in some environments
+* WSL2 networking affects endpoint communication paths
+* Connectivity validation simplifies troubleshooting
+* Structured onboarding improves deployment reliability
+
+---
+
+# Technologies Used
+
+* Wazuh Agents
+* Windows 11
+* macOS
+* Debian Linux
+* Raspberry Pi OS
+* Docker
+* WSL2
+
+---
+
+# Status
+
+* Windows agent operational
+* macOS agent operational
+* Linux endpoint monitoring active
+* Dashboard visibility confirmed
+* Endpoint log forwarding functional
