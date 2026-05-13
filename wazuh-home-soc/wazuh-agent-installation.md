@@ -4,14 +4,16 @@
 
 This document describes the installation, enrollment, and validation of Wazuh agents across multiple operating systems within the Home SOC lab environment.
 
-The monitored endpoints include:
+The environment was intentionally designed as a heterogeneous endpoint lab to simulate real-world SOC visibility across multiple operating systems.
+
+Monitored endpoints include:
 
 * Windows 11
 * macOS
 * Debian Linux
 * Raspberry Pi OS
 
-The goal of the deployment is to provide centralized endpoint visibility and security event monitoring through the Wazuh SIEM platform.
+The objective of the deployment is to provide centralized endpoint monitoring, log collection, and security event visibility through the Wazuh SIEM platform.
 
 ---
 
@@ -25,19 +27,19 @@ To maintain consistency across monitored assets, the following hostname conventi
 
 Examples:
 
-| Hostname     | Description              |
-| ------------ | ------------------------ |
-| win-cli-01   | Windows workstation      |
-| mac-cli-01   | macOS workstation        |
-| linux-cli-01 | Debian Linux endpoint    |
-| raspi-cli-01 | Raspberry Pi sensor node |
+| Hostname     | Description                  |
+| ------------ | ---------------------------- |
+| win-cli-01   | Windows workstation          |
+| mac-cli-01   | macOS workstation            |
+| linux-cli-01 | Debian Linux endpoint        |
+| raspi-cli-01 | Raspberry Pi monitoring node |
 
-This naming standard simplifies:
+This naming convention improves:
 
-* asset identification,
-* dashboard visibility,
+* asset management,
+* dashboard readability,
 * alert correlation,
-* endpoint management.
+* endpoint identification.
 
 ---
 
@@ -47,7 +49,7 @@ This naming standard simplifies:
 | ------------------------ | ------------- |
 | Wazuh Manager Address    | `192.168.X.X` |
 | Agent Communication Port | `1514/tcp`    |
-| Enrollment Port          | `1515/tcp`    |
+| Agent Enrollment Port    | `1515/tcp`    |
 
 ---
 
@@ -73,7 +75,7 @@ msiexec.exe /i "$env:TEMP\wazuh-agent.msi" /qn
 
 Alternative GUI installation:
 
-* Launch the `.msi` installer
+* Launch the installer manually
 * Accept the license agreement
 * Complete the installation wizard
 
@@ -87,7 +89,7 @@ Navigate to the installation directory:
 cd "C:\Program Files (x86)\ossec-agent"
 ```
 
-Register the endpoint with the Wazuh manager:
+Register the endpoint with the manager:
 
 ```powershell
 .\agent-auth.exe -m 192.168.X.X -A win-cli-01
@@ -115,7 +117,7 @@ Verify service status:
 Get-Service WazuhSvc
 ```
 
-Expected output:
+Expected result:
 
 ```text
 Status   Name        DisplayName
@@ -127,7 +129,7 @@ Running  WazuhSvc    Wazuh
 
 ## 5. Validate Connectivity
 
-Verify network connectivity to the manager:
+Verify connectivity to the manager:
 
 ```powershell
 Test-NetConnection 192.168.X.X -Port 1514
@@ -141,23 +143,7 @@ TcpTestSucceeded : True
 
 ---
 
-## 6. Verify Agent Registration
-
-Check the generated client key:
-
-```powershell
-Get-Content "C:\Program Files (x86)\ossec-agent\client.keys"
-```
-
-Example output:
-
-```text
-001 win-cli-01 any <redacted_key>
-```
-
----
-
-## 7. Verify Logs
+## 6. Verify Logs
 
 Inspect the agent log:
 
@@ -165,7 +151,7 @@ Inspect the agent log:
 Get-Content "C:\Program Files (x86)\ossec-agent\logs\ossec.log" -Tail 20
 ```
 
-Expected result:
+Expected output:
 
 ```text
 Connected to manager
@@ -197,7 +183,7 @@ sudo installer -pkg wazuh-agent-4.14.5-1.pkg -target /
 
 ## 3. Configure the Manager Address
 
-Edit the agent configuration:
+Edit the configuration file:
 
 ```bash
 sudo nano /Library/Ossec/etc/ossec.conf
@@ -219,7 +205,7 @@ Update the manager section:
 
 ## 4. Register the Agent
 
-Register the endpoint with the manager:
+Register the endpoint:
 
 ```bash
 sudo /Library/Ossec/bin/agent-auth -m 192.168.X.X -A mac-cli-01
@@ -247,7 +233,7 @@ Verify status:
 sudo /Library/Ossec/bin/wazuh-control status
 ```
 
-Expected output:
+Expected result:
 
 ```text
 wazuh-agentd is running...
@@ -257,7 +243,7 @@ wazuh-agentd is running...
 
 ## 6. Validate Connectivity
 
-Verify connectivity to the manager:
+Verify manager connectivity:
 
 ```bash
 nc -zv 192.168.X.X 1514
@@ -272,13 +258,210 @@ succeeded!
 
 ---
 
-## 7. Verify Dashboard Registration
+# Debian Linux Agent Deployment
 
-After successful enrollment:
+## 1. Install Required Packages
 
-* Endpoint visible in the Wazuh dashboard
-* Agent status displayed as `Active`
-* Logs successfully forwarded to the SIEM
+Update the system:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+Install dependencies:
+
+```bash
+sudo apt install curl apt-transport-https lsb-release gnupg2 -y
+```
+
+---
+
+## 2. Add the Wazuh Repository
+
+Import the GPG key:
+
+```bash
+curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo apt-key add -
+```
+
+Add the repository:
+
+```bash
+echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee /etc/apt/sources.list.d/wazuh.list
+```
+
+Update package lists:
+
+```bash
+sudo apt update
+```
+
+---
+
+## 3. Install the Agent
+
+Install the Wazuh agent:
+
+```bash
+sudo apt install wazuh-agent -y
+```
+
+---
+
+## 4. Configure the Manager Address
+
+Edit the configuration file:
+
+```bash
+sudo nano /var/ossec/etc/ossec.conf
+```
+
+Update the manager section:
+
+```xml
+<client>
+  <server>
+    <address>192.168.X.X</address>
+    <port>1514</port>
+    <protocol>tcp</protocol>
+  </server>
+</client>
+```
+
+---
+
+## 5. Register the Agent
+
+Register the endpoint:
+
+```bash
+sudo /var/ossec/bin/agent-auth -m 192.168.X.X -A linux-cli-01
+```
+
+Expected result:
+
+```text
+INFO: Valid key received
+```
+
+---
+
+## 6. Start the Agent
+
+Enable and start the service:
+
+```bash
+sudo systemctl enable wazuh-agent
+sudo systemctl start wazuh-agent
+```
+
+Verify status:
+
+```bash
+sudo systemctl status wazuh-agent
+```
+
+Expected result:
+
+```text
+active (running)
+```
+
+---
+
+# Raspberry Pi Agent Deployment
+
+## Overview
+
+The Raspberry Pi node was deployed as a lightweight monitoring and sensor system running Raspberry Pi OS.
+
+The endpoint forwards logs and security events to the centralized Wazuh manager.
+
+---
+
+## 1. Update the System
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+---
+
+## 2. Install the Wazuh Agent
+
+Install required packages:
+
+```bash
+sudo apt install curl gnupg2 apt-transport-https -y
+```
+
+Import the Wazuh repository key:
+
+```bash
+curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo apt-key add -
+```
+
+Add the repository:
+
+```bash
+echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee /etc/apt/sources.list.d/wazuh.list
+```
+
+Install the agent:
+
+```bash
+sudo apt update
+sudo apt install wazuh-agent -y
+```
+
+---
+
+## 3. Configure the Agent
+
+Edit the configuration file:
+
+```bash
+sudo nano /var/ossec/etc/ossec.conf
+```
+
+Update the manager section:
+
+```xml
+<client>
+  <server>
+    <address>192.168.X.X</address>
+    <port>1514</port>
+    <protocol>tcp</protocol>
+  </server>
+</client>
+```
+
+---
+
+## 4. Register the Agent
+
+Register the Raspberry Pi endpoint:
+
+```bash
+sudo /var/ossec/bin/agent-auth -m 192.168.X.X -A raspi-cli-01
+```
+
+---
+
+## 5. Start the Agent
+
+Enable and start the service:
+
+```bash
+sudo systemctl enable wazuh-agent
+sudo systemctl start wazuh-agent
+```
+
+Verify status:
+
+```bash
+sudo systemctl status wazuh-agent
+```
 
 ---
 
@@ -290,22 +473,12 @@ After successful enrollment:
 
 * Agent not registered
 * Missing client key
-* Incorrect manager IP
+* Incorrect manager address
 * Existing OSSEC installation conflict
 
 ### Resolution
 
-Re-register the agent:
-
-```powershell
-.\agent-auth.exe -m 192.168.X.X -A win-cli-01
-```
-
-Restart the service:
-
-```powershell
-Restart-Service WazuhSvc
-```
+Re-register the endpoint and restart the service.
 
 ---
 
@@ -319,11 +492,11 @@ Duplicate agent name
 
 ### Cause
 
-An existing agent record already exists in the manager database.
+An existing agent entry already exists in the Wazuh manager database.
 
 ### Resolution
 
-Remove the old agent entry from the manager:
+Remove the previous agent record:
 
 ```bash
 docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
@@ -335,7 +508,7 @@ Re-register the endpoint using the standardized naming convention.
 
 ## Connectivity Issues
 
-Verify manager connectivity:
+Verify connectivity to the manager.
 
 ### Windows
 
@@ -343,7 +516,7 @@ Verify manager connectivity:
 Test-NetConnection 192.168.X.X -Port 1514
 ```
 
-### macOS / Linux
+### Linux / macOS
 
 ```bash
 nc -zv 192.168.X.X 1514
@@ -355,9 +528,9 @@ nc -zv 192.168.X.X 1514
 
 The Wazuh manager runs inside Docker containers hosted within Ubuntu on WSL2.
 
-Because WSL2 uses virtual networking and NAT, endpoints must communicate using the Windows host IP address rather than the internal WSL2 IP.
+Because WSL2 uses virtual networking and NAT, endpoints must communicate using the Windows host IP address rather than the internal WSL2 IP address.
 
-Expected behavior:
+Expected architecture:
 
 ```text
 Windows Host → WSL2 → Docker → Wazuh Manager
@@ -370,12 +543,13 @@ Windows Host → WSL2 → Docker → Wazuh Manager
 After onboarding, the environment successfully reported:
 
 * Active endpoint agents
-* Multi-platform log collection
+* Centralized log forwarding
 * Authentication events
 * File integrity monitoring events
-* System log visibility
+* Linux audit events
+* Windows security events
 
-The Wazuh dashboard confirmed all connected agents as operational.
+Dashboard validation confirmed all monitored endpoints as operational.
 
 ---
 
@@ -383,11 +557,11 @@ The Wazuh dashboard confirmed all connected agents as operational.
 
 Key operational observations during endpoint onboarding:
 
-* Consistent naming improves SIEM visibility and asset management
-* Manual enrollment may be required in some environments
-* WSL2 networking affects endpoint communication paths
+* Standardized naming improves SIEM asset management
 * Connectivity validation simplifies troubleshooting
-* Structured onboarding improves deployment reliability
+* WSL2 networking impacts endpoint communication paths
+* Multi-platform monitoring increases environment realism
+* Structured onboarding improves operational consistency
 
 ---
 
@@ -405,8 +579,10 @@ Key operational observations during endpoint onboarding:
 
 # Status
 
-* Windows agent operational
-* macOS agent operational
-* Linux endpoint monitoring active
+* Windows endpoint operational
+* macOS endpoint operational
+* Debian Linux endpoint operational
+* Raspberry Pi monitoring active
+* Multi-platform log forwarding functional
 * Dashboard visibility confirmed
-* Endpoint log forwarding functional
+
