@@ -1,319 +1,343 @@
-# Wazuh SIEM Setup deployment on Windows (WSL2 + Ubuntu + Docker)
+# Wazuh SIEM Setup
 
 ## Overview
 
-This guide documents the deployment of a **Wazuh single-node SIEM stack** using:
-
-* Windows 11 (host)
-* WSL2 (Linux runtime)
-* Ubuntu (Linux distribution)
-* Docker Desktop (container platform)
-
-The setup provides a **stable, Linux-native environment** for Wazuh avoiding architecture-related issues (e.g., ARM/amd64 incompatibilities).
-
-The environment is built using:
-
-- Windows 11 (host system)
-- WSL2 (Linux virtualization layer)
-- Ubuntu (Linux runtime)
-- Docker Desktop (container platform)
-- Wazuh (SIEM solution)
-
----
-
-## Architecture
-
-```
-Windows 11
-   └── WSL2 (Ubuntu)
-         └── Docker (via Docker Desktop)
-               └── Wazuh Stack
-                        ├── Wazuh Manager
-                        ├── Wazuh Indexer
-                        └── Wazuh Dashboard
-```
-
----
-
-## Prerequisites
+This document describes the deployment of a single-node Wazuh SIEM environment using:
 
 * Windows 11
-* Admin privileges
-* Internet connection
+* WSL2
+* Ubuntu
+* Docker Desktop
+* Wazuh 4.14.5
+
+The environment was designed as a lightweight Home SOC lab for security monitoring, log analysis, endpoint visibility, and detection engineering practice.
+
+The deployment uses Docker containers running inside Ubuntu on WSL2 to provide a Linux-native environment while maintaining compatibility with Windows-based infrastructure.
 
 ---
+
+# Architecture
+
+## Infrastructure Stack
+
+```text
+Windows 11 Host
+   └── WSL2 (Ubuntu)
+         └── Docker Desktop
+               └── Wazuh Stack
+                     ├── Wazuh Manager
+                     ├── Wazuh Indexer
+                     └── Wazuh Dashboard
+```
+
+---
+
+# Prerequisites
+
+Before deployment, ensure the following requirements are available:
+
+* Windows 11
+* Administrative privileges
+* Stable internet connection
+* Virtualization enabled in BIOS
+* Docker Desktop compatible with WSL2
+
+---
+
+# Environment Preparation
 
 ## 1. Install WSL2
 
-Run **PowerShell as Administrator**:
-```bash
+Open PowerShell as Administrator:
+
+```powershell
 wsl --install
 ```
-On first launch:
 
-* Set username
-* Set password
+Restart the system if prompted.
 
----
+Verify the installation:
 
-## 2. Verify WSL Installation
 ```powershell
 wsl -l -v
 ```
+
 Expected output:
-```
+
+```text
 NAME      STATE    VERSION
 Ubuntu    Running  2
 ```
-## 3. Initialize Ubuntu
 
-Start WSL:
+---
+
+## 2. Initialize Ubuntu
+
+Launch Ubuntu from the Start Menu or run:
+
 ```powershell
 wsl
 ```
-Create your Linux user:
-```
-Create a default Unix user account: <username>
-```
-## 4. Update System
 
-Inside Ubuntu:
+Create the Linux user account and password.
+
+Update the system:
+
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
-## 5. Install Required Tools
+
+Install required packages:
+
 ```bash
 sudo apt install -y curl git ca-certificates
 ```
-## 6. Install Docker Desktop (Windows)
 
-Download:
+---
 
-` https://docs.docker.com/desktop/install/windows-install/`
+## 3. Install Docker Desktop
 
-Run installer as Administrator
+Download Docker Desktop for Windows:
 
-Configuration:
--  Use WSL 2 instead
-  
-## 7. Fix Docker Installation Issue (Permission Error)
-### Problem
+https://docs.docker.com/desktop/install/windows-install/
 
-Docker installation failed due to:
-```
-C:\ProgramData\DockerDesktop must be owned by an elevated account
-```
-### Solution
+During installation:
 
-Run PowerShell as Administrator:
-```powershell
-Remove-Item -Recurse -Force "C:\ProgramData\DockerDesktop"
-```
-Verify:
-```powershell
-Test-Path "C:\ProgramData\DockerDesktop"
-```
-Recreate and fix permissions:
-```powershell
-New-Item -ItemType Directory -Path "C:\ProgramData\DockerDesktop"
-```
-```powershell
-icacls "C:\ProgramData\DockerDesktop" /inheritance:r
-icacls "C:\ProgramData\DockerDesktop" /grant "SYSTEM:(OI)(CI)F"
-icacls "C:\ProgramData\DockerDesktop" /grant "Administrators:(OI)(CI)F"
-```
-Verify:
-```powershell
-(Get-Acl "C:\ProgramData\DockerDesktop").Access | Format-List
-```
-Expected:
-```
-SYSTEM → FullControl
-Administrators → FullControl
-```
-## 8. Verify Docker Installation
+* Enable WSL2 integration
+* Use WSL2 as the backend engine
 
-Inside WSL:
+After installation, verify Docker inside Ubuntu:
+
 ```bash
 docker version
 docker ps
 ```
-Expected:
+
+Expected result:
+
+```text
+CONTAINER ID   IMAGE   COMMAND   CREATED   STATUS   PORTS   NAMES
 ```
-(empty container list)
-```
+
 ---
 
-## 9. Deploy Wazuh
-### 9.1 Create Working Directory (WSL)
+# Wazuh Deployment
 
-All project-related files should be stored inside the WSL Linux filesystem 
-for optimal Docker performance.
+## 1. Create Working Directory
 
-Create project directory
+Inside Ubuntu:
 
 ```bash
 mkdir -p ~/projects
 cd ~/projects
 ```
-Create working directory:
-Verify location
+
+Verify the location:
+
 ```bash
 pwd
 ```
-Expected output:
-```
-/home/<your-username>/projects
-```
-### 9.2 Clone Wazuh Docker Repository
 
-Clone the official Wazuh Docker repository (version 4.7.0):
+Example output:
+
+```text
+/home/<user>/projects
+```
+
+---
+
+## 2. Clone the Wazuh Docker Repository
+
+Clone the official Wazuh Docker repository:
+
 ```bash
-git clone https://github.com/wazuh/wazuh-docker.git -b v4.7.0
+git clone https://github.com/wazuh/wazuh-docker.git -b v4.14.5
+```
+
+Navigate to the single-node deployment:
+
+```bash
 cd wazuh-docker/single-node
 ```
-Notes
-- The -b v4.7.0 flag ensures a stable, tested version
-- You may see a message about detached HEAD → this is expected
 
+---
 
-### 9.3 Start Wazuh Stack (Docker Compose)
+## 3. Start the Wazuh Stack
 
-Start all services in detached mode:
+Deploy the environment:
+
 ```bash
 docker compose up -d
 ```
-Expected behavior
-- Docker pulls images:
-   - wazuh-manager
-   - wazuh-indexer
-   - wazuh-dashboard
-- Containers are created and started
 
-### 9.4 Troubleshooting: Port Conflict (WSL/Docker Desktop)
+The following containers are created:
 
-During deployment, the following error may occur:
+* wazuh-manager
+* wazuh-indexer
+* wazuh-dashboard
+
+---
+
+# Networking and Port Considerations
+
+## WSL2 Networking Architecture
+
+The Wazuh environment runs inside Docker containers hosted within Ubuntu on WSL2.
+
+```text
+Windows Host
+   └── WSL2 Virtual Network
+         └── Docker Network
+               └── Wazuh Containers
 ```
+
+Because WSL2 uses NAT and virtual network adapters, external endpoints communicate through the Windows host IP address rather than the internal WSL2 address.
+
+---
+
+## Common Port Conflict Issue
+
+During deployment, Docker may fail with:
+
+```text
 Error response from daemon: ports are not available
 ```
-#### Root Cause
-- WSL2 port forwarding conflict
-- Docker Desktop unable to bind API port (55000/55001)
 
-#### Solution
-Edit the compose file:
+### Cause
+
+Port conflicts between:
+
+* WSL2
+* Docker Desktop
+* existing Windows services
+
+---
+
+## Resolution
+
+Edit the Docker Compose file:
+
 ```bash
 nano docker-compose.yml
 ```
-Locate and comment out the API port:
-```
+
+Comment out the API port mapping if necessary:
+
+```yaml
 # - "55000:55000"
 ```
-Save and exit.
 
 Restart the stack:
+
 ```bash
 docker compose down
 docker compose up -d
 ```
-### 9.5 Verify Running Containers
-
-Check container status:
-```bash
-docker ps
-```
-Expected output
-
-All services should be Up:
-- wazuh-manager
-- wazuh-indexer
-- wazuh-dashboard
-
-### 9.6 Verify Port Mappings
-
-Expected ports:
-
-| Service          | Host Port | Container Port |
-| ---------------- | --------- | -------------- |
-| Wazuh Dashboard  | 443       | 5601           |
-| Wazuh Indexer    | 9200      | 9200           |
-| Wazuh Manager    | 1514      | 1514           |
 
 ---
 
-### 9.7 Access Dashboard
+# Validation
 
-Open in browser:
+## Verify Running Containers
 
+Check container status:
+
+```bash
+docker ps
 ```
+
+Expected containers:
+
+* wazuh-manager
+* wazuh-indexer
+* wazuh-dashboard
+
+---
+
+## Verify Dashboard Access
+
+Open the dashboard in a browser:
+
+```text
 https://localhost
 ```
-Notes
-- A certificate warning will appear (self-signed certificate)
 
-### 9.8 Login to Dashboard
+A browser certificate warning is expected because the deployment uses self-signed certificates.
 
-Default credentials:
-```
+---
+
+## Default Credentials
+
+```text
 Username: admin
 Password: SecretPassword
 ```
-### 9.9 Verify Deployment
-After login:
 
-- Dashboard loads successfully
-- No agents connected (expected initial state)
-- All services operational
+---
 
-## 9.10 Validation (Operational Check)
+## Verify Cluster Health
 
-After deployment, the following checks were performed:
+Run:
 
-### Container Status
 ```bash
-docker ps
+curl -k -u admin:SecretPassword https://localhost:9200/_cluster/health?pretty
 ```
-All containers are running:
 
-- wazuh-manager
-- wazuh-indexer
-- wazuh-dashboard
+Expected result:
 
-### Dashboard Access
-- `URL: https://localhost`
-- Login successful with default credentials
-### Observations
-- No agents connected (expected initial state)
-- Docker volumes created for persistence
-- Port conflict resolved by removing API port binding
-### Conclusion
-The Wazuh SIEM stack is fully operational and ready for agent integration.
-
-## Next Steps
-
-* Add agents (Windows, macOS, Linux)
-* Trigger test alerts
-* Integrate n8n for automation
-* Implement alert-based workflows
+```json
+"status" : "green"
+```
 
 ---
 
-## Notes
+# Operational Validation
 
-* This setup avoids ARM/amd64 compatibility issues
-* WSL2 provides near-native Linux performance
-* Suitable for local lab and learning environment
+After deployment, the following checks were completed successfully:
+
+* Containers running correctly
+* Dashboard accessible
+* OpenSearch cluster healthy
+* Docker volumes created for persistence
+* WSL2 networking functional
+* SIEM services operational
+
+At this stage, no agents are connected yet. Endpoint onboarding is documented separately in:
+
+```text
+wazuh-agent-installation.md
+```
 
 ---
 
-## Summary
+# Lessons Learned
 
-This setup provides:
+Key operational observations from the deployment:
 
-* Stable Wazuh deployment on Windows
-* Full SIEM functionality via Docker
-* Clean separation between host and container runtime
+* WSL2 networking introduces additional routing considerations
+* Docker port conflicts can affect Wazuh service exposure
+* Version consistency between stack components is critical
+* Containerized deployments simplify reproducibility and maintenance
+* Structured validation improves troubleshooting efficiency
 
 ---
 
+# Technologies Used
+
+* Wazuh
+* Docker
+* Docker Compose
+* WSL2
+* Ubuntu
+* Windows 11
+* OpenSearch
+
+---
+
+# Status
+
+* Wazuh stack deployed successfully
+* Dashboard operational
+* OpenSearch cluster healthy
+* Environment ready for endpoint onboarding
 
