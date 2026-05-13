@@ -2,36 +2,37 @@
 
 ## Overview
 
-This project documents the implementation of a lightweight Home SOC (Security Operations Center) built with Wazuh, Docker, and multiple monitored endpoints.
+This project documents the implementation of a lightweight Home SOC (Security Operations Center) environment using Wazuh, Docker, WSL2, and multiple monitored endpoints.
 
-The lab was created for cybersecurity learning, SIEM administration practice, endpoint monitoring, and detection engineering fundamentals.
+The lab was built to practice:
 
-Current capabilities include:
+- SIEM deployment and administration
+- Endpoint monitoring
+- Detection engineering fundamentals
+- Log analysis and investigation
+- Linux system administration
+- Multi-platform security monitoring
+- Basic SOC workflows
 
-- Centralized log collection
-- Multi-platform endpoint monitoring
-- Security event analysis
-- File integrity monitoring
-- Authentication event monitoring
-- Basic alert generation and investigation
-
-Planned future work includes automation workflows using n8n.
+The environment simulates a small security monitoring infrastructure with centralized log collection and endpoint visibility across Windows, macOS, Debian Linux, and Raspberry Pi systems.
 
 ---
 
 # Architecture
 
-## Infrastructure Components
+## Infrastructure Stack
 
 | Component | Purpose |
 |---|---|
 | Wazuh Manager | Centralized SIEM management |
 | Wazuh Indexer | Event indexing and storage |
-| Wazuh Dashboard | Web interface and visualization |
+| Wazuh Dashboard | Visualization and investigation interface |
 | Docker | Container runtime |
-| WSL2 | Linux virtualization layer |
+| WSL2 | Linux virtualization layer on Windows |
 
-### Home SOC Architecture
+---
+
+## Lab Architecture
 
 ```text
                            ┌────────────────────────────┐
@@ -49,27 +50,28 @@ Planned future work includes automation workflows using n8n.
      │              │                     │                       │
 ┌────▼─────┐ ┌──────▼──────┐ ┌────────────▼──────────┐ ┌─────────▼────────┐
 │ macOS    │ │ Windows 11  │ │ Debian Linux          │ │ Raspberry Pi 5   │
-│ Agent    │ │ Agent       │ │ Agent                 │ │ Sensor Node      │
+│ Endpoint │ │ Endpoint    │ │ Endpoint              │ │ Sensor Node      │
 └──────────┘ └─────────────┘ └───────────────────────┘ └──────────────────┘
 ```
+
 ---
 
-## Monitored Endpoints
+# Monitored Endpoints
 
 | Hostname | Operating System | Role |
 |---|---|---|
 | mac-cli-01 | macOS | Workstation endpoint |
-| win-cli-01 | Windows 11 | Primary SIEM host |
-| licet-surfacepro3 | Debian Linux | Linux monitored endpoint |
+| win-cli-01 | Windows 11 | Primary workstation |
+| linux-cli-01 | Debian Linux | Monitored Linux endpoint |
 | raspi-cli-01 | Raspberry Pi OS | Sensor and monitoring node |
 
-
 ---
-## Detection Capabilities
+
+# Detection Capabilities
 
 The environment currently monitors:
 
-- SSH authentication events
+- Authentication events
 - Failed login attempts
 - Privileged command execution
 - File integrity changes
@@ -77,7 +79,7 @@ The environment currently monitors:
 - Linux audit events
 - Windows security events
 
-Additional integrations include:
+Additional integrations:
 
 - Auditd
 - AIDE
@@ -85,79 +87,61 @@ Additional integrations include:
 
 ---
 
-## Example Test Cases
+# Example Security Events
 
-### Failed SSH Login
+## Failed SSH Login
 
 ```bash
 ssh invaliduser@localhost
 ```
 
-### File Modification
+## File Integrity Change
 
 ```bash
 sudo nano /etc/passwd
 ```
 
-### Privileged Command Execution
+## Privileged Command Execution
 
 ```bash
 sudo useradd testuser
 ```
 
-These activities generate alerts visible in the Wazuh dashboard.
+These activities generate alerts visible in the Wazuh dashboard for investigation and analysis.
 
 ---
-## Deployment Environment
+
+# Deployment Environment
 
 | Component | Platform |
 |---|---|
 | Wazuh Stack | Docker on WSL2 |
-| Endpoint Monitoring | Windows, macOS, Debian |
+| Endpoint Monitoring | Windows, macOS, Debian Linux |
 | Sensor Node | Raspberry Pi 5 |
 | Network | Local LAN |
 
-The lab is intentionally designed as a lightweight local environment focused on learning and experimentation.
+The lab is intentionally designed as a lightweight local SOC environment focused on practical learning and experimentation.
 
 ---
 
-## Planned Automation Integration
+# Documentation
 
-Future work will integrate n8n for basic security automation workflows.
-
-Planned use cases include:
-
-- Alert forwarding
-- Severity-based filtering
-- Automated notifications
-- Simple active response actions
-- Webhook-based event processing
-
-Conceptual workflow:
-
-```text
-Wazuh → Alert → Webhook/API → n8n → Action
-```
-
----
-
-## Documentation
-
-Detailed setup documentation is available in the following files:
+Detailed implementation and operational documentation is available in the following files:
 
 | Document | Description |
 |---|---|
-| `wazuh-siem-setup.md` | Wazuh SIEM deployment |
-| `wazuh-agent-installation.md` | Endpoint agent installation |
-| `update-wazuh-version.md` | Wazuh version upgrade process |
+| `wazuh-siem-setup.md` | Wazuh SIEM deployment and infrastructure setup |
+| `wazuh-agent-installation.md` | Endpoint agent installation and enrollment |
+| `update-wazuh-version.md` | Wazuh stack upgrade and troubleshooting process |
 
 ---
 
-## Technologies Used
+# Technologies Used
 
 - Wazuh
 - Docker
 - WSL2
+- Ubuntu
 - OpenSearch
 - Linux
 - Debian
@@ -167,21 +151,24 @@ Detailed setup documentation is available in the following files:
 
 ---
 
-## Learning Objectives
+# Learning Objectives
 
-This lab was built to practice:
+This project was built to strengthen practical skills in:
 
-- SIEM deployment and administration
+- SIEM deployment
 - Endpoint visibility
+- Detection engineering
+- Security monitoring
 - Log analysis
-- Detection engineering fundamentals
-- Linux system administration
-- Security monitoring workflows
-- SOC investigation concepts
+- Infrastructure troubleshooting
+- Multi-platform administration
+- SOC operational workflows
 
 ---
 
-## Future Improvements
+# Future Improvements
+
+Planned future enhancements include:
 
 - n8n workflow automation
 - Suricata IDS integration
@@ -190,18 +177,30 @@ This lab was built to practice:
 - Custom dashboards
 - Alert tuning
 - Active response rules
+- Automated alert forwarding
 
 ---
 
-## Documentation
+# Key Lessons Learned
 
-Detailed setup documentation:
+- Version compatibility between manager and agents is critical
+- WSL2 networking introduces additional routing considerations
+- Structured troubleshooting and validation improve deployment reliability
+- Standardized endpoint naming simplifies asset management
+- Containerized SIEM deployments provide flexible local lab environments
 
-- [Wazuh SIEM Installation](./wazuh-siem-setup.md)
-- [Wazuh Agent Installation](./wazuh-agent-installation.md)
-- [Wazuh Version Upgrade](./update-wazuh-version.md)
-  
 ---
+
+# Status
+
+- Wazuh stack operational
+- Multi-platform agents connected
+- Dashboard functional
+- Endpoint monitoring active
+- Upgrade to Wazuh 4.14.5 completed successfully
+
+---
+
 ## Author
 
-Cybersecurity learning project focused on practical SOC operations, monitoring, and detection engineering.
+Cybersecurity learning project focused on practical SOC operations, SIEM administration, endpoint monitoring, and detection engineering.
