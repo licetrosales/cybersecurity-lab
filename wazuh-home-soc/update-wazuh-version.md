@@ -1,77 +1,103 @@
-# Wazuh Upgrade
+# Wazuh Stack Upgrade and Maintenance
 
 ## Overview
 
-This document describes:
+This document describes the upgrade and maintenance operations performed on the Wazuh Home SOC lab environment.
 
-* Upgrade from initial deployment of Wazuh version **4.7 → 4.14.5**
-* Agent reinstallation (Windows, macOS & linux)
-* Troubleshooting and resolution steps
+The procedures documented include:
 
----
+* Wazuh stack upgrade from version 4.7 to 4.14.5
+* SSL certificate regeneration
+* Agent re-enrollment
+* Endpoint naming standardization
+* Post-upgrade validation
+* Operational troubleshooting
 
-# 1. Initial Environment
-- Initial Deployment (Wazuh 4.7) 
-  - Location: wazuh-docker/single-node
-  - Components started
-    * wazuh-manager
-    * wazuh-indexer
-    * wazuh-dashboard
-
-## WSL2 Networking Architecture
-
-The Wazuh manager runs inside:
-
-- Docker
-- inside Ubuntu WSL2
-- hosted on Windows 11
-
-Internal WSL IP:
-
-172.23.XX.XX
-
-LAN-facing Windows host IP:
-
-192.168.XX.XX
-
-External agents must connect to the Windows host IP,
-because WSL2 performs internal NAT and port forwarding.
-
-## Systems
-
-* Wazuh Manager: Docker (WSL Ubuntu)
-* macOS client (MacBook)
-* Windows client
-
-## Network
-
-* Wazuh Manager IP: `192.168.XX.XX`
-* Agent communication port: `1514/tcp`
+The environment runs as a Docker-based deployment hosted inside Ubuntu on WSL2.
 
 ---
 
+# Initial Environment
 
-# 3. Upgrade from 4.7 → 4.14.5
+## Infrastructure
 
-## Root Cause
+| Component       | Platform       |
+| --------------- | -------------- |
+| Wazuh Manager   | Docker         |
+| Wazuh Indexer   | Docker         |
+| Wazuh Dashboard | Docker         |
+| Host System     | Windows 11     |
+| Linux Runtime   | Ubuntu on WSL2 |
 
-Agent connection failed due to:
+---
 
-```text
+## Initial Stack Version
+
+```text id="9m5e3u"
+Wazuh 4.7
+```
+
+---
+
+## Network Architecture
+
+The Wazuh stack runs inside Docker containers hosted within Ubuntu on WSL2.
+
+```text id="v2k55x"
+Windows Host
+   └── WSL2
+         └── Docker
+               └── Wazuh Stack
+```
+
+Because WSL2 uses virtual networking and NAT, monitored endpoints communicate through the Windows host IP address rather than the internal WSL2 IP address.
+
+Example addressing:
+
+| Type             | Example       |
+| ---------------- | ------------- |
+| Windows Host IP  | `192.168.X.X` |
+| Internal WSL2 IP | `172.23.X.X`  |
+
+---
+
+# Upgrade Motivation
+
+## Issue Encountered
+
+After deploying additional agents, the following compatibility issue occurred:
+
+```text id="v8o2rl"
 ERROR: Agent version must be lower or equal to manager version
 ```
 
-Manager was outdated (4.7)
+---
+
+## Root Cause
+
+The Wazuh manager was running an outdated version:
+
+```text id="t04k4m"
+Wazuh 4.7
+```
+
+Newly installed agents used a newer release version, resulting in version incompatibility between manager and agents.
 
 ---
 
-## Upgrade Steps
+# Upgrade Procedure
 
-### 1. Edit docker-compose.yml
+## 1. Update Docker Images
 
-Update all images:
+Edit the Docker Compose configuration:
 
-```yaml
+```bash id="91hxg9"
+nano docker-compose.yml
+```
+
+Update all Wazuh image versions:
+
+```yaml id="3upwyu"
 image: wazuh/wazuh-manager:4.14.5
 image: wazuh/wazuh-indexer:4.14.5
 image: wazuh/wazuh-dashboard:4.14.5
@@ -79,231 +105,253 @@ image: wazuh/wazuh-dashboard:4.14.5
 
 ---
 
-### 2. Stop old containers
+## 2. Stop Existing Containers
 
-```bash
+```bash id="myv4m8"
 docker compose down
 ```
 
 ---
 
-### 3. Pull new images
+## 3. Pull Updated Images
 
-```bash
+```bash id="6cjlwm"
 docker compose pull
 ```
 
 ---
 
-### 4. Start updated stack
+## 4. Deploy Updated Stack
 
-```bash
+```bash id="sjmtcf"
 docker compose up -d
 ```
 
 ---
 
-## Issue: SSL Certificate Errors
+# SSL Certificate Regeneration
 
-### Symptoms:
+## Issue Encountered
 
-```text
+After the upgrade, the indexer generated SSL-related errors.
+
+### Example Errors
+
+```text id="m1yjlwm"
 unable to verify the first certificate
 SSLHandshakeException (bad_certificate)
 ```
 
 ---
-## Fix: Regenerate certificates
 
-### 1. Remove old certificates
+## Root Cause
 
-```bash
+Existing certificates were generated using the previous stack version and were no longer compatible after the upgrade.
+
+---
+
+## Resolution
+
+### 1. Remove Existing Certificates
+
+```bash id="q6l9ba"
 sudo rm -rf config/wazuh_indexer_ssl_certs
 ```
 
 ---
 
-### 2. Generate new certificates
+### 2. Generate New Certificates
 
-```bash
+```bash id="lkq78g"
 docker compose -f generate-indexer-certs.yml run --rm generator
 ```
 
 ---
 
-### 3. Restart stack
+### 3. Restart the Stack
 
-```bash
+```bash id="knzjlwm"
 docker compose down
 docker compose up -d
 ```
 
 ---
 
-## Verification
+# Agent Re-Enrollment
 
-```bash
-curl -k -u admin:SecretPassword https://localhost:9200/_cluster/health?pretty
+## Overview
+
+Following the stack upgrade, some agents required re-enrollment to restore communication with the updated manager.
+
+Affected endpoints included:
+
+* Windows 11
+* macOS
+* Debian Linux
+* Raspberry Pi OS
+
+---
+
+## Re-Enrollment Procedure
+
+Example command:
+
+```bash id="r4cjlwm"
+sudo /Library/Ossec/bin/agent-auth -m 192.168.X.X -A mac-cli-01
 ```
 
-Expected:
+Restart the agent service after enrollment.
 
-```json
-"status": "green"
+---
+
+# Endpoint Naming Standardization
+
+## Initial Observation
+
+The macOS endpoint initially appeared in the Wazuh dashboard using the system hostname:
+
+```text id="5i2jlwm"
+MacBookPro.fritz.box
 ```
 
----
-# 4. Agent re-installation
+This naming behavior originated from the default macOS hostname configuration.
 
 ---
 
-## Windows Agent
+## Standardization Goal
 
-Installed via official Wazuh installer.
+To improve consistency across monitored assets, all endpoints were renamed using the following convention:
 
-✔ Successfully connected
-✔ Visible in dashboard
-
----
-
-## macOS Agent
-
-### Install
-
-```bash
-sudo installer -pkg wazuh-agent.pkg -target /
+```text id="ohoyt3"
+<os>-<role>-<id>
 ```
 
----
+Examples:
 
-### Register agent
-
-```bash
-sudo /Library/Ossec/bin/agent-auth -m 192.168.XX.XX
-```
-
----
-
-### Restart agent
-
-```bash
-sudo /Library/Ossec/bin/wazuh-control restart
-```
+* win-cli-01
+* mac-cli-01
+* linux-cli-01
+* raspi-cli-01
 
 ---
-
-# 5. Rename Agent (Best Practice)
 
 ## Limitation
 
-Wazuh does NOT support renaming existing agents.
+Wazuh does not support renaming existing agents directly.
 
 ---
 
-## Solution
+## Resolution
 
-### 1. Remove old agent
+### 1. Remove Existing Agent Entry
 
-```bash
+```bash id="tljlwm"
 docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
 ```
 
-→ Remove old ID
-
 ---
 
-### 2. Re-register with new name
+### 2. Re-Register the Endpoint
 
-```bash
-sudo /Library/Ossec/bin/agent-auth -m 192.168.178.51 -A mac-cli-01
+```bash id="mjlwm"
+sudo /Library/Ossec/bin/agent-auth -m 192.168.X.X -A mac-cli-01
 ```
 
 ---
 
-### 3. Restart agent
+### 3. Restart the Agent
 
-```bash
+```bash id="4jlwm"
 sudo /Library/Ossec/bin/wazuh-control restart
 ```
 
 ---
-## WSL2 Networking Observation
 
-After deployment, the Windows host appeared in Wazuh
-with an internal WSL2 IP address such as:
+# Validation
 
-172.23.X.X
+## Verify Container Status
 
-This is expected behavior because WSL2 uses a virtual
-network adapter between Windows and the Linux runtime.
-
-The Wazuh manager therefore sees the Windows endpoint
-through the WSL2 internal bridge network.
----
-
-# 6. Cleanup
-
-Remove disconnected agents:
-
-```bash
-docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
+```bash id="6jlwm"
+docker ps
 ```
+
+Expected containers:
+
+* wazuh-manager
+* wazuh-indexer
+* wazuh-dashboard
+
 ---
 
-# 7. Final State
+## Verify Cluster Health
 
-## Dashboard shows:
+```bash id="7jlwm"
+curl -k -u admin:SecretPassword https://localhost:9200/_cluster/health?pretty
+```
 
-* Active agents: Ok
-* OS distribution:
+Expected result:
 
-  * macOS (darwin)
-  * Windows
-
-## Example:
-
-```text
-mac-cli-01 → Active
-windows-client → Active
+```json id="8jlwm"
+"status" : "green"
 ```
 
 ---
 
-# 8. Troubleshooting Summary
+## Dashboard Validation
 
-| Issue                  | Cause               | Fix                  |
-| ---------------------- | ------------------- | -------------------- |
-| SSL error              | old certificates    | regenerate certs     |
-| Agent version mismatch | outdated manager    | upgrade stack        |
-| Dashboard not ready    | indexer not healthy | check cluster health |
-| Port error             | port already used   | change port          |
-| Permission denied      | root-owned files    | use sudo             |
+Successful validation confirmed:
 
----
-
-# 9. Lessons Learned 
-
-* Version compatibility is critical
-* Certificates must match cluster version
-* Clean agent lifecycle avoids duplicates
-* Logs are the primary troubleshooting source
+* Active agents connected
+* Dashboard operational
+* Log forwarding functional
+* Endpoint visibility restored
+* Multi-platform monitoring operational
 
 ---
 
-# 10. Next Steps (Recommended)
+# Troubleshooting Summary
 
-* Enable File Integrity Monitoring (FIM)
-* Configure alerts (email / Slack)
-* Create agent groups (macOS / Windows)
-* Simulate security events
+| Issue                  | Cause                    | Resolution                   |
+| ---------------------- | ------------------------ | ---------------------------- |
+| Agent version mismatch | Outdated manager version | Upgrade Wazuh stack          |
+| SSL certificate errors | Legacy certificates      | Regenerate certificates      |
+| Dashboard unavailable  | Indexer unhealthy        | Verify cluster health        |
+| Port conflicts         | WSL2 / Docker networking | Adjust exposed ports         |
+| Duplicate agent names  | Existing agent records   | Remove and re-register agent |
+
+---
+
+# Lessons Learned
+
+Key operational observations during the upgrade process:
+
+* Version compatibility between manager and agents is critical
+* Certificate regeneration may be required after major upgrades
+* Standardized naming improves SIEM asset management
+* WSL2 networking introduces additional troubleshooting considerations
+* Structured validation improves operational reliability
+
+---
+
+# Technologies Used
+
+* Wazuh
+* Docker
+* Docker Compose
+* WSL2
+* Ubuntu
+* OpenSearch
+* Windows 11
+* macOS
+* Debian Linux
+* Raspberry Pi OS
 
 ---
 
 # Status
 
-- Deployment complete
-- Upgrade successful
-- Agents connected and reporting
-- Dashboard operational
-
----
+* Wazuh stack upgraded successfully
+* SSL certificates regenerated
+* Endpoint communication restored
+* Multi-platform monitoring operational
+* Dashboard fully functional
