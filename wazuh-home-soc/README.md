@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project documents the implementation of a lightweight Home SOC (Security Operations Center) environment using Wazuh, Docker, WSL2, and multiple monitored endpoints.
+This project documents the implementation of a lightweight Home SOC Lab (Security Operations Center) environment using Wazuh, Docker, WSL2, and multiple monitored endpoints.
 
 The lab was built to practice:
 
