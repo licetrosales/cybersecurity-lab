@@ -100,6 +100,7 @@ Expected output:
 ```text
 INFO: Valid key received
 ```
+The lab uses manual agent enrollment via `agent-auth` to better understand Wazuh agent registration workflows during learning and troubleshooting exercises.
 
 ---
 
