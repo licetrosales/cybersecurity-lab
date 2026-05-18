@@ -63,7 +63,7 @@ The environment simulates a small security monitoring infrastructure with centra
 | mac-cli-01 | macOS | Workstation endpoint |
 | win-cli-01 | Windows 11 | Primary workstation |
 | linux-cli-01 | Debian Linux | Monitored Linux endpoint |
-| raspi-cli-01 | Raspberry Pi OS | Sensor and monitoring node |
+| raspi-cli-01 | Raspberry Pi OS | Sensor node |
 
 ---
 
@@ -142,7 +142,6 @@ Detailed implementation and operational documentation is available in the follow
 - Docker
 - WSL2
 - Ubuntu
-- OpenSearch
 - Linux
 - Debian
 - Raspberry Pi OS
