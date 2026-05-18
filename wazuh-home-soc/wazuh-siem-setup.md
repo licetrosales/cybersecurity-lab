@@ -14,6 +14,10 @@ The environment was designed as a lightweight Home SOC lab for security monitori
 
 The deployment uses Docker containers running inside Ubuntu on WSL2 to provide a Linux-native environment while maintaining compatibility with Windows-based infrastructure.
 
+
+> Note:
+> This document reflects the current operational state of the environment after upgrading the original Wazuh 4.7 deployment to Wazuh 4.14.5.
+> The upgrade process, certificate regeneration, and agent re-enrollment procedures are documented separately in `update-wazuh-version.md`.
 ---
 
 # Architecture
@@ -30,9 +34,6 @@ Windows 11 Host
                      └── Wazuh Dashboard
 ```
 
-> Note:
-> This document reflects the current operational state of the environment after upgrading the original Wazuh 4.7 deployment to Wazuh 4.14.5.
-> The upgrade process, certificate regeneration, and agent re-enrollment procedures are documented separately in `update-wazuh-version.md`.
 ---
 
 # Prerequisites
