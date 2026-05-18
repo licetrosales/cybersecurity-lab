@@ -271,7 +271,9 @@ A browser certificate warning is expected because the deployment uses self-signe
 ---
 
 ## Default Credentials
+The deployment initially uses the default credentials provided by the Wazuh Docker installation:
 
+```text
 ```text
 Username: admin
 Password: SecretPassword
