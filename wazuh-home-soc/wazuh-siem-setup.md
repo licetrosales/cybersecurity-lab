@@ -180,6 +180,8 @@ The following containers are created:
 * wazuh-indexer
 * wazuh-dashboard
 
+This deployment uses Docker Compose V2 syntax (`docker compose`).
+
 ---
 
 # Networking and Port Considerations
@@ -268,6 +270,8 @@ https://localhost
 
 A browser certificate warning is expected because the deployment uses self-signed certificates.
 
+The dashboard is exposed locally through Docker port forwarding on the Windows host, while remote agents must communicate using the Windows host LAN IP address.
+
 ---
 
 ## Default Credentials
@@ -280,6 +284,7 @@ Password: SecretPassword
 ```
 
 ---
+
 
 ## Verify Cluster Health
 
