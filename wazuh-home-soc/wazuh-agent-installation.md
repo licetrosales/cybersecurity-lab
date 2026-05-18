@@ -282,7 +282,8 @@ sudo apt install curl apt-transport-https lsb-release gnupg2 -y
 Import the GPG key:
 
 ```bash
-curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo apt-key add -
+curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH \
+| sudo gpg --dearmor -o /usr/share/keyrings/wazuh.gpg
 ```
 
 Add the repository:
