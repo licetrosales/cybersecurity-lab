@@ -30,6 +30,9 @@ Windows 11 Host
                      └── Wazuh Dashboard
 ```
 
+> Note:
+> This document reflects the current operational state of the environment after upgrading the original Wazuh 4.7 deployment to Wazuh 4.14.5.
+> The upgrade process, certificate regeneration, and agent re-enrollment procedures are documented separately in `update-wazuh-version.md`.
 ---
 
 # Prerequisites
