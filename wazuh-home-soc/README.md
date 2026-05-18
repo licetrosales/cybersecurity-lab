@@ -203,3 +203,7 @@ Planned future enhancements include:
 ## Author
 
 Cybersecurity learning project focused on practical SOC operations, SIEM administration, endpoint monitoring, and detection engineering.
+
+## Missing SEcurity Hardening Disclaimer
+
+This environment is intended for learning and local lab usage only and is not hardened for production deployment.
