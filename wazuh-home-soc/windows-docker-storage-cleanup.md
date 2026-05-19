@@ -1,6 +1,6 @@
 # Docker WSL2 Storage Maintenance
 
-## 1 Overview
+## Overview
 
 This document describes storage cleanup, Docker maintenance, and VHDX compaction operations performed on the Wazuh Home SOC lab environment hosted on Windows 11 with Docker Desktop and WSL2.
 
@@ -89,4 +89,102 @@ powercfg /h off
 This reclaimed additional disk space on the Windows host.
 
 ---
+
+# Docker Cleanup
+## Review Existing Images
+
+Docker Desktop was used to review existing images, containers, and volumes.
+
+Unused and outdated images were identified.
+
+Example obsolete image:
+```text
+wazuh/wazuh-certs-generator:0.0.1
+```
+## Remove Unused Images
+
+Unused images were removed manually through Docker Desktop.
+
+Only images confirmed as unused were deleted.
+
+Active Wazuh images remained intact:
+
+- wazuh-manager
+- wazuh-indexer
+- wazuh-dashboard
+
+---
+
+# Docker Storage Analysis
+## Docker Disk Usage
+
+Docker storage usage was reviewed using:
+```bash
+docker system df
+```
+The analysis confirmed:
+
+- Multiple inactive containers
+- Reclaimable image space
+- Persistent Docker volumes in use
+
+---
+# WSL2 and Docker VHDX Compaction
+## Problem
+
+Although unused Docker images and files had been removed, the Docker virtual disk (`docker_data.vhdx`) did not automatically shrink.
+
+## Root Cause
+
+WSL2 virtual disks dynamically expand but do not automatically compact after file deletion.
+
+Manual compaction is required.
+
+# Compaction Procedure
+## 1. Shut Down WSL2
+
+PowerShell was opened as Administrator.
+
+WSL2 was stopped using:
+```bash
+wsl --shutdown
+```
+## 2. Locate Docker Virtual Disk
+
+Docker storage location:
+```text
+C:\Users\<user>\AppData\Local\Docker\wsl\disk\
+```
+Verify the VHDX file:
+```bash
+ls
+```
+Expected result:
+```text
+docker_data.vhdx
+```
+## 3. Compact the Virtual Disk
+
+The virtual disk was compacted using:
+```powershel
+Optimize-VHD -Path "C:\Users\<user>\AppData\Local\Docker\wsl\disk\docker_data.vhdx" -Mode
+Full
+```
+# Issue Encountered
+## Error
+
+Initial compaction failed with:
+```text
+The process cannot access the file because it is being used by another process.
+```
+## Cause
+
+Docker Desktop background processes were still using the virtual disk.
+
+## Resolution
+
+Docker Desktop processes were terminated using Task Manager.
+
+After Docker shutdown, the compaction operation completed successfully.
+
 
