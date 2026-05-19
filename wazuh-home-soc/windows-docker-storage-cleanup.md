@@ -187,4 +187,56 @@ Docker Desktop processes were terminated using Task Manager.
 
 After Docker shutdown, the compaction operation completed successfully.
 
+# Validation
+## Post-Compaction Verification
 
+The VHDX file size was reviewed again after optimization.
+
+Results:
+
+|State |	Approximate Size|
+|Before cleanup |	~51.7 GB|
+|After compaction | ~15.9 GB|
+
+Approximate reclaimed storage:
+```text
+~35 GB
+```
+# Operational Validation
+
+After maintenance, the following checks were completed successfully:
+
+- Docker Desktop operational
+- Wazuh dashboard accessible
+- Containers functional
+- Agents connected successfully
+- WSL2 operational
+- No data loss observed
+
+# Lessons Learned
+
+Key operational observations from the maintenance process:
+
+- WSL2 virtual disks do not automatically shrink
+- Docker image cleanup alone does not reduce VHDX size
+- WizTree is effective for storage analysis on Windows
+- Docker background processes can prevent VHDX compaction
+- Structured cleanup significantly improves available storage
+
+# Technologies Used
+- Docker Desktop
+- WSL2
+- Windows 11
+- PowerShell
+- Hyper-V
+- WizTree
+- Wazuh
+
+# Status
+- Windows disk cleanup completed
+- Duplicate files reviewed
+- Unused Docker images removed
+- Hibernate disabled
+- Docker virtual disk compacted successfully
+- Significant storage reclaimed
+- Wazuh Home SOC lab operational
