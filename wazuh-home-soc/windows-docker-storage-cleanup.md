@@ -64,3 +64,29 @@ Example Docker virtual disk:
 
 ```text
 docker_data.vhdx
+```
+# Windows Disk Cleanup
+## Disk Cleanup Utility
+
+Windows Disk Cleanup was executed with administrative privileges.
+
+The following cleanup categories were removed:
+
+- Windows Update Cleanup
+- Delivery Optimization Files
+- Temporary Files
+- Recycle Bin contents
+- Temporary Internet Files
+- Upgrade log files
+
+# Hibernate Removal
+Hibernate support was disabled to remove the hibernation file (hiberfil.sys).
+
+Command executed:
+```powershell
+powercfg /h off
+```
+This reclaimed additional disk space on the Windows host.
+
+---
+
