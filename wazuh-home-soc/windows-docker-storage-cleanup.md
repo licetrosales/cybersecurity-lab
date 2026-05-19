@@ -195,6 +195,7 @@ The VHDX file size was reviewed again after optimization.
 Results:
 
 |State |	Approximate Size|
+|---|---|
 |Before cleanup |	~51.7 GB|
 |After compaction | ~15.9 GB|
 
