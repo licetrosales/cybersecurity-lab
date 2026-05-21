@@ -14,23 +14,23 @@ Each case follows the same structure:
 
 ## Networking Issues
 ## Agent Enrollment Issues
-## Duplicate Agent Name
+### Duplicate Agent Name
 
-### Issue
+#### Issue
 
 During agent enrollment, the Wazuh manager rejected the registration because an agent with the same name already existed.
 
-### Symptoms
+#### Symptoms
 
 ```text
 Duplicate agent name
 ```
-### Cause
+#### Cause
 
 The endpoint had previously been registered in the Wazuh manager database.
 Because Wazuh does not allow duplicate agent names, the new enrollment attempt failed.
 
-### Resolution
+#### Resolution
 
 Remove the existing agent entry from the Wazuh manager:
 ```bash
@@ -44,15 +44,80 @@ Restart the agent service:
 ```bash
 sudo systemctl restart wazuh-agent
 ```
-### Validation
+#### Validation
 
 Verify that the agent appears as active in the Wazuh dashboard.
 
-### Lesson Learned
+#### Lesson Learned
 
 Standardized endpoint naming improves asset management, but old agent records must be removed before re-enrollment.
 
 ---
+## Agent Service Does Not Start
+
+### Issue
+
+The Wazuh agent service failed to start after installation or re-enrollment.
+
+### Symptoms
+
+```text
+wazuh-agent.service failed
+```
+or:
+```text
+wazuh-agentd is not running
+```
+#### Cause
+
+Possible causes included:
+
+- the agent was not registered,
+- the client key was missing,
+- the manager address was incorrect,
+- an old OSSEC/Wazuh installation conflicted with the new setup.
+
+#### Resolution
+
+Check the agent configuration:
+```bash
+sudo nano /var/ossec/etc/ossec.conf
+```
+Verify the manager address:
+```XML
+<client>
+  <server>
+    <address>192.168.X.X</address>
+    <port>1514</port>
+    <protocol>tcp</protocol>
+  </server>
+</client>
+```
+Re-register the agent:
+```bash
+sudo /var/ossec/bin/agent-auth -m 192.168.X.X -A linux-cli-01
+```
+Restart the service:
+```bash 
+sudo systemctl restart wazuh-agent
+```
+#### Validation
+
+Check service status:
+```bash
+sudo systemctl status wazuh-agent
+```
+
+Expected result:
+```text
+active (running)
+```
+#### Lesson Learned
+
+Agent startup problems are often related to registration or configuration issues, so checking the client key and manager address should be part of the first troubleshooting steps.
+
+---
+
 
 ## Version Compatibility Issues
 ## Certificate and SSL Issues
