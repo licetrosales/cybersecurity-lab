@@ -467,61 +467,12 @@ sudo systemctl status wazuh-agent
 
 ---
 
-# Common Troubleshooting
+# Troubleshooting
 
-## Service Does Not Start
-
-### Possible Causes
-
-* Agent not registered
-* Missing client key
-* Incorrect manager address
-* Existing OSSEC installation conflict
-
-### Resolution
-
-Re-register the endpoint and restart the service.
-
----
-
-## Duplicate Agent Name
-
-### Error
+Common agent onboarding issues, including duplicate agent names, service startup failures, and WSL2 networking problems, are documented in:
 
 ```text
-Duplicate agent name
-```
-
-### Cause
-
-An existing agent entry already exists in the Wazuh manager database.
-
-### Resolution
-
-Remove the previous agent record:
-
-```bash
-docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
-```
-
-Re-register the endpoint using the standardized naming convention.
-
----
-
-## Connectivity Issues
-
-Verify connectivity to the manager.
-
-### Windows
-
-```powershell
-Test-NetConnection 192.168.X.X -Port 1514
-```
-
-### Linux / macOS
-
-```bash
-nc -zv 192.168.X.X 1514
+troubleshooting.md
 ```
 
 ---
