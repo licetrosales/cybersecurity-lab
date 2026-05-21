@@ -1,4 +1,24 @@
 # Troubleshooting
+This document centralizes troubleshooting cases encountered during the Home SOC Lab deployment, upgrade, and endpoint onboarding process.
+
+Each case follows the same structure:
+
+- Issue
+- Symptoms
+- Cause
+- Resolution
+- Validation
+- Lesson learned
+
+---
+
+## Networking Issues
+## Agent Enrollment Issues
+## Version Compatibility Issues
+## Certificate and SSL Issues
+## Dashboard and Indexer Issues
+## Service and Startup Issues
+## Naming and Asset Management Issues
 
 ## Docker CLI Not Recognized After WSL Shutdown
 
