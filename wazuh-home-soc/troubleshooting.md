@@ -13,6 +13,59 @@ Each case follows the same structure:
 ---
 
 ## Networking Issues
+
+### Agent Cannot Reach Wazuh Manager
+
+#### Issue
+
+An endpoint could not communicate with the Wazuh manager.
+
+#### Symptoms
+
+The agent did not appear as active in the dashboard.
+
+Connectivity tests failed:
+
+```bash
+nc -zv 192.168.X.X 1514
+```
+or on Windows:
+```bash
+Test-NetConnection 192.168.X.X -Port 1514
+```
+#### Cause
+
+The Wazuh manager runs inside Docker containers hosted on Ubuntu through WSL2.
+Because WSL2 uses virtual networking and NAT, external endpoints must connect to the Windows host LAN IP address, not the internal WSL2 IP address.
+
+#### Resolution
+
+Use the Windows host IP address as the Wazuh manager address:
+```text
+192.168.X.X
+```
+Confirm that the required ports are reachable:
+```text
+1514/tcp - Agent communication
+1515/tcp - Agent enrollment
+```
+#### Validation
+
+Run a connectivity test from the endpoint:
+```text
+nc -zv 192.168.X.X 1514
+nc -zv 192.168.X.X 1515
+```
+Expected result:
+```text
+succeeded!
+```
+#### Lesson Learned
+
+In WSL2-based deployments, understanding the difference between the Windows host IP and the internal WSL2 IP is critical for endpoint connectivity.
+
+---
+
 ## Agent Enrollment Issues
 ### Duplicate Agent Name
 
