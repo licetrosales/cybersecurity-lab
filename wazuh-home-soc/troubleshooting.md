@@ -14,6 +14,46 @@ Each case follows the same structure:
 
 ## Networking Issues
 ## Agent Enrollment Issues
+## Duplicate Agent Name
+
+### Issue
+
+During agent enrollment, the Wazuh manager rejected the registration because an agent with the same name already existed.
+
+### Symptoms
+
+```text
+Duplicate agent name
+```
+### Cause
+
+The endpoint had previously been registered in the Wazuh manager database.
+Because Wazuh does not allow duplicate agent names, the new enrollment attempt failed.
+
+### Resolution
+
+Remove the existing agent entry from the Wazuh manager:
+```bash
+docker exec -it single-node-wazuh.manager-1 /var/ossec/bin/manage_agents
+```
+Then re-register the endpoint using the standardized naming convention:
+```bash
+sudo /var/ossec/bin/agent-auth -m 192.168.X.X -A linux-cli-01
+```
+Restart the agent service:
+```bash
+sudo systemctl restart wazuh-agent
+```
+### Validation
+
+Verify that the agent appears as active in the Wazuh dashboard.
+
+### Lesson Learned
+
+Standardized endpoint naming improves asset management, but old agent records must be removed before re-enrollment.
+
+---
+
 ## Version Compatibility Issues
 ## Certificate and SSL Issues
 ## Dashboard and Indexer Issues
