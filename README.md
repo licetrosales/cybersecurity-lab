@@ -70,7 +70,7 @@ It answers:
 
 I'm currently focusing on:
 
-- [ ] Python basics for security scripting
+- [ ] Python for security scripting
 - [ ] Bash and Linux tools
 - [ ] Network packet analysis
 - [ ] Writing small-scale CTF challenges
